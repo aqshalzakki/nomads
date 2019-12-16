@@ -11,15 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::prefix('admin')
-     ->name('admin.')
-     ->namespace('Admin')
-     ->group(function(){
+Route::get('/', 'HomeController@index')->name('home');
 
-         Route::get('/', 'DashboardController@index')->name('index');
+// Admin Routes 
+
+    Route::prefix('admin')
+    ->name('admin.')
+    ->namespace('Admin')
+    ->group(function(){
+        
+        Route::get('/', 'DashboardController@index')->name('index');
         
     });
+
+// End Admin routes 
+
+
