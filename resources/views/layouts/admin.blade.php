@@ -11,7 +11,7 @@
 
   <title>@yield('title')</title>
   {{-- styles  --}}
-   @include('components.style')
+   @include('components.admin.style')
   {{-- end styles  --}}
 </head>
 
@@ -21,7 +21,7 @@
   <div id="wrapper">
 
     {{-- Sidebar --}}
-      @include('components.sidebar')
+      @include('components.admin.sidebar')
     {{-- end sidebar --}}
 
     <!-- Content Wrapper -->
@@ -31,7 +31,7 @@
       <div id="content">
 
         {{-- topbar --}}
-          @include('components.topbar')
+          @include('components.admin.topbar')
         {{-- end topbar --}}
 
         {{-- main content  --}}
@@ -42,7 +42,7 @@
       <!-- End of Main Content -->
 
       {{-- footer --}}
-        @include('components.footer')
+        @include('components.admin.footer')
       {{-- end footer --}}
 
     </div>
@@ -76,7 +76,7 @@
   </div>
 
   {{-- scripts  --}}
-  @include('components.script')
+  @include('components.admin.script')
   {{-- end scripts --}}
 
 </body>
