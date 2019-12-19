@@ -13,9 +13,21 @@
 
 
 Route::get('/', 'HomeController@index')->name('home');
+
 Route::get('/detail', function(){
     return view('pages.detail');
-});
+})->name('detail');
+
+Route::prefix('checkout')
+     ->name('checkout.')
+     ->group(function(){
+
+         Route::get('/', 'CheckoutController@index')
+             ->name('index');
+         Route::get('/success', 'CheckoutController@success')
+             ->name('success');
+     
+       });
 
 // Admin Routes 
 
@@ -24,7 +36,7 @@ Route::get('/detail', function(){
     ->namespace('Admin')
     ->group(function(){
         
-        Route::get('/', 'DashboardController@index')->name('index');
+        Route::get('/', 'DashboardController@index')->name('dashboard');
         
     });
 

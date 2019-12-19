@@ -22,24 +22,10 @@
     {{-- content --}}
         @yield('content')
     {{-- end content --}}
-    
-    {{-- Footer --}}
-      @include('components.user.footer')
-      {{-- end footer --}}
       
     {{-- Scripts --}}
       @include('components.user.scripts') 
       @stack('addon-script')
       <script src="frontend/libraries/gijgo/js/gijgo.min.js"></script>
-      <script>
-        $('.datepicker').datepicker({
-            uiLibrary: 'bootstrap4',
-            icons: {
-              rightIcon: '<img src="frontend/images/ic_doe.png" alt="" />'
-            }
-          });
-      </script>
-    {{-- end scripts --}}
-
   </body>
 </html>
