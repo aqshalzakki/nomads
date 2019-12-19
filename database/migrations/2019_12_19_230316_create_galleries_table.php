@@ -15,7 +15,7 @@ class CreateGalleriesTable extends Migration
     {
         Schema::create('galleries', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('travel_packages_id');
+            $table->unsignedBigInteger('travel_package_id');
             $table->string('image');
             
             $table->softDeletes();
