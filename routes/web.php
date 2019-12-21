@@ -13,6 +13,9 @@
 
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/logout', function(){
+    Auth::logout();
+});
 
 Route::get('/detail', function(){
     return view('pages.detail');
