@@ -37,7 +37,7 @@ Route::prefix('checkout')
     Route::prefix('admin')
     ->name('admin.')
     ->namespace('Admin')
-    ->middleware(['auth', 'admin'])
+    ->middleware(['verified', 'admin'])
     ->group(function(){
         
         Route::get('/', 'DashboardController@index')->name('dashboard');
@@ -46,4 +46,4 @@ Route::prefix('checkout')
 
 // End Admin routes 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
