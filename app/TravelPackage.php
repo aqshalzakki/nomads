@@ -9,4 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class TravelPackage extends Model
 {
     use SoftDeletes;    
+
+    protected $guarded = ['created_at', 'updated_at'];
 }
