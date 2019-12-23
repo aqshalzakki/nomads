@@ -13,36 +13,60 @@
 
 
 Route::get('/', 'HomeController@index')->name('home');
+
+// for testing only
 Route::get('/logout', function(){
     Auth::logout();
 });
 
-Route::get('/detail', function(){
-    return view('pages.detail');
-})->name('detail');
+// Checkout Routes
+    Route::prefix('checkout')
+        ->name('checkout.')
+        ->group(function(){
+    
+            Route::get('/', 'CheckoutController@index')
+            ->name('index');
+            Route::get('/success', 'CheckoutController@success')
+            ->name('success');
+        
+        });
+        
+// Checkout Routes
 
-Route::prefix('checkout')
-     ->name('checkout.')
-     ->group(function(){
+// Travel Packages for user 
 
-         Route::get('/', 'CheckoutController@index')
-             ->name('index');
-         Route::get('/success', 'CheckoutController@success')
-             ->name('success');
-     
-       });
+    Route::prefix('travel-package')
+        ->name('travel-package.')
+        ->namespace('Admin')
+        ->group(function(){
+
+            Route::get('{travelPackage}', 'TravelPackageController@show')->name('show');
+
+        });
+
+// End Travel Packages 
 
 // Admin Routes 
 
     Route::prefix('admin')
-    ->name('admin.')
-    ->namespace('Admin')
-    ->middleware(['verified', 'admin'])
-    ->group(function(){
-        
-        Route::get('/', 'DashboardController@index')->name('dashboard');
-        
-    });
+        ->name('admin.')
+        ->namespace('Admin')
+        ->middleware(['verified', 'admin'])
+        ->group(function(){
+            
+            Route::get('/', 'DashboardController@index')->name('index');
+            
+            Route::prefix('travel-package')
+                ->name('travel-package.')
+                ->group(function(){
+                    Route::get('/', 'TravelPackageController@index')->name('index');
+                    Route::get('create', 'TravelPackageController@create')->name('create');
+                    Route::get('edit/{id}', 'TravelPackageController@edit')->name('edit');
+                    Route::post('/', 'TravelPackageController@store')->name('store');
+                    Route::delete('/', 'TravelPackageController@destroy')->name('destroy');
+                });
+
+        });
 
 // End Admin routes 
 

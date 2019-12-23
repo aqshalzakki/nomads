@@ -8,11 +8,11 @@ class CheckoutController extends Controller
 {
     public function index()
     {
-        return view('pages.checkout');
+        return view('user.checkout.index');
     }
 
     public function success()
     {
-        return view('pages.success');
+        return view('user.checkout.success');
     }
 }

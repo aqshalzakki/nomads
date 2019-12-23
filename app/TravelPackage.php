@@ -10,5 +10,5 @@ class TravelPackage extends Model
 {
     use SoftDeletes;    
 
-    protected $guarded = ['created_at', 'updated_at'];
+    protected $guarded = ['id', 'created_at', 'updated_at'];
 }
