@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Add new Travel Package')
+@section('title', 'Edit Paket Travel')
 
 @section('content')
     <!-- Begin Page Content -->
@@ -8,21 +8,22 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Add new Travel Package</h1>
+        <h1 class="h3 mb-0 text-gray-800">Edit Paket Travel</h1>
     </div>
 
 
     <div class="card-shadow">
         <div class="card-body">
-            <form action="{{ route('admin.travel-package.store') }}" method="post">
+            <form action="{{ route('admin.travel-package.update', $travelPackage->id) }}" method="post">
                 @csrf
-                
+                @method('patch')
+
                 <div class="form-group">
                     <label for="title">Title</label>
                     <input
                         id="title" 
                         placeholder="Title..." 
-                        value="{{ old('title') }}" 
+                        value="{{ $travelPackage->title }}" 
                         type="text" 
                         class="form-control @error('title') is-invalid @enderror" 
                         name="title"
@@ -40,7 +41,7 @@
                     <input
                         id="location" 
                         placeholder="Location..." 
-                        value="{{ old('location') }}" 
+                        value="{{ $travelPackage->location }}" 
                         type="text" 
                         class="form-control @error('location') is-invalid @enderror" 
                         name="location"
@@ -58,7 +59,7 @@
                     <input
                         id="featured_event" 
                         placeholder="Featured event..." 
-                        value="{{ old('featured_event') }}" 
+                        value="{{ $travelPackage->featured_event }}" 
                         type="text" 
                         class="form-control @error('featured_event') is-invalid @enderror" 
                         name="featured_event"
@@ -76,7 +77,7 @@
                     <input
                         id="language" 
                         placeholder="Language..." 
-                        value="{{ old('language') }}" 
+                        value="{{ $travelPackage->language }}" 
                         type="text" 
                         class="form-control @error('language') is-invalid @enderror" 
                         name="language"
@@ -94,7 +95,7 @@
                     <input
                         id="foods" 
                         placeholder="Foods..." 
-                        value="{{ old('foods') }}" 
+                        value="{{ $travelPackage->foods }}" 
                         type="text" 
                         class="form-control @error('foods') is-invalid @enderror" 
                         name="foods"
@@ -112,7 +113,7 @@
                     <input
                         id="departure_date" 
                         placeholder="Departure Date..." 
-                        value="{{ old('departure_date') }}" 
+                        value="{{ $travelPackage->departure_date }}" 
                         type="date" 
                         class="form-control @error('departure_date') is-invalid @enderror" 
                         name="departure_date"
@@ -130,7 +131,7 @@
                     <input
                         id="duration" 
                         placeholder="Duration..." 
-                        value="{{ old('duration') }}" 
+                        value="{{ $travelPackage->duration }}" 
                         type="text" 
                         class="form-control @error('duration') is-invalid @enderror" 
                         name="duration"
@@ -148,7 +149,7 @@
                     <input
                         id="type" 
                         placeholder="Type..." 
-                        value="{{ old('type') }}" 
+                        value="{{ $travelPackage->type }}" 
                         type="text" 
                         class="form-control @error('type') is-invalid @enderror" 
                         name="type"
@@ -166,7 +167,7 @@
                     <input
                         id="price" 
                         placeholder="Price..." 
-                        value="{{ old('price') }}" 
+                        value="{{ $travelPackage->price }}" 
                         type="number" 
                         class="form-control @error('price') is-invalid @enderror" 
                         name="price"
@@ -186,7 +187,7 @@
                         id="about" 
                         rows="10" 
                         class="d-block w-100 form-control @error('about') is-invalid @enderror"
-                    >{{ old('about') }}</textarea>
+                    >{{ $travelPackage->about }}</textarea>
 
                     @error('about')
                         <div class="ml-2 invalid-feedback">
@@ -196,7 +197,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-block">
-                    Add New
+                    Save Changes
                 </button>
             </form>
         </div>

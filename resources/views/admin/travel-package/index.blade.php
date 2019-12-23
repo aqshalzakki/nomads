@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Paket Travel')
+@section('title', 'Travel Packages')
 
 @section('content')
     <!-- Begin Page Content -->
@@ -8,10 +8,10 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Paket Travel</h1>
+        <h1 class="h3 mb-0 text-gray-800">Travel Package</h1>
         <a href="{{ route('admin.travel-package.create') }}" class="btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-plus fa-sm text-white-50"></i> 
-            Tambah Paket Travel
+            Add new Travel Package
         </a>
     </div>
     
@@ -55,16 +55,13 @@
                                         @csrf
                                         @method('delete')
 
-                                        <button class="btn btn-danger">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-
+                                        <button onclick="return confirm('Are you sure you want to delete {{ $travelPackage->title }} from the list?')" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7" class="text-center">Data kosong!</td>
+                                <td colspan="7" class="text-center">Oops its a 404 :( Travel package data not found!</td>
                             </tr>
                         @endforelse
                     </tbody>

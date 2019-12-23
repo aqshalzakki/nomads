@@ -47,9 +47,9 @@ class TravelPackageController extends Controller
         
         TravelPackage::create($data);
 
-        return redirect()->route('admin.travel-package.index')->withMessage('Travel Package has been added successfully!');
+        return redirect()->route('admin.travel-package.index')->withMessage( "$request->title has been added successfully!");
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -67,31 +67,40 @@ class TravelPackageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(TravelPackage $travelPackage)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
+        return view('admin.travel-package.edit', [
+            'travelPackage' => $travelPackage
+            ]);
+        }
+        
+        /**
+         * Update the specified resource in storage.
+         *
+         * @param  \Illuminate\Http\Request  $request
+         * @param  int  $id
+         * @return \Illuminate\Http\Response
+         */
+        public function update(TravelPackageRequest $request, TravelPackage $travelPackage)
+        {
+            $request = $request->all();
+            
+            $request['slug'] = Str::slug($request['title']);
+            $travelPackage->update($request);
+            
+            return redirect()->route('admin.travel-package.index')->withMessage("{$request['title']} has been updated!");
+        }
+        
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(TravelPackage $travelPackage)
     {
-        //
+        $travelPackage->destroy($travelPackage->id);
+
+        return redirect()->route('admin.travel-package.index')->withMessage("$travelPackage->title has been deleted!");
     }
 }

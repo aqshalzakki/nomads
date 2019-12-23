@@ -60,10 +60,14 @@ Route::get('/logout', function(){
                 ->name('travel-package.')
                 ->group(function(){
                     Route::get('/', 'TravelPackageController@index')->name('index');
+                    
                     Route::get('create', 'TravelPackageController@create')->name('create');
-                    Route::get('edit/{id}', 'TravelPackageController@edit')->name('edit');
                     Route::post('/', 'TravelPackageController@store')->name('store');
-                    Route::delete('/', 'TravelPackageController@destroy')->name('destroy');
+                    
+                    Route::get('edit/{travelPackage}', 'TravelPackageController@edit')->name('edit');
+                    Route::patch('{travelPackage}', 'TravelPackageController@update')->name('update');
+
+                    Route::delete('/{travelPackage}', 'TravelPackageController@destroy')->name('destroy');
                 });
 
         });

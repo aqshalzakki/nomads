@@ -17,24 +17,24 @@
       </li>
       
       <!-- Nav Item - Paket Travel -->
-      <li class="nav-item {{ isActiveUrl('admin/travel-package') }}">
+      <li class="nav-item {{ isActiveUrl('admin/travel-package*') }}">
         <a class="nav-link" href="{{ route('admin.travel-package.index') }}">
           <i class="fas fa-fw fa-hotel"></i>
-          <span>Paket Travel</span></a>
+          <span>Travel Packages</span></a>
       </li>
       
       <!-- Nav Item - Galeri Travel -->
       <li class="nav-item">
         <a class="nav-link" href="#">
           <i class="fas fa-fw fa-images"></i>
-          <span>Galeri Travel</span></a>
+          <span>Travel Galleries</span></a>
       </li>
       
       <!-- Nav Item - Transaksi -->
       <li class="nav-item">
         <a class="nav-link" href="#">
           <i class="fas fa-fw fa-dollar-sign"></i>
-          <span>Transaksi</span></a>
+          <span>Transactions</span></a>
       </li>
 
       <!-- Divider -->
