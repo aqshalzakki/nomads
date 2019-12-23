@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit Paket Travel')
+@section('title', "Edit Travel Package of $travelPackage->title")
 
 @section('content')
     <!-- Begin Page Content -->
@@ -8,7 +8,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Edit Paket Travel</h1>
+        <h1 class="h3 mb-0 text-gray-800">Edit Travel Package of {{ $travelPackage->title }}</h1>
     </div>
 
 
