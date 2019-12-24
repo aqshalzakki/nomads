@@ -30,7 +30,7 @@
                 <table class="table table-bordered" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>#</th>
                             <th>Title</th>
                             <th>Location</th>
                             <th>Departure Date</th>
@@ -41,7 +41,7 @@
                     <tbody>
                         @forelse ($travelPackages as $travelPackage)
                             <tr>
-                                <th>{{ $travelPackage->id }}</th>
+                                <th>{{ $loop->iteration }}</th>
                                 <th>{{ $travelPackage->title }}</th>
                                 <th>{{ $travelPackage->location }}</th>
                                 <th>{{ $travelPackage->departure_date }}</th>
