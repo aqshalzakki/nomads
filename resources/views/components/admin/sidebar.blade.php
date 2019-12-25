@@ -24,8 +24,8 @@
       </li>
       
       <!-- Nav Item - Galeri Travel -->
-      <li class="nav-item">
-        <a class="nav-link" href="#">
+      <li class="nav-item {{ isActiveUrl('admin/gallery*') }}">
+        <a class="nav-link" href="{{ route('admin.gallery.index') }}">
           <i class="fas fa-fw fa-images"></i>
           <span>Travel Galleries</span></a>
       </li>

@@ -70,6 +70,19 @@ Route::get('/logout', function(){
                     Route::delete('/{travelPackage}', 'TravelPackageController@destroy')->name('destroy');
                 });
 
+            Route::prefix('gallery')
+                ->name('gallery.')
+                ->group(function(){
+                    Route::get('/', 'GalleryController@index')->name('index');
+                    
+                    Route::get('create', 'GalleryController@create')->name('create');
+                    Route::post('/', 'GalleryController@store')->name('store');
+                    
+                    Route::get('edit/{gallery}', 'GalleryController@edit')->name('edit');
+                    Route::patch('{gallery}', 'GalleryController@update')->name('update');
+
+                    Route::delete('/{id}', 'GalleryController@destroy')->name('destroy');
+                });            
         });
 
 // End Admin routes 
