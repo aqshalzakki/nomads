@@ -99,7 +99,7 @@ class TravelPackageController extends Controller
      */
     public function destroy(TravelPackage $travelPackage)
     {
-        $travelPackage->destroy($travelPackage->id);
+        $travelPackage->delete();
 
         return redirect()->route('admin.travel-package.index')->withMessage("$travelPackage->title has been deleted!");
     }

@@ -54,6 +54,23 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="about">About</label>
+                    <textarea 
+                        name="about" 
+                        id="about" 
+                        rows="10" 
+                        class="d-block w-100 form-control @error('about') is-invalid @enderror"
+                    >{{ old('about') }}</textarea>
+
+                    @error('about')
+                        <div class="ml-2 invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
+
+                <div class="form-group">
                     <label for="featured_event">Featured event</label>
                     <input
                         id="featured_event" 
@@ -173,22 +190,6 @@
                     >
                     
                     @error('type')
-                        <div class="ml-2 invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <label for="about">About</label>
-                    <textarea 
-                        name="about" 
-                        id="about" 
-                        rows="10" 
-                        class="d-block w-100 form-control @error('about') is-invalid @enderror"
-                    >{{ old('about') }}</textarea>
-
-                    @error('about')
                         <div class="ml-2 invalid-feedback">
                             {{ $message }}
                         </div>
