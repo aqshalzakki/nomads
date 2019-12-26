@@ -59,7 +59,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7" class="text-center">Oops its a 404 :( Travel package gallery not found!</td>
+                                <td colspan="7" class="text-center">There is no Travel package gallery data!</td>
                             </tr>
                         @endforelse
                     </tbody>
