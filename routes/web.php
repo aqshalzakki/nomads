@@ -47,7 +47,8 @@ Route::get('/logout', function(){
             
             Route::resources([
                 'travel-packages' => 'TravelPackageController',
-                'galleries'       => 'GalleryController'
+                'galleries'       => 'GalleryController',
+                'transactions'    => 'TransactionController',
             ]);
 
         });
