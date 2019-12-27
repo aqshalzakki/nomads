@@ -9,7 +9,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Travel Package</h1>
-        <a href="{{ route('admin.travel-package.create') }}" class="btn btn-sm btn-primary shadow-sm">
+        <a href="{{ route('admin.travel-packages.create') }}" class="btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-plus fa-sm text-white-50"></i> 
             Add new Travel Package
         </a>
@@ -47,11 +47,11 @@
                                 <th>{{ $travelPackage->departure_date }}</th>
                                 <th>{{ $travelPackage->type }}</th>
                                 <td>
-                                    <a class="btn btn-info" href="{{ route('admin.travel-package.edit', $travelPackage->id) }}">
+                                    <a class="btn btn-info" href="{{ route('admin.travel-packages.edit', $travelPackage->id) }}">
                                         <i class="fa fa-pencil-alt"></i>
                                     </a>
 
-                                    <form class="d-inline" method="post" action="{{ route('admin.travel-package.destroy', $travelPackage->id) }}">
+                                    <form class="d-inline" method="post" action="{{ route('admin.travel-packages.destroy', $travelPackage->id) }}">
                                         @csrf
                                         @method('delete')
 

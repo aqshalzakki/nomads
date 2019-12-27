@@ -17,15 +17,15 @@
       </li>
       
       <!-- Nav Item - Paket Travel -->
-      <li class="nav-item {{ isActiveUrl('admin/travel-package*') }}">
-        <a class="nav-link" href="{{ route('admin.travel-package.index') }}">
+      <li class="nav-item {{ isActiveUrl('admin/travel-packages*') }}">
+        <a class="nav-link" href="{{ route('admin.travel-packages.index') }}">
           <i class="fas fa-fw fa-hotel"></i>
           <span>Travel Packages</span></a>
       </li>
       
       <!-- Nav Item - Galeri Travel -->
-      <li class="nav-item {{ isActiveUrl('admin/gallery*') }}">
-        <a class="nav-link" href="{{ route('admin.gallery.index') }}">
+      <li class="nav-item {{ isActiveUrl('admin/galleries*') }}">
+        <a class="nav-link" href="{{ route('admin.galleries.index') }}">
           <i class="fas fa-fw fa-images"></i>
           <span>Travel Galleries</span></a>
       </li>

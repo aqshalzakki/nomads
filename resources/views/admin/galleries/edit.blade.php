@@ -14,7 +14,7 @@
 
     <div class="card-shadow">
         <div class="card-body">
-            <form enctype="multipart/form-data" action="{{ route('admin.gallery.update', $gallery->id) }}" method="post">
+            <form enctype="multipart/form-data" action="{{ route('admin.galleries.update', $gallery->id) }}" method="post">
                 @csrf
                 @method('patch')
                 

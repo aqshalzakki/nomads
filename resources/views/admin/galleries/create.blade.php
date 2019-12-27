@@ -14,7 +14,7 @@
 
     <div class="card-shadow">
         <div class="card-body">
-            <form action="{{ route('admin.gallery.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.galleries.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 
                 <div class="form-group">

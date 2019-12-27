@@ -14,7 +14,7 @@
 
     <div class="card-shadow">
         <div class="card-body">
-            <form action="{{ route('admin.travel-package.store') }}" method="post">
+            <form action="{{ route('admin.travel-packages.store') }}" method="post">
                 @csrf
                 
                 <div class="form-group">

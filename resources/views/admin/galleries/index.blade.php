@@ -9,7 +9,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Travel Packages Gallery</h1>
-        <a href="{{ route('admin.gallery.create') }}" class="btn btn-sm btn-primary shadow-sm">
+        <a href="{{ route('admin.galleries.create') }}" class="btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-plus fa-sm text-white-50"></i> 
             Add new Gallery
         </a>
@@ -45,11 +45,11 @@
                                     <img src="{{ imageStoragePath($gallery->image) }}" class="img-thumbnail" style="width: 150px; height: 150px;" />
                                 </th>
                                 <td>
-                                    <a class="btn btn-info" href="{{ route('admin.gallery.edit', $gallery->id) }}">
+                                    <a class="btn btn-info" href="{{ route('admin.galleries.edit', $gallery->id) }}">
                                         <i class="fa fa-pencil-alt"></i>
                                     </a>
 
-                                    <form class="d-inline" method="post" action="{{ route('admin.gallery.destroy', $gallery->id) }}">
+                                    <form class="d-inline" method="post" action="{{ route('admin.galleries.destroy', $gallery->id) }}">
                                         @csrf
                                         @method('delete')
 
