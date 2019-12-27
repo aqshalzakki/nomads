@@ -11,70 +11,59 @@ use App\TravelPackage;
 use App\Http\Requests\Admin\GalleryRequest;
 
 class GalleryController extends Controller
-{    
+{
+    /**
+     * create an empty instance of gallery model
+     *
+     * @return App\TravelPackage
+     * @author aqshalzakki
+     */
+    protected $gallery;
+    public function __construct()
+    {
+        $this->gallery = new Gallery;
+    }
+
     public function index()
     {
-        return view('admin.gallery.index', [
+        return view('admin.galleries.index', [
             'galleries' => Gallery::with(['travel_package'])->get()
         ]);
     }
 
     public function create()
     {
-        return view('admin.gallery.create', [
+        return view('admin.galleries.create', [
         	'travel_packages' => TravelPackage::all()
         ]);
     }
 
-    public function store(Request $request)
+    public function store(GalleryRequest $request)
     {
-    	$data = $request->validate([
-    		'travel_package_id'	=> 'required',
-    		'image' 			=> ['required','image'],
-    	]);
-    	$data['image'] = $data['image']->store('travel-package', 'public');
+    	$this->gallery->createGallery($request->toArray());
 
-        Gallery::create($data);
-
-        return redirect()->route('admin.gallery.index')->withMessage('A new image has been added!');
+        return redirect()->route('admin.galleries.index')->withMessage('A new gallery has been added!');
     }
 
     public function edit(Gallery $gallery)
     {
-        return view('admin.gallery.edit', [
+        return view('admin.galleries.edit', [
             'gallery'         => $gallery,
             'travel_packages' => TravelPackage::all()
         ]);
     }
 
-    public function update(Request $request, Gallery $gallery)
+    public function update(GalleryRequest $request, Gallery $gallery)
     {
-        $data = $request->validate([
-            'travel_package_id' => 'required',
-            'image'             => 'image',
-        ]);
+        $gallery->updateGallery($request->toArray());
 
-        // if admin choose to change the image 
-        if ($request->has('image'))
-        {
-            // store the image
-            $data['image'] = $data['image']->store('travel-package', 'public');
-
-            // then delete the previous image from storage directory
-            unlink(storage_path("app\public\\" . $gallery->image));   
-        }
-
-        // update the data 
-        $gallery->update($data);
-        
-        // last thing is redirect to index page.. of course
-        return redirect()->route('admin.gallery.index')->withMessage('Gallery travel has been updated!');
+        return redirect()->route('admin.galleries.index')->withMessage('Gallery travel has been updated!');
     }
 
     public function destroy($id)
     {
         Gallery::destroy($id);
-        return redirect()->route('admin.gallery.index')->withMessage('Image has been deleted!');
+        return redirect()->route('admin.galleries.index')->withMessage('Image has been deleted!');
     }   
 }
 
