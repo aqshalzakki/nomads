@@ -12,6 +12,24 @@ use Illuminate\Support\Str;
 class TravelPackageController extends Controller
 {
     /**
+     * create an empty instance of travel package model
+     *
+     * @return App\TravelPackage
+     * @author aqshalzakki
+     */
+    protected $travel_package;
+    public function __construct()
+    {
+        $this->travel_package = new TravelPackage;
+    }
+
+    // for testing only
+    public function test()
+    {
+        dd($this->travel_package);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -20,7 +38,7 @@ class TravelPackageController extends Controller
     {
         $travelPackages = TravelPackage::all();
 
-        return view('admin.travel-package.index', compact('travelPackages') );
+        return view('admin.travel-packages.index', compact('travelPackages') );
     }
 
     /**
@@ -30,7 +48,7 @@ class TravelPackageController extends Controller
      */
     public function create()
     {
-        return view('admin.travel-package.create');
+        return view('admin.travel-packages.create');
     }
 
     /**
@@ -41,13 +59,9 @@ class TravelPackageController extends Controller
      */
     public function store(TravelPackageRequest $request)
     {
-        $data = $request->validated();
+        $this->travel_package->createNewTravelPackage($request->toArray());
 
-        $data['slug'] = Str::slug($request->title);
-        
-        TravelPackage::create($data);
-
-        return redirect()->route('admin.travel-package.index')->withMessage( "$request->title has been added successfully!");
+        return redirect()->route('admin.travel-packages.index')->withMessage( "$this->travel_package->title has been added successfully!");
     }
     
     /**
@@ -58,7 +72,7 @@ class TravelPackageController extends Controller
      */
     public function show($travelPackage)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -69,27 +83,24 @@ class TravelPackageController extends Controller
      */
     public function edit(TravelPackage $travelPackage)
     {
-        return view('admin.travel-package.edit', [
+        return view('admin.travel-packages.edit', [
             'travelPackage' => $travelPackage
             ]);
         }
         
-        /**
-         * Update the specified resource in storage.
-         *
-         * @param  \Illuminate\Http\Request  $request
-         * @param  int  $id
-         * @return \Illuminate\Http\Response
-         */
-        public function update(TravelPackageRequest $request, TravelPackage $travelPackage)
-        {
-            $request = $request->all();
-            
-            $request['slug'] = Str::slug($request['title']);
-            $travelPackage->update($request);
-            
-            return redirect()->route('admin.travel-package.index')->withMessage("{$request['title']} has been updated!");
-        }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(TravelPackageRequest $request, TravelPackage $travelPackage)
+    {   
+        $travelPackage->updateTravelPackage($request->toArray());
+        
+        return redirect()->route('admin.travel-packages.index')->withMessage("{$request['title']} has been updated!");
+    }
         
     /**
      * Remove the specified resource from storage.
@@ -101,6 +112,6 @@ class TravelPackageController extends Controller
     {
         $travelPackage->delete();
 
-        return redirect()->route('admin.travel-package.index')->withMessage("$travelPackage->title has been deleted!");
+        return redirect()->route('admin.travel-packages.index')->withMessage("$travelPackage->title has been deleted!");
     }
 }
