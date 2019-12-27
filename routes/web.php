@@ -15,6 +15,8 @@
 Route::get('/', 'HomeController@index')->name('home');
 
 // for testing only
+Route::get('/admin/test', 'Admin\TravelPackageController@test');
+
 Route::get('/logout', function(){
     Auth::logout();
 });
@@ -33,19 +35,6 @@ Route::get('/logout', function(){
         
 // Checkout Routes
 
-// Travel Packages for user 
-
-    Route::prefix('travel-package')
-        ->name('travel-package.')
-        ->namespace('Admin')
-        ->group(function(){
-
-            Route::get('{travelPackage}', 'TravelPackageController@show')->name('show');
-
-        });
-
-// End Travel Packages 
-
 // Admin Routes 
 
     Route::prefix('admin')
@@ -56,8 +45,11 @@ Route::get('/logout', function(){
             
             Route::get('/', 'DashboardController@index')->name('index');
             
-            Route::resource('travel-package', 'TravelPackageController');
-            Route::resource('gallery', 'GalleryController');                        
+            Route::resources([
+                'travel-packages' => 'TravelPackageController',
+                'galleries'       => 'GalleryController'
+            ]);
+
         });
 
 // End Admin routes 
