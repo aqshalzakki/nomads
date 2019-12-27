@@ -19,7 +19,7 @@ class CreateTransactionsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->integer('additional_visa');
             $table->integer('transaction_total');
-            $table->string('transaction_status');
+            $table->integer('transaction_status_id')->default(1);
 
             $table->softDeletes();
             $table->timestamps();
