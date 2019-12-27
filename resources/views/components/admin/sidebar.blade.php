@@ -31,8 +31,8 @@
       </li>
       
       <!-- Nav Item - Transaksi -->
-      <li class="nav-item">
-        <a class="nav-link" href="#">
+      <li class="nav-item {{ isActiveUrl('admin/transactions*') }}">
+        <a class="nav-link" href="{{ route('admin.transactions.index') }}">
           <i class="fas fa-fw fa-dollar-sign"></i>
           <span>Transactions</span></a>
       </li>

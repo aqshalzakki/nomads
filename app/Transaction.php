@@ -62,4 +62,11 @@ class Transaction extends Model
     {
     	return $this->belongsTo(User::class);
     }
+
+    public function withRelationships()
+    {
+        return $this->with([
+            'details', 'travel_package', 'user', 'status'
+        ])->get();
+    }
 }
