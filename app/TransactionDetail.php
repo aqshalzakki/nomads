@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class TransactionDetail extends Model
 {
     use SoftDeletes;
+
+    // for testing
+    protected $guarded = [];
+
+    public function transaction()
+    {
+    	return $this->belongsTo(Transaction::class);
+    }
 }
