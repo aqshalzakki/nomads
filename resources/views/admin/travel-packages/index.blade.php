@@ -42,10 +42,10 @@
                         @forelse ($travelPackages as $travelPackage)
                             <tr>
                                 <th>{{ $loop->iteration }}</th>
-                                <th>{{ $travelPackage->title }}</th>
-                                <th>{{ $travelPackage->location }}</th>
-                                <th>{{ $travelPackage->departure_date }}</th>
-                                <th>{{ $travelPackage->type }}</th>
+                                <td>{{ $travelPackage->title }}</td>
+                                <td>{{ $travelPackage->location }}</td>
+                                <td>{{ $travelPackage->departure_date }}</td>
+                                <td>{{ $travelPackage->type }}</td>
                                 <td>
                                     <a class="btn btn-info" href="{{ route('admin.travel-packages.edit', $travelPackage->id) }}">
                                         <i class="fa fa-pencil-alt"></i>
