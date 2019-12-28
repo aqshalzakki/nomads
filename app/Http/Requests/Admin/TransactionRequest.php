@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,7 +24,14 @@ class TransactionRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'transaction_status_id' => ['required', 'exists:transaction_statuses,id']
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'required' => 'Transaction status cannot be the same as before!',
+            'exists'   => 'Transaction status is invalid!'
         ];
     }
 }

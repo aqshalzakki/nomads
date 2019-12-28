@@ -61,7 +61,7 @@ class TravelPackageController extends Controller
     {
         $this->travel_package->createNewTravelPackage($request->toArray());
 
-        return redirect()->route('admin.travel-packages.index')->withMessage( "$this->travel_package->title has been added successfully!");
+        return redirect()->route('admin.travel-packages.index')->withMessage("{$request->title} has been added successfully!");
     }
     
     /**

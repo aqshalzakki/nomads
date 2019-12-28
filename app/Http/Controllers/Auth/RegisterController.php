@@ -30,6 +30,11 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = '/email/verify';
+    public function redirectTo()
+    {
+        session()->flash('message', 'Your account has been created! please verify your email.');
+        return '/email/verify';
+    }
 
     /**
      * Create a new controller instance.
@@ -53,6 +58,7 @@ class RegisterController extends Controller
             'username' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role_id' => ''
         ]);
     }
 
@@ -68,6 +74,7 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'role_id' => ''
         ]);
     }
 }

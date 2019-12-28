@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Transaction;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\TransactionRequest;
+
+use App\Transaction;
+use App\TransactionStatus as Status;
 
 class TransactionController extends Controller
 {
@@ -73,7 +76,10 @@ class TransactionController extends Controller
      */
     public function edit(Transaction $transaction)
     {
-        //
+        return view('admin.transactions.edit', [
+            'transaction' => $transaction,
+            'statuses'    => Status::all()
+        ]);
     }
 
     /**
@@ -83,9 +89,11 @@ class TransactionController extends Controller
      * @param  \App\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Transaction $transaction)
+    public function update(TransactionRequest $request, Transaction $transaction)
     {
-        //
+        $transaction->update($request->toArray());
+
+        return redirect()->route('admin.transactions.index')->withMessage("Transaction status for {$transaction->user->username} has been changed!");
     }
 
     /**

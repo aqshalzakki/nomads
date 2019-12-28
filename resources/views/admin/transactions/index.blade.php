@@ -44,8 +44,8 @@
                                 <td>{{ $transaction->id }}</td>
                                 <td>{{ $transaction->travel_package->title }}</td>
                                 <td>{{ $transaction->user->username }}</td>
-                                <td>{{ $transaction->additional_visa }}</td>
-                                <td>{{ $transaction->total }}</td>
+                                <td>${{ $transaction->additional_visa }}</td>
+                                <td>${{ $transaction->total }}</td>
                                 <td>{{ $transaction->status->name }}</td>
                                 <td>
                                     <a class="btn btn-primary" href="{{ route('admin.transactions.show', $transaction->id) }}">
@@ -66,7 +66,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7" class="text-center">Oops its a 404 :( Travel package data not found!</td>
+                                <td colspan="7" class="text-center">There is no data.</td>
                             </tr>
                         @endforelse
                     </tbody>

@@ -14,7 +14,7 @@
 
     <div class="card-shadow">
         <div class="card-body">
-            <form action="{{ route('admin.travel-package.update', $travelPackage->id) }}" method="post">
+            <form action="{{ route('admin.travel-packages.update', $travelPackage->id) }}" method="post">
                 @csrf
                 @method('patch')
 
