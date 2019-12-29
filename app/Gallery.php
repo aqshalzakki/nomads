@@ -15,6 +15,7 @@ class Gallery extends Model
 
     public function createGallery(array $data)
     {
+        // store the image
     	$data['image'] = $data['image']->store('travel-package', 'public');
     	Gallery::create($data);
     }
@@ -29,5 +30,15 @@ class Gallery extends Model
 
         // update the data 
         $this->update($data);
+    }
+
+    public function destroyGallery($id)
+    {
+        $image = $this->find($id)->image;
+
+        // delete the image
+        unlink(storage_path("app\public\\" . $image));
+
+        $this->destroy($id);        
     }
 }

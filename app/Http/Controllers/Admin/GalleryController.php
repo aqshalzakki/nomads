@@ -26,9 +26,11 @@ class GalleryController extends Controller
 
     public function index()
     {
-        return view('admin.galleries.index', [
-            'galleries' => Gallery::with(['travel_package'])->get()
-        ]);
+        $galleries = Gallery::with(['travel_package'])
+                            ->orderBy('travel_package_id', 'asc')
+                            ->get();
+
+        return view('admin.galleries.index', compact('galleries'));
     }
 
     public function create()
@@ -62,7 +64,7 @@ class GalleryController extends Controller
 
     public function destroy($id)
     {
-        Gallery::destroy($id);
+        $this->gallery->destroyGallery($id);
         return redirect()->route('admin.galleries.index')->withMessage('Image has been deleted!');
     }   
 }
