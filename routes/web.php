@@ -43,7 +43,7 @@ Route::get('/logout', function(){
         ->middleware(['verified', 'admin'])
         ->group(function(){
             
-            Route::get('/', 'DashboardController@index')->name('index');
+            Route::get('/', 'ShowDashboard')->name('index');
             
             Route::resources([
                 'travel-packages' => 'TravelPackageController',
