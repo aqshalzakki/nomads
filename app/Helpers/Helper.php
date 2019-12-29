@@ -5,9 +5,9 @@ function isActiveUrl($currentRequest)
     return request()->is($currentRequest) ? 'active' : '';
 }
 
-function imageStoragePath($image)
+function imageStoragePath($image = null)
 {
-	return Storage::url($image);
+	return $image ? Storage::url($image) : Storage::url('profiles/default.jpg');
 }
 
 ?>
