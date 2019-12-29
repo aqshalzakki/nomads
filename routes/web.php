@@ -12,14 +12,17 @@
 */
 
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'ShowHome')->name('home');
 
 // for testing only
 Route::get('/admin/test', 'Admin\TravelPackageController@test');
-
 Route::get('/logout', function(){
     Auth::logout();
 });
+
+// Detail of Travel Package
+    Route::get('travel-packages/detail/{slug}', 'Admin\TravelPackageController@show')->name('travel-packages.detail');
+// End Detail
 
 // Checkout Routes
     Route::prefix('checkout')
@@ -33,7 +36,7 @@ Route::get('/logout', function(){
         
         });
         
-// Checkout Routes
+// End Checkout Routes
 
 // Admin Routes 
 

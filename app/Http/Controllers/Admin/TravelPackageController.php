@@ -69,9 +69,9 @@ class TravelPackageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($travelPackage)
+    public function show($slug)
     {
-        return abort(404);
+        
     }
 
     /**
