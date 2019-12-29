@@ -36,8 +36,7 @@ class TravelPackageController extends Controller
      */
     public function index()
     {
-        $travelPackages = TravelPackage::all();
-
+        $travelPackages = $this->travel_package->paginate(5);
         return view('admin.travel-packages.index', compact('travelPackages') );
     }
 

@@ -8,7 +8,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Travel Package</h1>
+        <h1 class="h3 mb-0 text-gray-800">Travel Packages</h1>
         <a href="{{ route('admin.travel-packages.create') }}" class="btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-plus fa-sm text-white-50"></i> 
             Add new Travel Package
@@ -41,7 +41,7 @@
                     <tbody>
                         @forelse ($travelPackages as $travelPackage)
                             <tr>
-                                <th>{{ $loop->iteration }}</th>
+                                <th>{{ $travelPackage->id }}</th>
                                 <td>{{ $travelPackage->title }}</td>
                                 <td>{{ $travelPackage->location }}</td>
                                 <td>{{ $travelPackage->departure_date }}</td>
@@ -69,7 +69,9 @@
             </div>
         </div>
     </div>
-    
+    <div class="row justify-content-center">
+        {{ $travelPackages->links() }}
+    </div>
 </div>
 <!-- /.container-fluid -->
 @endsection
