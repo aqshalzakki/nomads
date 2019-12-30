@@ -21,7 +21,7 @@ Route::get('/logout', function(){
 });
 
 // Detail of Travel Package
-    Route::get('travel-packages/detail/{slug}', 'Admin\TravelPackageController@show')->name('travel-packages.detail');
+    Route::get('travel-packages/{slug}', 'Admin\TravelPackageController@show')->name('travel-packages.detail');
 // End Detail
 
 // Checkout Routes

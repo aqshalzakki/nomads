@@ -8,14 +8,14 @@
     <section class="section-details-content">
       <div class="container">
         <div class="row">
-          <div class="col p-0 pl-3 pl-lg-0"">
+          <div class="col p-0 pl-3 pl-lg-0">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item" aria-current="page">
-                  Paket Travel
+                  Travel Package
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
-                  Details
+                  Details of {{ $travelPackage->title }}
                 </li>
               </ol>
             </nav>
@@ -24,69 +24,38 @@
         <div class="row">
           <div class="col-lg-8 pl-lg-0">
             <div class="card card-details">
-              <h1>Nusa Peninda</h1>
+              <h1>{{ $travelPackage->title }}</h1>
               <p>
-                Republic of Indonesia Raya
+                {{ $travelPackage->location }}
               </p>
               <div class="gallery">
-                <div class="xzoom-container">
-                  <img
-                    class="xzoom"
-                    id="xzoom-default"
-                    src="{{ url('frontend/images/details-1.jpg')}}"
-                    xoriginal="{{ url('frontend/images/details-1.jpg')}}"
-                  />
-                  <div class="xzoom-thumbs">
-                    <a href="{{ url('frontend/images/details-1.jpg')}}"
-                      ><img
-                        class="xzoom-gallery"
-                        width="128"
-                        src="{{ url('frontend/images/details-1.jpg')}}"
-                        xpreview="{{ url('frontend/images/details-1.jpg')}}"
-                    /></a>
-                    <a href="{{ url('frontend/images/details-1.jpg')}}"
-                      ><img
-                        class="xzoom-gallery"
-                        width="128"
-                        src="{{ url('frontend/images/details-1.jpg')}}"
-                        xpreview="{{ url('frontend/images/details-1.jpg')}}"
-                    /></a>
-                    <a href="{{ url('frontend/images/details-1.jpg')}}"
-                      ><img
-                        class="xzoom-gallery"
-                        width="128"
-                        src="{{ url('frontend/images/details-1.jpg')}}"
-                        xpreview="{{ url('frontend/images/details-1.jpg')}}"
-                    /></a>
-                    <a href="{{ url('frontend/images/details-1.jpg')}}"
-                      ><img
-                        class="xzoom-gallery"
-                        width="128"
-                        src="{{ url('frontend/images/details-1.jpg')}}"
-                        xpreview="{{ url('frontend/images/details-1.jpg')}}"
-                    /></a>
-                    <a href="{{ url('frontend/images/details-1.jpg')}}"
-                      ><img
-                        class="xzoom-gallery"
-                        width="128"
-                        src="{{ url('frontend/images/details-1.jpg')}}"
-                        xpreview="{{ url('frontend/images/details-1.jpg')}}"
-                    /></a>
+                @if($travelPackage->galleries->count())
+                  <div class="xzoom-container">
+                    <img
+                      class="xzoom"
+                      id="xzoom-default"
+                      src="{{ imageStoragePath($travelPackage->galleries->first()->image) }}"
+                      xoriginal="{{ imageStoragePath($travelPackage->galleries->first()->image) }}"
+                    />
                   </div>
-                </div>
-                <h2>Tentang Wisata</h2>
+                @endif
+              
+              <div class="xzoom-thumbs">
+                @foreach ($travelPackage->galleries as $gallery)
+                  <a href="{{ imageStoragePath($gallery->image) }}">
+                    <img 
+                      class="xzoom-gallery"
+                      width="128"
+                      src="{{ imageStoragePath($gallery->image) }}"
+                      xpreview="{{ imageStoragePath($gallery->image) }}"
+                    />
+                  </a>
+                @endforeach
+              </div>
+
+                <h2>About Destination</h2>
                 <p>
-                  Nusa Penida is an island southeast of Indonesia’s island
-                  Bali and a district of Klungkung Regency that includes the
-                  neighbouring small island of Nusa Lembongan. The Badung
-                  Strait separates the island and Bali. The interior of Nusa
-                  Penida is hilly with a maximum altitude of 524 metres. It is
-                  drier than the nearby island of Bali.
-                </p>
-                <p>
-                  Bali and a district of Klungkung Regency that includes the
-                  neighbouring small island of Nusa Lembongan. The Badung
-                  Strait separates the island and Bali.
+                  {!! nl2br($travelPackage->about) !!}
                 </p>
                 <div class="features row pt-3">
                   <div class="col-md-4">
@@ -97,7 +66,7 @@
                     />
                     <div class="description">
                       <h3>Featured Ticket</h3>
-                      <p>Tari Kecak</p>
+                      <p>{{ $travelPackage->featured_event }}</p>
                     </div>
                   </div>
                   <div class="col-md-4 border-left">
@@ -108,7 +77,7 @@
                     />
                     <div class="description">
                       <h3>Language</h3>
-                      <p>Bahasa Indonesia</p>
+                      <p>{{ $travelPackage->language }}</p>
                     </div>
                   </div>
                   <div class="col-md-4 border-left">
@@ -119,7 +88,7 @@
                     />
                     <div class="description">
                       <h3>Foods</h3>
-                      <p>Local Foods</p>
+                      <p>{{ $travelPackage->foods }}</p>
                     </div>
                   </div>
                 </div>

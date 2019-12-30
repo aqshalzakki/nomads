@@ -71,7 +71,12 @@ class TravelPackageController extends Controller
      */
     public function show($slug)
     {
-        
+        $travelPackage = $this->travel_package
+                              ->with(['galleries'])
+                              ->where('slug', $slug)
+                              ->firstOrFail();
+
+        return view('user.travel-package.detail', compact('travelPackage'));
     }
 
     /**
