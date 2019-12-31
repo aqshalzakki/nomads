@@ -5,6 +5,9 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
+use App\Transaction;
+use App\Observers\TransactionObserver;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -25,5 +28,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(120);
+        Transaction::observe(TransactionObserver::class);
     }
 }

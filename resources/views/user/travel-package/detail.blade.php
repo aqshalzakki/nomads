@@ -121,11 +121,23 @@
               </div>
               <div class="join-container">
                   @auth
-                    <form action="#" method="post">
-                      <button type="submit" class="btn btn-block btn-join-now mt-3 py-2">
-                        Join Now
-                      </button>
-                    </form>
+                    @can('view', $travelPackage)
+
+                      <a href="{{ route('checkout.index', $travelPackage->transactions()->first()->id) }}" class="btn btn-block btn-join-now mt-3 py-2 active">
+                          You've already join this travel. <br>click to checkout!
+                      </a>
+                    
+                      @else
+  
+                      <form action="{{ route('checkout.process', $travelPackage->id) }}" method="post">
+                        @csrf
+                        
+                        <button type="submit" class="btn btn-block btn-join-now mt-3 py-2">
+                          Join Now
+                        </button>
+                      </form>
+
+                    @endcan
                   @endauth
                   @guest
                     <a href="{{ route('login') }}" class="btn btn-block btn-join-now mt-3 py-2">

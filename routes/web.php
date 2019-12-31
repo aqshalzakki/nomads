@@ -27,13 +27,32 @@ Route::get('/logout', function(){
 // Checkout Routes
     Route::prefix('checkout')
         ->name('checkout.')
+        ->middleware(['verified'])
         ->group(function(){
-    
-            Route::get('/', 'CheckoutController@index')
-            ->name('index');
-            Route::get('/success', 'CheckoutController@success')
-            ->name('success');
-        
+            
+            // PROCESS
+            Route::post('/{travelPackage}', 'CheckoutController@process')
+                 ->name('process');
+
+            // INDEX
+            Route::get('/{transaction}', 'CheckoutController@index')
+                 ->name('index');
+
+            // DESTROY TRANSACTION
+            Route::post('/cancel/{transaction}', 'CheckoutController@cancel')
+                 ->name('destroy');
+
+            // CREATE TRANSACTION DETAIL
+            Route::post('/create/{transaction}', 'CheckoutController@create')
+                 ->name('create');
+
+            // REMOVE TRANSACTION DETAIL
+            Route::get('/remove/{transactionDetail}', 'CheckoutController@remove')
+                 ->name('remove');
+
+            // SUCCESS
+            Route::get('confirm/{transaction}', 'CheckoutController@success')
+                 ->name('success');
         });
         
 // End Checkout Routes

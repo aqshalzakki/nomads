@@ -62,7 +62,6 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        // dd($transaction->withRelationships());
         return view('admin.transactions.detail', [
             'transaction' => $transaction
         ]);
@@ -104,6 +103,8 @@ class TransactionController extends Controller
      */
     public function destroy(Transaction $transaction)
     {
-        //
+        $transaction->delete();
+
+        return redirect()->route('admin.transactions.index')->withMessage("Transaction has been deleted!");
     }
 }

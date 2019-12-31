@@ -9,14 +9,10 @@ class Transaction extends Model
 {
     use SoftDeletes;
 
-    // for testing only
-    // protected $guarded = [
-    // 	'id'
-    // ];
+    
 
-    // for production
     protected $guarded = [
-    	'id', 'travel_package_id', 'user_id', 'created_at', 'updated_at', 'deleted_at'
+    	'id', 'travel_package_id', 'created_at', 'updated_at', 'deleted_at'
     ];
 
     /**

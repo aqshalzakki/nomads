@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 class TravelPackageController extends Controller
 {
     /**
-     * create an empty instance of travel package model
+     * create an instance of travel package model
      *
      * @return App\TravelPackage
      * @author aqshalzakki
@@ -76,6 +76,7 @@ class TravelPackageController extends Controller
                               ->where('slug', $slug)
                               ->firstOrFail();
 
+        // dd($this->authorize('view', $travelPackage));
         return view('user.travel-package.detail', compact('travelPackage'));
     }
 
