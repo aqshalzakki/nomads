@@ -24,7 +24,7 @@ class TransactionDetailRequest extends FormRequest
     public function rules()
     {
         return [
-            'username'      => ['required', 'string', 'exists:users,username'],
+            'username'      => ['unique:transaction_details,username', 'required', 'string', 'exists:users,username'],
             'nationality'   => ['required', 'string', 'size:2'],
             'is_visa'       => ['required', 'boolean'],
             'doe_passport'  => ['required', 'date']
@@ -34,6 +34,7 @@ class TransactionDetailRequest extends FormRequest
     public function messages()
     {
         return [
+            'username.unique'         => "You've already registering this member!",
             'username.required'       => 'Username is required!',
             'username.exists'         => 'Username is not registered to our application!',
             'nationality.required'    => 'Your nationalities?',

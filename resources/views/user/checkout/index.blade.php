@@ -106,6 +106,7 @@
                     id="username"
                     name="username"
                     placeholder="Username"
+                    value="{{ old('username') }}"
                   />
                   <label class="sr-only" for="nationality">Nationality</label>
                   <input
@@ -116,6 +117,7 @@
                     name="nationality"
                     placeholder="Nationality"
                     style="width: 106px;"
+                    value="{{ old('nationality') }}"
                   />
 
                   <label
@@ -137,12 +139,14 @@
                     >DOE Passport</label
                   >
                   <div class="input-group mb-2 mr-sm-2">
-                    <input
+                    <input 
+                      autocomplete="0" 
                       type="text"
                       style="width: 140px;"
                       class="form-control datepicker @error('doe_passport') is-invalid @enderror"
                       id="doePassport"
                       placeholder="DOE Passport"
+                      value="{{ old('doe_passport') }}"
                       name="doe_passport" 
                     />
                   </div>
