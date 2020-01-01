@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class TransactionDetailRequest extends FormRequest
 {
@@ -23,8 +24,12 @@ class TransactionDetailRequest extends FormRequest
      */
     public function rules()
     {
+        $unique = Rule::unique('transaction_details')->where(function($query){
+            return $query->where('deleted_at', null);            
+        });
+
         return [
-            'username'      => ['unique:transaction_details,username', 'required', 'string', 'exists:users,username'],
+            'username'      => ['required', 'string', 'exists:users,username', $unique],
             'nationality'   => ['required', 'string', 'size:2'],
             'is_visa'       => ['required', 'boolean'],
             'doe_passport'  => ['required', 'date']
@@ -36,8 +41,8 @@ class TransactionDetailRequest extends FormRequest
         return [
             'username.unique'         => "You've already registering this member!",
             'username.required'       => 'Username is required!',
-            'username.exists'         => 'Username is not registered to our application!',
-            'nationality.required'    => 'Your nationalities?',
+            'username.exists'         => 'This member is not registered to our application!',
+            'nationality.required'    => 'Nationality?',
             'is_visa.required'        => 'You forgot your visa?',
             'is_visa.boolean'         => 'Your visa is invalid!',
             'doe_passport.required'   => 'Please input your doe passport!',
