@@ -73,6 +73,7 @@ class TravelPackageController extends Controller
 
         $transaction = $travelPackage->transactions()
                                      ->where('user_id', Auth::id())
+                                     ->where('transaction_status_id', 1)
                                      ->with(['details'])
                                      ->first();
 
