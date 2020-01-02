@@ -30,7 +30,7 @@ class TravelPackagePolicy
      */
     public function view(User $user, TravelPackage $travelPackage)
     {
-        // if user make a transaction with specified travel package 
+        // if user make a transaction with specified travel package that still IN_CART 
         if ($user->transactions()
                  ->where('transaction_status_id', 1)
                  ->where('travel_package_id', $travelPackage->id)

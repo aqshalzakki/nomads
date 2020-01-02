@@ -38,7 +38,7 @@ Route::get('/logout', function(){
             Route::get('/{transaction}', 'CheckoutController@index')
                  ->name('index');
 
-            // DESTROY TRANSACTION
+            // SET TRANSACTION STATUS TO CANCEL
             Route::post('/cancel/{transaction}', 'CheckoutController@cancel')
                  ->name('destroy');
 
@@ -52,7 +52,8 @@ Route::get('/logout', function(){
 
             // SUCCESS
             Route::get('confirm/{transaction}', 'CheckoutController@success')
-                 ->name('success');
+                 ->name('success')
+                 ->middleware('is_in_cart');
         });
         
 // End Checkout Routes
