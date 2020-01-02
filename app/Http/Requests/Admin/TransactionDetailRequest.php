@@ -27,9 +27,11 @@ class TransactionDetailRequest extends FormRequest
         $unique = Rule::unique('transaction_details')->where(function($query){
             return $query->where('deleted_at', null);            
         });
-
+        $exists = Rule::exists('users')->where(function($query){
+            return $query->where('role_id', 1);
+        });
         return [
-            'username'      => ['required', 'string', 'exists:users,username', $unique],
+            'username'      => ['required', 'string', $exists, $unique],
             'nationality'   => ['required', 'string', 'size:2'],
             'is_visa'       => ['required', 'boolean'],
             'doe_passport'  => ['required', 'date']
