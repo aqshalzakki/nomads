@@ -42,7 +42,7 @@
                                 <th>{{ $loop->iteration }}</th>
                                 <th>{{ $gallery->travel_package->title }}</th>
                                 <th>
-                                    <img src="{{ imageStoragePath($gallery->image) }}" class="img-thumbnail" style="width: 150px; height: 150px;" />
+                                    <img src="{{ imageStoragePath($gallery->image) }}" class="img-thumbnail" style="width: 300px; height: 200px;" />
                                 </th>
                                 <td>
                                     <a class="btn btn-info" href="{{ route('admin.galleries.edit', $gallery->id) }}">
@@ -59,7 +59,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7" class="text-center">There is no data.</td>
+                                <td colspan="7" class="text-center">There is no gallery.</td>
                             </tr>
                         @endforelse
                     </tbody>
