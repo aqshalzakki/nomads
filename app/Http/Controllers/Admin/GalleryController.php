@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Gallery;
 use App\TravelPackage;
-use App\Http\Requests\Admin\GalleryRequest;
+use App\Http\Requests\Admin\GalleryValidation;
 
 class GalleryController extends Controller
 {
@@ -40,7 +40,7 @@ class GalleryController extends Controller
         ]);
     }
 
-    public function store(GalleryRequest $request)
+    public function store(GalleryValidation $request)
     {
     	$this->gallery->createGallery($request->toArray());
 
@@ -55,7 +55,7 @@ class GalleryController extends Controller
         ]);
     }
 
-    public function update(GalleryRequest $request, Gallery $gallery)
+    public function update(GalleryValidation $request, Gallery $gallery)
     {
         $gallery->updateGallery($request->toArray());
 
