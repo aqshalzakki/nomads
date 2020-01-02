@@ -8,6 +8,7 @@ use App\TravelPackage;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class TravelPackageController extends Controller
 {
@@ -21,12 +22,6 @@ class TravelPackageController extends Controller
     public function __construct()
     {
         $this->travel_package = new TravelPackage;
-    }
-
-    // for testing only
-    public function test()
-    {
-        dd($this->travel_package);
     }
 
     /**
@@ -76,8 +71,12 @@ class TravelPackageController extends Controller
                               ->where('slug', $slug)
                               ->firstOrFail();
 
-        // dd($this->authorize('view', $travelPackage));
-        return view('user.travel-package.detail', compact('travelPackage'));
+        $transaction = $travelPackage->transactions()
+                                     ->where('user_id', Auth::id())
+                                     ->with(['details'])
+                                     ->first();
+
+        return view('user.travel-package.detail', compact('travelPackage', 'transaction'));
     }
 
     /**

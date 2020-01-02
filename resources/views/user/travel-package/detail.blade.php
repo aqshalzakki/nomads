@@ -96,7 +96,24 @@
               <div class="card card-details card-right">
                 <h2>Members are going</h2>
                 <div class="members my-2">
-                  <img src="{{ url('frontend/images/members.png') }}" alt="" class="w-75" />
+                  @if($transaction)
+                    @foreach($transaction->details as $member)
+                      <img
+                          title="{{ $member->username }}" 
+                          src="https://ui-avatars.com/api/?name={{ $member->username }}" 
+                          class="rounded-circle"
+                          style="width: 40px;" 
+                      />
+                    @endforeach
+
+                    @else
+                      <img
+                          title="Who is going?" 
+                          src="{{ imageStoragePath('profiles/unknown.png') }}" 
+                          class="rounded-circle"
+                          style="width: 40px;" 
+                      />
+                  @endif
                 </div>
                 <hr />
                 <h2>Trip Informations</h2>
