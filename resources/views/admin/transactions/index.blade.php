@@ -30,8 +30,8 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Travel</th>
-                            <th>User</th>
+                            <th>Travel to</th>
+                            <th>Username</th>
                             <th>Visa</th>
                             <th>Transaction Total</th>
                             <th>Status</th>

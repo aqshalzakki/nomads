@@ -23,6 +23,10 @@
                     <td>{{ $transaction->travel_package->title }}</td>
                 </tr>
                 <tr>
+                    <th>Departure Date</th>
+                    <td>{{ Carbon\Carbon::create($transaction->travel_package->departure_date)->format('d F, Y') }}</td>
+                </tr>
+                <tr>
                     <th>Customer</th>
                     <td>{{ $transaction->user->username }}</td>
                 </tr>
