@@ -77,9 +77,19 @@
                           {{ \Carbon\Carbon::createFromDate($detail->doe_passport) > now() ? 'Active' : 'Inactive' }}
                         </td>
                         <td class="align-middle">
-                          <a href="{{ route('checkout.remove', $detail->id) }}">
-                            <img src="{{ url('frontend/images/ic_remove.png')}}" />
-                          </a>
+                          @if($detail->username != auth()->user()->username)
+                            <form action="{{ route('checkout.remove', $detail->id) }}" method="post">
+                             @csrf
+                             @method('delete')
+                                <button 
+                                  onclick="return confirm('Are you sure you want to remove {{ $detail->username }} from this member list?')" 
+                                  class="btn btn-link" 
+                                  type="submit"
+                                />
+                                  <img src="{{ url('frontend/images/ic_remove.png')}}" />
+                                </button>
+                            </form>
+                          @endif
                         </td>
                       </tr>
                       

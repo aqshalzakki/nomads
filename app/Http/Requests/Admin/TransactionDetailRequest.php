@@ -25,7 +25,8 @@ class TransactionDetailRequest extends FormRequest
     public function rules()
     {
         $unique = Rule::unique('transaction_details')->where(function($query){
-            return $query->where('deleted_at', null);            
+            return $query->where('deleted_at', null)
+                         ->where('transaction_id', last(explode('/', url()->current())));  
         });
         $exists = Rule::exists('users')->where(function($query){
             return $query->where('role_id', 1);
@@ -41,7 +42,7 @@ class TransactionDetailRequest extends FormRequest
     public function messages()
     {
         return [
-            'username.unique'         => "You've already registering this member!",
+            'username.unique'         => "This member is already added to this travel package!",
             'username.required'       => 'Username is required!',
             'username.exists'         => 'This member is not registered to our application!',
             'nationality.required'    => 'Nationality?',

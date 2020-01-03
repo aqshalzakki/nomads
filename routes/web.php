@@ -47,7 +47,7 @@ Route::get('/logout', function(){
                  ->name('create');
 
             // REMOVE TRANSACTION DETAIL
-            Route::get('/remove/{transactionDetail}', 'CheckoutController@remove')
+            Route::delete('/remove/{transactionDetail}', 'CheckoutController@remove')
                  ->name('remove');
 
             // SUCCESS

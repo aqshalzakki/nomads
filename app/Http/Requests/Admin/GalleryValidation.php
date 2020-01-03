@@ -25,7 +25,7 @@ class GalleryValidation extends FormRequest
     {
         return [
             'travel_package_id' => 'required',
-            'image'             => ['required', 'image', 'dimensions:min_width=752,min_height=400'],
+            'image'             => ['required', 'image', 'dimensions:min_width=500,min_height=200'],
         ];
     }
 
