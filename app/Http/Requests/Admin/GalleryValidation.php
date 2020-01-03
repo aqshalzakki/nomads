@@ -25,7 +25,7 @@ class GalleryValidation extends FormRequest
     {
         return [
             'travel_package_id' => 'required',
-            'image'             => ['required', 'image', 'dimensions:min_width=500,min_height=200'],
+            'image'             => ['required', 'image'],
         ];
     }
 
@@ -33,7 +33,6 @@ class GalleryValidation extends FormRequest
     {
         return [
             'image.image'      => 'The file must be an image(jpg, jpeg, png)',
-            'image.dimensions' => 'Minimum image size must be :min_width x :min_height px',
         ];
     }
 }

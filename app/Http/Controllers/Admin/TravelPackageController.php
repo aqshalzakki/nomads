@@ -64,7 +64,7 @@ class TravelPackageController extends Controller
      */
     public function show($slug)
     {
-        $travelPackage = cache()->remember($slug, now()->addHours(5), function () use($slug) {
+        $travelPackage = cache()->remember($slug, now()->addHours(2), function () use($slug) {
                             return $this->travel_package
                                         ->with(['galleries'])
                                         ->where('slug', $slug)
