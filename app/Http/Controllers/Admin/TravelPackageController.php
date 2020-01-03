@@ -7,8 +7,6 @@ use App\Http\Requests\Admin\TravelPackageRequest;
 use App\TravelPackage;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Auth;
 
 class TravelPackageController extends Controller
 {
@@ -66,13 +64,15 @@ class TravelPackageController extends Controller
      */
     public function show($slug)
     {
-        $travelPackage = $this->travel_package
-                              ->with(['galleries'])
-                              ->where('slug', $slug)
-                              ->firstOrFail();
+        $travelPackage = cache()->remember($slug, now()->addHours(5), function () use($slug) {
+                            return $this->travel_package
+                                        ->with(['galleries'])
+                                        ->where('slug', $slug)
+                                        ->firstOrFail();
+                        });
 
         $transaction = $travelPackage->transactions()
-                                     ->where('user_id', Auth::id())
+                                     ->where('user_id', auth()->id())
                                      ->where('transaction_status_id', 1)
                                      ->with(['details'])
                                      ->first();
