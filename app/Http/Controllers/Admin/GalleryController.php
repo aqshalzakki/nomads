@@ -3,32 +3,32 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
+use App\Http\Requests\Admin\GalleryValidation;
 use App\Http\Controllers\Controller;
+
+use App\Repositories\GalleryRepository;
 use App\Gallery;
 use App\TravelPackage;
-use App\Http\Requests\Admin\GalleryValidation;
 
 class GalleryController extends Controller
 {
     /**
-     * create an empty instance of gallery model
+     * create an instance of gallery repository
      *
      * @return App\TravelPackage
      * @author aqshalzakki
      */
     protected $gallery;
-    public function __construct()
+    public function __construct(GalleryRepository $gallery)
     {
-        $this->gallery = new Gallery;
+        $this->gallery = $gallery;
     }
 
     public function index()
     {
-        $galleries = Gallery::with(['travel_package'])
-                            ->orderBy('travel_package_id', 'asc')
-                            ->get();
+        $galleries = $this->gallery
+                          ->getWith(['travel_package']);
 
         return view('admin.galleries.index', compact('galleries'));
     }
@@ -40,9 +40,9 @@ class GalleryController extends Controller
         ]);
     }
 
-    public function store(GalleryValidation $request)
+    public function store(GalleryValidation $gallery)
     {
-    	$this->gallery->createGallery($request->toArray());
+    	$this->gallery->createNew($gallery);
 
         return redirect()->route('admin.galleries.index')->withMessage('A new gallery has been added!');
     }
@@ -55,16 +55,16 @@ class GalleryController extends Controller
         ]);
     }
 
-    public function update(GalleryValidation $request, Gallery $gallery)
+    public function update(GalleryValidation $request, $id)
     {
-        $gallery->updateGallery($request->toArray());
+        $this->gallery->update($request, $id);
 
         return redirect()->route('admin.galleries.index')->withMessage('Gallery travel has been updated!');
     }
 
     public function destroy($id)
     {
-        $this->gallery->destroyGallery($id);
+        $this->gallery->destroy($id);
         return redirect()->route('admin.galleries.index')->withMessage('Image has been deleted!');
     }   
 }
