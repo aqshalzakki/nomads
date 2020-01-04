@@ -35,8 +35,9 @@ Route::get('/logout', function(){
                  ->name('process');
 
             // INDEX
-            Route::get('/{transaction}', 'CheckoutController@index')
-                 ->name('index');
+            Route::get('/{id}', 'CheckoutController@index')
+                 ->name('index')
+                 ->middleware('is_in_cart');
 
             // SET TRANSACTION STATUS TO CANCEL
             Route::post('/cancel/{transaction}', 'CheckoutController@cancel')
@@ -51,9 +52,9 @@ Route::get('/logout', function(){
                  ->name('remove');
 
             // SUCCESS
-            Route::get('confirm/{transaction}', 'CheckoutController@success')
+            Route::get('confirm/{id}', 'CheckoutController@success')
                  ->name('success')
-                 ->middleware('is_in_cart');
+                 ->middleware('is_pending');
         });
         
 // End Checkout Routes

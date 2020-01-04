@@ -248,11 +248,11 @@
               </div>
             </div>
             <div class="join-container">
-              <a
-                href="{{ route('checkout.success', $transaction->id)}}"
-                class="btn btn-block btn-join-now mt-3 py-2"
-                >I Have Made Payment
-              </a>
+                <a
+                  href="{{ route('checkout.success', $transaction->id) }}"
+                  class="btn btn-block btn-join-now mt-3 py-2"
+                  >I Have Made Payment
+                </a>
             </div>
             <div class="text-center mt-3">
               <form action="{{ route('checkout.destroy', $transaction->id) }}" method="post">

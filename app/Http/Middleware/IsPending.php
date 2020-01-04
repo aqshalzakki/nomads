@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use App\Transaction;
 
-class IsInCart
+class IsPending
 {
     /**
      * Handle an incoming request.
@@ -17,12 +17,13 @@ class IsInCart
     public function handle($request, Closure $next)
     {
         $transaction = Transaction::findOrFail($request->id);
-        
-        // if the transaction status is still IN_CART
-        if($transaction->transaction_status_id == 1){
+
+        // if the transaction status is pending or in cart
+        if ($transaction->transaction_status_id == 1 OR $transaction->transaction_status_id == 2)
+        {
             return $next($request);
         }
 
-        return redirect()->route('checkout.success', $transaction->id);
+        return (403);
     }
 }

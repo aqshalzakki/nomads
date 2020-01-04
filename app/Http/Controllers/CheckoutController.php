@@ -13,11 +13,13 @@ use App\TravelPackage;
 
 class CheckoutController extends Controller
 {
-    public function index(Transaction $transaction)
+    public function index($id)
     {
-        $transaction->where('user_id', auth()->user()->id)
-                    ->where('transaction_status_id', 1)
-                    ->firstOrFail();
+        $transaction = Transaction::where([
+            'id'                    => $id,
+            'user_id'               => auth()->user()->id,
+            'transaction_status_id' => 1
+        ])->firstOrFail();
 
         return view('user.checkout.index', compact('transaction'));
     }
@@ -115,8 +117,13 @@ class CheckoutController extends Controller
         return redirect()->route('checkout.index', $transaction->id);
     }
 
-    public function success(Transaction $transaction)
+    public function success($id)
     {
+        $transaction = Transaction::where([
+            'id'      => $id,
+            'user_id' => auth()->id(),
+        ])->firstOrFail();
+        
         // update transaction status to pending
         $transaction->transaction_status_id = 2;
         $transaction->save();
