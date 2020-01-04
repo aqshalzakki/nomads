@@ -14,12 +14,12 @@ class GalleryRepository{
 		$this->gallery = $gallery;
 	}
 
-	public function getWith($relation)
+	public function getPaginateWith($amount, $relation)
 	{
 		return $this->gallery
 					->with($relation)
 					->orderBy('travel_package_id', 'ASC')
-					->get();
+					->paginate($amount);
 	}
 
 	public function createNew(object $data)
@@ -30,7 +30,7 @@ class GalleryRepository{
     	$data['image'] = $data['image']->store('travel-package', 'public');
     	
         // resize the image
-        Image::make(public_path("storage/{$data['image']}"))->resize(752, 508)->save();
+        Image::make(public_path("storage/{$data['image']}"))->fit(752, 508)->save();
 
         $this->gallery->create($data);
     }
@@ -45,7 +45,7 @@ class GalleryRepository{
         $data['image'] = $data['image']->store('travel-package', 'public');
 
         // resize the image
-        Image::make(public_path("storage/{$data['image']}"))->resize(752, 508)->save();
+        Image::make(public_path("storage/{$data['image']}"))->fit(752, 508)->save();
         
         // then delete the previous image from storage directory
         unlink(storage_path("app\public\\" . $gallery->image));   

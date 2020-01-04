@@ -28,7 +28,7 @@ class GalleryController extends Controller
     public function index()
     {
         $galleries = $this->gallery
-                          ->getWith(['travel_package']);
+                          ->getPaginateWith(3, 'travel_package');
 
         return view('admin.galleries.index', compact('galleries'));
     }

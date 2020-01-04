@@ -67,7 +67,13 @@
             </div>
         </div>
     </div>
-    
+
+    <div class="row offset-3 justify-content-center">
+        <div class="col-6">
+            {{ $galleries->links() }}
+        </div>
+    </div>
+
 </div>
 <!-- /.container-fluid -->
 @endsection
