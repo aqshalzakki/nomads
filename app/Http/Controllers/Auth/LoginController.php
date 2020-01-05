@@ -31,7 +31,7 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
-        return route('admin.index');
+        return auth()->user()->role_id == 1 ? route('home') : route('admin.index');
     }
 
     /**

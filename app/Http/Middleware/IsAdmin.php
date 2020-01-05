@@ -3,7 +3,6 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
 class IsAdmin
 {
@@ -17,7 +16,7 @@ class IsAdmin
     public function handle($request, Closure $next)
     {
         // if user role is admin
-        if (Auth::user()->role->title === "ADMIN")
+        if (auth()->user()->role->title === "ADMIN")
         {
             return $next($request);
         }
