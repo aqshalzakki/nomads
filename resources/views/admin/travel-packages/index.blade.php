@@ -44,7 +44,7 @@
                                 <th>{{ $travelPackage->id }}</th>
                                 <td>{{ $travelPackage->title }}</td>
                                 <td>{{ $travelPackage->location }}</td>
-                                <td>{{ $travelPackage->departure_date }}</td>
+                                <td>{{ dateFormat($travelPackage->departure_date, 'n F Y') }}</td>
                                 <td>{{ $travelPackage->type }}</td>
                                 <td>
                                     <a class="btn btn-info" href="{{ route('admin.travel-packages.edit', $travelPackage->id) }}">
@@ -61,7 +61,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7" class="text-center">There is no data.</td>
+                                <td colspan="7" class="text-center">There is no travel packages.</td>
                             </tr>
                         @endforelse
                     </tbody>

@@ -24,6 +24,6 @@ class IsPending
             return $next($request);
         }
 
-        return (403);
+        return abort(403);
     }
 }

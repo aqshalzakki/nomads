@@ -44,13 +44,13 @@
             <!-- Mobile button -->
             <form class="form-inline d-sm-block d-md-none">
                 <button onclick="event.preventDefault(); location.href = '{{ route('login') }}'" class="btn btn-login my-2 my-sm-0">
-                Masuk
+                Login
                 </button>
             </form>
             <!-- Desktop Button -->
             <form class="form-inline my-2 my-lg-0 d-none d-md-block">
                 <button onclick="event.preventDefault(); location.href = '{{ route('login') }}'" class="btn btn-login btn-navbar-right my-2 my-sm-0 px-4">
-                Masuk
+                Login
                 </button>
             </form>
         @endguest
@@ -60,14 +60,14 @@
             <form method="post" action="{{ route('logout') }}" class="form-inline d-sm-block d-md-none">
                 @csrf
                 <button class="btn btn-login my-2 my-sm-0">
-                Keluar
+                Logout
                 </button>
             </form>
             <!-- Desktop Button -->
             <form method="post" action="{{ route('logout') }}" class="form-inline my-2 my-lg-0 d-none d-md-block">
                 @csrf
                 <button class="btn btn-login btn-navbar-right my-2 my-sm-0 px-4">
-                Keluar
+                Logout
                 </button>
             </form>
         @endauth

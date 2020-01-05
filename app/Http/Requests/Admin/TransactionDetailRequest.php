@@ -29,7 +29,8 @@ class TransactionDetailRequest extends FormRequest
                          ->where('transaction_id', last(explode('/', url()->current())));  
         });
         $exists = Rule::exists('users')->where(function($query){
-            return $query->where('role_id', 1);
+            return $query->where('role_id', 1)
+                         ->whereNotNull('email_verified_at');
         });
         return [
             'username'      => ['required', 'string', $exists, $unique],
@@ -44,7 +45,7 @@ class TransactionDetailRequest extends FormRequest
         return [
             'username.unique'         => "This member is already added to this travel package!",
             'username.required'       => 'Username is required!',
-            'username.exists'         => 'This member is not registered to our application!',
+            'username.exists'         => 'This member is not registered / verified to our application!',
             'nationality.required'    => 'Nationality?',
             'is_visa.required'        => 'You forgot your visa?',
             'is_visa.boolean'         => 'Your visa is invalid!',
