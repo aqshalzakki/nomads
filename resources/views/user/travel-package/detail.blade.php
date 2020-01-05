@@ -54,7 +54,7 @@
                     @endif
                     <h2>About Destination</h2>
                     <p>
-                      {{ $travelPackage->about }}
+                      {!! nl2br($travelPackage->about) !!}
                     </p>
                     <div class="features row pt-3">
                       <div class="col-md-4">
