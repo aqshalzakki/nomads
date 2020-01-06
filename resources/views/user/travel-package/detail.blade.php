@@ -140,7 +140,7 @@
                   @auth
                     @can('view', $travelPackage)
 
-                      <a href="{{ route('checkout.index', $travelPackage->transactions()->first()->id) }}" class="btn btn-block btn-join-now mt-3 py-2 active">
+                      <a href="{{ route('checkout.index', $transaction->id) }}" class="btn btn-block btn-join-now mt-3 py-2 active">
                           You've already join this travel. <br>click to checkout!
                       </a>
                     

@@ -15,7 +15,9 @@
                   Travel Package
                 </li>
                 <li class="breadcrumb-item" aria-current="page">
-                  Details
+                  <a href="{{ route('travel-packages.detail', $transaction->travel_package->slug) }}">
+                    Details
+                  </a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
                   Checkout
