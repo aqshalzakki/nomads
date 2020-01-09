@@ -14,8 +14,9 @@
                 <li class="breadcrumb-item" aria-current="page">
                   Travel Package
                 </li>
+                
                 <li class="breadcrumb-item active" aria-current="page">
-                  Details of {{ $travelPackage->title }}
+                   {{ $travelPackage->title }}
                 </li>
               </ol>
             </nav>
