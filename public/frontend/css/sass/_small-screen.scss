@@ -1,0 +1,158 @@
+@media only screen and (max-width: 790px)
+{
+	// ----------NAVBAR-----------
+	.nomads-navbar{
+		overflow: unset;
+		padding: 12px 10px;
+
+		// --1
+		.items-container{
+			align-items: center;
+
+			// --1
+			#collapse:checked + .menu-links{
+				transform: scaleY(1);
+
+				& ul{
+					opacity: 1;
+				}
+			}
+
+			// --2
+			.menu-links{
+				position: absolute;
+				width: 100%;
+				top: 100%;
+				left: 0;
+				background-color: $putih;
+				display: block;
+				border-top: 1px solid rgba(0, 0, 0, 0.2);
+				border-radius: 8px;
+				overflow: hidden;
+				box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+				text-align: center;
+				transform-origin: top;
+				transform: scaleY(0);
+				transition: .5s ease-in-out;
+
+				// --1
+				ul{
+					display: block;
+					opacity: 0;
+					transition: .3s ease .5s;
+				}
+
+				&.active{
+					transform: scaleY(1);
+				}
+			}
+
+			// --3
+			.items-collapse{
+				display: block;
+				margin-right: 20px;
+
+				// --1
+				.toggler{
+					position: relative;
+					width: 30px;
+					height: 20px;
+					border: none;
+					outline: none;
+					background-color: transparent;
+					cursor: pointer;
+					margin: 0;
+
+
+					// --1
+					.burger{
+						position: absolute;
+						top: 0;
+						left: 0;
+						display: block;
+						width: 100%;
+						height: 3px;
+						background-color: $biruGelap;
+
+						&::before,
+						&::after{
+							content: '';
+							position: absolute;
+							height: 3px;
+							left: 0;
+							background-color: $biruGelap;
+							transition: .3s ease-in-out;
+						}
+
+						&::before{
+							top: calc(20px / 2 - 2px);
+							width: calc(100% / 1.5);
+						}
+
+						&::after{
+							top: calc(20px - 3px);
+							width: calc(100% / 3);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// --------------HERO----------------
+	#hero{
+
+		// --1
+		.hero{
+
+			// --1
+			.hero-content{
+
+				max-width: 80%;
+			}
+
+			// --2
+			.hero-card{
+				width: 85%;
+			}
+		}
+
+	}
+
+	// ---------MAIN----------
+	#main{
+		.testimoni{
+
+			.testimoni-card{
+				margin-bottom: 20px;
+			}
+		}
+	}
+
+	// -------------GET-STARTED--------------
+	#getStarted{
+		height: auto;
+		padding: 80px 0;
+	}
+
+}
+
+@media only screen and (max-width: 992px)
+{
+
+	// -------------POPULAR-TOUR-------------
+	.popular-tour{
+		position: relative;
+		width: 100%;
+		height: auto;
+		padding-bottom: 30px;
+	}
+
+	// ------------MAIN-------------
+	#main{
+		padding-top: 100px;
+	}
+
+
+
+}

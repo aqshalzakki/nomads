@@ -5,15 +5,13 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Mail;
+
+use App\Mail\EmailVerification;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
-
-    public function role()
-    {
-        return $this->belongsTo(Role::class);
-    }
 
     /**
      * The attributes that are mass assignable.
@@ -21,7 +19,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password',
+        'username', 'email', 'password', 'email_verified_at'
     ];
 
     /**
@@ -45,5 +43,25 @@ class User extends Authenticatable implements MustVerifyEmail
     public function transactions()
     {
         return $this->hasMany(Transaction::class);
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+    public function isVerified()
+    {
+        return $this->email_verified_at ? 'Terverifikasi' : 'Not Verified';
+    }
+
+    public function handleEmailVerification($oldEmail)
+    {
+        Mail::to($this->email)->send(new EmailVerification($this, $oldEmail));
     }
 }

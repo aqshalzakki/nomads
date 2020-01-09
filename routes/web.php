@@ -79,4 +79,17 @@ Route::get('/logout', function(){
 
 // End Admin routes 
 
+// User Routes
+
+Route::name('profile.')
+     ->prefix('profile')
+     ->middleware(['auth'])
+     ->group(function(){
+
+        Route::get('/', 'ProfileController@index')->name('index');
+        Route::patch('/{profile}', 'ProfileController@update')->name('update');
+
+});
+
+     
 Auth::routes(['verify' => true]);

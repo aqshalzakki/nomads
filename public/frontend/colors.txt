@@ -1,0 +1,8 @@
+=================COLORS=================
+
+Biru Tua : #5166A5
+Abu Cerah : #E4E6EB
+Abu Tua : #C2C0C0
+Biru Gelap : #0B1C4D
+Orange : #FF801D
+Abu : #909DC5

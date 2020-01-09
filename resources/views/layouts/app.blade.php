@@ -9,6 +9,8 @@
     {{-- Styles --}}
       @include('components.user.styles')
       @stack('addon-style')
+      
+      <link rel="stylesheet" href="{{ url('frontend/libraries/gijgo/css/gijgo.min.css')}}" />
     {{-- end styles --}}
 
   </head>

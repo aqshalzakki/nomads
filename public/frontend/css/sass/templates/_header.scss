@@ -1,0 +1,100 @@
+// ---------RESET----------
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+// -----------Navbar------------
+.nomads-navbar{
+	position: relative;
+	width: 90%;
+	margin: auto;
+	padding: 0;
+	z-index: 10;
+	background-color: $putih;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+
+	// --1
+	.items-container{
+		display: flex;
+		justify-content: space-between;
+
+		// --1
+		.logo{
+			display: flex;
+			align-items: center;
+			padding: 0 20px;
+
+			// --1
+			a{
+				font-size: 22px;
+				color: $biruGelap;
+				text-decoration: none;
+				font-weight: 500;
+
+				.logo-wrapper{
+					width: 120px;
+
+					img{
+						width: 100%;
+					}
+				}
+			}
+		}
+
+		// --2
+		#collapse{
+			display: none;
+		}
+
+		// --3
+		.menu-links{
+			display: flex;
+
+			// --1
+			ul{
+				margin: 0;
+				display: flex;
+				align-items: center;
+				list-style: none;
+
+				// --1
+				li{
+					padding: 15px 20px;
+
+					// --1
+					.link{
+						color: $biruGelap;
+						text-decoration: none;
+					}
+
+					// --2
+					&.active{
+						font-weight: 700;
+					}
+
+					// --3
+					&.auth{
+						padding: 15px 30px;
+						background-color: $biruGelap;
+
+						// --1
+						.link{
+							color: $putih;
+						}
+					}
+				}
+			}
+		}
+
+
+		// --3
+		.items-collapse{
+			display: none;
+		}
+	}
+}

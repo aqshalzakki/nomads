@@ -18,25 +18,25 @@
     </a>
 </header>
 <main>
-    <div class="container">
-    <section class="section-stats row justify-content-center" id="stats">
-        <div class="col-3 col-md-2 stats-detail">
-        <h2>20K</h2>
-        <p>Members</p>
-        </div>
-        <div class="col-3 col-md-2 stats-detail">
-        <h2>12</h2>
-        <p>Countries</p>
-        </div>
-        <div class="col-3 col-md-2 stats-detail">
-        <h2>3K</h2>
-        <p>Hotels</p>
-        </div>
-        <div class="col-3 col-md-2 stats-detail">
-        <h2>72</h2>
-        <p>Partners</p>
-        </div>
-    </section>
+    <div style="border-radius: 15px; position: relative; z-index: 9;" class="container">
+        <section class="section-stats row justify-content-center" id="stats">
+            <div class="col-3 col-md-2 stats-detail text-center">
+                <h2>20K</h2>
+                <p>Members</p>
+            </div>
+            <div class="col-3 col-md-2 stats-detail text-center">
+                <h2>12</h2>
+                <p>Countries</p>
+            </div>
+            <div class="col-3 col-md-2 stats-detail text-center">
+                <h2>3K</h2>
+                <p>Hotels</p>
+            </div>
+            <div class="col-3 col-md-2 stats-detail text-center">
+                <h2>72</h2>
+                <p>Partners</p>
+            </div>
+        </section>
     </div>
     <section class="section-popular" id="popular">
     <div class="container">
@@ -59,7 +59,7 @@
                 <div class="col-sm-6 col-md-4 col-lg-3">
                     <div
                         class="card-travel text-center d-flex flex-column"
-                        style="background-image: 
+                        style="border-radius: 10px; background-image: 
                         url('{{ $travelPackage->galleries->count() ? imageStoragePath($travelPackage->galleries->first()->image) : '' }}');"
                     >
                     <div class="travel-country">{{ $travelPackage->location }}</div>

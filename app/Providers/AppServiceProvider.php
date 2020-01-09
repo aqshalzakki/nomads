@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Schema;
 use App\Transaction;
 use App\Observers\TransactionObserver;
 
+use App\User;
+use App\Observers\UserObserver;
+
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -29,5 +33,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(120);
         Transaction::observe(TransactionObserver::class);
+        User::observe(UserObserver::class);
     }
 }
