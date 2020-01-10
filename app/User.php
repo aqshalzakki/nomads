@@ -57,7 +57,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isVerified()
     {
-        return $this->email_verified_at ? 'Terverifikasi' : 'Not Verified';
+        return $this->email_verified_at ?? false;
     }
 
     public function handleEmailVerification($oldEmail)

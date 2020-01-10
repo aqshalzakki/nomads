@@ -15,10 +15,7 @@
 Route::get('/', 'ShowHome')->name('home');
 
 // for testing only
-Route::get('/admin/test', 'Admin\TravelPackageController@test');
-Route::get('/logout', function(){
-    Auth::logout();
-});
+// Route::get('/admin/test', 'Admin\TravelPackageController@test');
 
 // Detail of Travel Package
     Route::get('travel-packages/{slug}', 'Admin\TravelPackageController@show')->name('travel-packages.detail');
@@ -91,5 +88,5 @@ Route::name('profile.')
 
 });
 
-     
+Route::get('/logout', 'Auth\\LoginController@logout');
 Auth::routes(['verify' => true]);

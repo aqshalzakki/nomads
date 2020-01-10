@@ -1,7 +1,7 @@
 @component('mail::message')
-# Update Email Message
+# Hello {{ $user->username }}!
 
-We've been noticed that you are updating your email
+We've been noticed that you are changing your email
 <br><br>
 
 From : {{ $oldEmail }}
@@ -10,7 +10,7 @@ From : {{ $oldEmail }}
 To : {{ $user->email }}
 <br>
 
-Please verify again if you change your email.
+Please verify again if you mean to change your email.
 
 @component('mail::button', ['url' => $urlVerification])
 Verify Now

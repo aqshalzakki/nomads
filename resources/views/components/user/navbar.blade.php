@@ -2,7 +2,7 @@
 <nav class="nomads-navbar">
     <div class="items-container">
         <div class="logo">
-            <a href="#">
+            <a href="/">
                 <div class="logo-wrapper">
                     <img src="{{ url('frontend/img/logo_nomads.png')}}">
                 </div>         
@@ -16,10 +16,10 @@
         <input type="checkbox" id="collapse">
         <div class="menu-links">
             <ul> 
-                <li class="active">
+                <li class="{{ isActiveUrl('/') }}">
                     <a class="link" href="/">Home</a>
                 </li>
-                <li>
+                <li class="{{ isActiveUrl('travel-packages') }}">
                     <a class="link" href="#">Paket Travel</a>
                 </li>
                 <li>
@@ -30,9 +30,33 @@
                 </li>
 
                 @auth
-                    <a href="{{ route('profile.index') }}" class="auth">
-                        <span class="link">Profile</span>
-                    </a>
+                    <li class="profile">
+                        <div class="profile-wrapper">
+                            <label class="profile-img" for="profileMenu">
+                                <img src="{{ imageStoragePath(auth()->user()->profile->image) }}">
+                            </label>
+                            <input type="checkbox" id="profileMenu">
+                            <div class="profile-menu">
+                                <ul>
+                                    <li class="{{-- isActiveUrl('profile') --}}">
+                                        <a class="profile-menu-link" href="{{ route('profile.index') }}">My Account</a>
+                                    </li>
+                                    <li class="{{ isActiveUrl('transactions') }}">
+                                        <a class="profile-menu-link" href="#">My Transaction</a>
+                                    </li>
+                                    <li>
+                                        {{-- <form method="post" class="d-inline" action="{{ route('logout') }}">
+                                            @csrf
+                                            <button class="btn btn-link profile-menu-link" type="submit">
+                                               Log Out 
+                                            </button>
+                                        </form> --}}
+                                        <a class="profile-menu-link" href="{{ route('logout') }}">Log Out</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
                 @endauth
 
                 @guest

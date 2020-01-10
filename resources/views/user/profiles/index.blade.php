@@ -6,110 +6,16 @@
     <section id="profile">
         <div class="container">
             <div class="nomads-breadcrumb my-4">
-                <a href="#">My Profile</a>
+                <a href="{{ route('profile.index') }}">My Profile</a>
                 <span>/</span>
-                <a href="#">Edit Profile</a>
+                <a href="{{ route('profile.index') }}">Edit Profile</a>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-4 mb-4">
-                    <!-- ---------Card-left--------- -->
-                    <div class="profile-card left">
-                        <div class="user">
-                            <div class="left">
-                                <div class="user-img">
-                                    <img src="{{ imageStoragePath(auth()->user()->profile->image) }}" title="{{ auth()->user()->username }}">
-                                </div>
-                            </div>
-                            <div class="right">
-                                <h5 class="user-name">{{ auth()->user()->username }}</h5>
-                                <a class="user-edit" href="#">
-                                    <i class="fas fa-edit"></i>
-                                    Edit Profile
-                                </a>
-                            </div>
-                        </div>
-                        <div class="menu">
-                            <ul>
-                                <li>
-                                    <a class="menu-link" href="#">Ganti Password</a>
-                                </li>
-                                <li>
-                                    <a class="menu-link" href="#">Passport</a>
-                                </li>
-                                <li>
-                                    <a class="menu-link" href="#">Visa</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="menu">
-                            <div class="menu-name open-collapse-menu" data-collapsetrigger="#transaction">
+                
+                {{-- include card left / sidebar --}}
+                    @include('components.user.profile.sidebar')
+                {{-- ------------- --}}
 
-                                <!-- ============MENING PAKE TAG a ATAU h3???============ -->
-                                <!-- --------------PILIH-WEH-BAHHH!!-------------- -->
-                                {{-- <a href="#">My Transaction</a> --}}
-                                <h3>My Transactions</h3>
-
-                                <!-- CLICK ME!!! -->
-                                <i class="fas fa-angle-down"></i>
-
-                            </div>
-                            <ul id="transaction">
-                                <li>
-                                    <a class="menu-link" href="#">Menunggu Pembayaran</a>
-                                </li>
-                                <li>
-                                    <a class="menu-link" href="#">Daftar Transaksi</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="menu">
-                            <div class="open-collapse-menu menu-name" data-collapsetrigger="#notification">
-
-                                <!-- ============MENING PAKE TAG a ATAU h3???============ -->
-                                <!-- --------------PILIH-WEH-BAHHH!!-------------- -->
-                                {{-- <a href="#">Notification</a> --}}
-                                <h3>Notifications</h3>
-
-                                <!-- CLICK ME!!! -->   
-                                <i class="fas fa-angle-down"></i>
-
-                            </div>
-                            <ul id="notification">
-                                <li>
-                                    <a class="menu-link" href="#">Ulasan</a>
-                                </li>
-                                <li>
-                                    <a class="menu-link" href="#">Komplain Pemesanan</a>
-                                </li>
-                                <li>
-                                    <a class="menu-link" href="#">Pesan Bantuan</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="menu">
-                            <div class="open-collapse-menu menu-name" data-collapsetrigger="#lainnya">
-
-                                <!-- ============MENING PAKE TAG a ATAU h3???============ -->
-                                <!-- --------------PILIH-WEH-BAHHH!!-------------- -->
-                                {{-- <a href="#">Lainnya</a> --}}
-                                <h3>Lainnya</h3>
-
-                                <!-- CLICK ME!!! -->
-                                <i class="fas fa-angle-down"></i>
-                                
-
-                            </div>
-                            <ul id="lainnya">
-                                <li>
-                                    <a class="menu-link" href="#">Destinasi Favorit</a>
-                                </li>
-                                <li>
-                                    <a class="menu-link" href="#">Saved Place</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
                 <div class="col-lg-9 col-md-8">
                     <!-- ---------Card-Right--------- -->
                     <div class="profile-card right">
@@ -157,27 +63,6 @@
                                                 <input required type="text" name="username" id="nama" value="{{ auth()->user()->username }}">
                                             </div>
                                             <div class="input">
-                                                {{-- <label>Tanggal lahir</label> --}}
-                                                {{-- <div class="selects">
-                                                    <div class="select">
-                                                        <select class="tanggal">
-                                                            <option></option>    
-                                                        </select>
-                                                        <i class="fas fa-angle-down"></i>
-                                                    </div>
-                                                    <div class="select">
-                                                        <select class="bulan">
-                                                            <option>10</option>
-                                                        </select>
-                                                        <i class="fas fa-angle-down"></i>
-                                                    </div>
-                                                    <div class="select">
-                                                        <select class="tahun">
-                                                            <option>1999</option>
-                                                        </select>
-                                                        <i class="fas fa-angle-down"></i>
-                                                    </div>
-                                                </div> --}}
                                                 <label for="datePicker">
                                                     Tanggal Lahir
                                                 </label>
@@ -239,14 +124,35 @@
 
                                         <h4>Ubah Kontak</h4>
                                         <div class="inputs">
-                                            <div class="input mb-3">
+                                            <div class="input mb-4">
                                                 <label for="Email">Email</label>
-                                                <input required type="text" name="email" id="email" value="{{ auth()->user()->email }}">
-                                                <span class="status">{{ auth()->user()->isVerified() }}</span>
+                                                <div class="relative">
+                                                    <input 
+                                                        required 
+                                                        type="text"
+                                                        name="email" 
+                                                        id="email" 
+                                                        value="{{ auth()->user()->email }}"
+                                                    />
+                                                
+                                                @if(!auth()->user()->isVerified())
+                                                    <a class="verification" href="{{ url('/email/verify')}}">Klik disini untuk melakukan verifikasi Email anda.</a>
+                                                @endif
+                                                </div>
+                                                <span class="status">{{ auth()->user()->isVerified() ? 'Terverifikasi' : 'Not Verified' }}</span>
                                             </div>
                                             <div class="input">
                                                 <label for="nomor-hp">Nomor HP</label>
-                                                <input required type="text" name="phone_number" id="nomor-hp" value="{{ auth()->user()->profile->phone_number }}">
+                                                <div class="relative">
+                                                    <input 
+                                                        type="text" 
+                                                        name="phone_number" 
+                                                        id="nomor-hp"
+                                                        value="{{ auth()->user()->profile->phone_number }}" 
+                                                    />
+
+                                                    <a class="verification" href="#">Klik disini untuk melakukan verifikasi Nomor anda.</a>
+                                                </div>
                                                 <span class="status">Terverifikasi</span>
                                             </div>
                                         </div>

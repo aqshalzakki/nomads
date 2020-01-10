@@ -33,8 +33,11 @@ class ProfileController extends Controller
 
         // if user update an email
         if ($oldEmail != $profile->user->email){
+            
             $profile->user->update(['email_verified_at' => null]);
             $profile->user->handleEmailVerification($oldEmail);
+
+            return redirect('/email/verify')->withMessage("We've been sending a link verification to <b>{$profile->user->email}</b> please verify for further action");
         }
 
         return back();

@@ -8,10 +8,13 @@
 		const trigger = openMenu.dataset.collapsetrigger
 		const collapseMenu = document.querySelector(trigger)
 		const menuHeight = collapseMenu.getBoundingClientRect().height
+		const icon = openMenu.lastElementChild;
+
 
 		// Set default height to 0
-		collapseMenu.style.height = '0px'
+		collapseMenu.style.height = menuHeight + 'px'
 		collapseMenu.style.overflow = 'hidden'
+
 
 		openMenu.addEventListener('click', (e) => {
 
@@ -21,12 +24,14 @@
 			{
 
 				collapseMenu.style.height = menuHeight + 'px'
+				icon.style.transform = 'rotate(0deg)'
 
 			}
 			else
 			{
 
 				collapseMenu.style.height = '0px'
+				icon.style.transform = 'rotate(-180deg)'
 
 			}
 
@@ -35,4 +40,6 @@
 
 	})
 
-})()
+})();
+
+
