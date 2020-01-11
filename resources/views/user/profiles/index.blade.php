@@ -125,7 +125,7 @@
                                         <h4>Ubah Kontak</h4>
                                         <div class="inputs">
                                             <div class="input mb-4">
-                                                <label for="Email">Email</label>
+                                                <label for="email">Email</label>
                                                 <div class="relative">
                                                     <input 
                                                         required 
@@ -135,11 +135,11 @@
                                                         value="{{ auth()->user()->email }}"
                                                     />
                                                 
-                                                @if(!auth()->user()->isVerified())
+                                                @if(!auth()->user()->isEmailVerified())
                                                     <a class="verification" href="{{ url('/email/verify')}}">Klik disini untuk melakukan verifikasi Email anda.</a>
                                                 @endif
                                                 </div>
-                                                <span class="status">{{ auth()->user()->isVerified() ? 'Terverifikasi' : 'Not Verified' }}</span>
+                                                <span class="status">{{ auth()->user()->isEmailVerified() ? 'Terverifikasi' : 'Not Verified' }}</span>
                                             </div>
                                             <div class="input">
                                                 <label for="nomor-hp">Nomor HP</label>
