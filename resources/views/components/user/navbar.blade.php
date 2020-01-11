@@ -33,17 +33,29 @@
                     <li class="profile">
                         <div class="profile-wrapper">
                             <label class="profile-img" for="profileMenu">
-                                <img src="{{ imageStoragePath(auth()->user()->profile->image) }}">
+                                <img src="{{ imageStoragePath( (auth()->user()->profile->image ?? 'profiles/default.jpg') ) }}">
                             </label>
                             <input type="checkbox" id="profileMenu">
                             <div class="profile-menu">
                                 <ul>
-                                    <li class="{{-- isActiveUrl('profile') --}}">
-                                        <a class="profile-menu-link" href="{{ route('profile.index') }}">My Account</a>
-                                    </li>
-                                    <li class="{{ isActiveUrl('transactions') }}">
-                                        <a class="profile-menu-link" href="#">My Transaction</a>
-                                    </li>
+                                    
+                                    @if(auth()->user()->isUser())
+                                        
+                                        <li class="{{-- isActiveUrl('profile') --}}">
+                                            <a class="profile-menu-link" href="{{ route('profile.index') }}">My Account</a>
+                                        </li>
+                                        <li class="{{ isActiveUrl('transactions') }}">
+                                            <a class="profile-menu-link" href="#">My Transaction</a>
+                                        </li>
+
+                                    @else
+                                        
+                                        <li class="{{ isActiveUrl('transactions') }}">
+                                            <a class="profile-menu-link" href="{{ route('admin.index') }}">Dashboard</a>
+                                        </li>
+
+                                    @endif
+
                                     <li>
                                         {{-- <form method="post" class="d-inline" action="{{ route('logout') }}">
                                             @csrf

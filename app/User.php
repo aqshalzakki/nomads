@@ -64,4 +64,14 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         Mail::to($this->email)->send(new EmailVerification($this, $oldEmail));
     }
+
+    public function isUser()
+    {
+        return $this->role_id == 1 ? true : false;
+    }
+
+    public function isAdmin()
+    {
+        return $this->role_id == 2 ? true : false;
+    }
 }

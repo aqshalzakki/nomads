@@ -80,7 +80,7 @@ Route::get('/', 'ShowHome')->name('home');
 
 Route::name('profile.')
      ->prefix('profile')
-     ->middleware(['auth'])
+     ->middleware(['auth', 'user'])
      ->group(function(){
 
         Route::get('/', 'ProfileController@index')->name('index');

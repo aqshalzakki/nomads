@@ -60,7 +60,7 @@
                                         <div class="inputs">
                                             <div class="input">
                                                 <label for="nama">Username</label>
-                                                <input required type="text" name="username" id="nama" value="{{ auth()->user()->username }}">
+                                                <input required type="text" name="username" id="nama" value="{{ old('username') ?? auth()->user()->username }}">
                                             </div>
                                             <div class="input">
                                                 <label for="datePicker">
@@ -72,7 +72,7 @@
                                                       class="datePicker @error('date_birth') is-invalid @enderror"
                                                       id="datePicker"
                                                       style="width: 70%;"
-                                                      value="{{ auth()->user()->profile->date_of_birth }}"
+                                                      value="{{ old('date_of_birth') ?? auth()->user()->profile->date_of_birth }}"
                                                       name="date_of_birth" 
                                                     />
                                             </div>
@@ -132,7 +132,7 @@
                                                         type="text"
                                                         name="email" 
                                                         id="email" 
-                                                        value="{{ auth()->user()->email }}"
+                                                        value="{{ old('email') ?? auth()->user()->email }}"
                                                     />
                                                 
                                                 @if(!auth()->user()->isEmailVerified())
@@ -148,7 +148,7 @@
                                                         type="text" 
                                                         name="phone_number" 
                                                         id="nomor-hp"
-                                                        value="{{ auth()->user()->profile->phone_number }}" 
+                                                        value="{{ old('phone_number') ?? auth()->user()->profile->phone_number }}" 
                                                     />
 
                                                     <a class="verification" href="#">Klik disini untuk melakukan verifikasi Nomor anda.</a>

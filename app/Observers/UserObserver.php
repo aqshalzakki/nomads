@@ -14,8 +14,11 @@ class UserObserver
      */
     public function created(User $user)
     {
-        // create user profile with default value of null
-        $user->profile()->create();
+        if (!$user->isAdmin())
+        {
+            // create user profile with default value of null
+            $user->profile()->create();
+        }
     }
 
     /**

@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\IsAdmin::class,
         'is_in_cart' => \App\Http\Middleware\IsInCart::class,
         'is_pending' => \App\Http\Middleware\IsPending::class,
+        'user' => \App\Http\Middleware\IsUser::class,
     ];
 
     /**
