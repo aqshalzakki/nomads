@@ -67,7 +67,7 @@
                       <tr>
                         <td>
                           <img
-                            src="https://ui-avatars.com/api/?name={{ $detail->username }}"
+                            src="{{ imageStoragePath(auth()->user()->profile->image) }}"
                             class="rounded-circle"
                             height="60"
                           />

@@ -23,11 +23,7 @@ class Profile extends Model
      **/
     public function isGender($gender)
     {
-    	if($this->gender == $gender){
-    		return 'checked';
-    	}else{
-    		return '';
-    	}
+    	return ($this->gender == $gender) ? 'checked' : ''; 
     }
 
     public function handleUploadedImage()
