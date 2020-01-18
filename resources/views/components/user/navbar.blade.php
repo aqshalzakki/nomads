@@ -39,7 +39,7 @@
                             <div class="profile-menu">
                                 <ul>
                                     
-                                    @if(auth()->user()->isUser())
+                                    @if(auth()->user()->isRole('USER'))
                                         
                                         <li class="{{-- isActiveUrl('profile') --}}">
                                             <a class="profile-menu-link" href="{{ route('profile.index') }}">My Account</a>

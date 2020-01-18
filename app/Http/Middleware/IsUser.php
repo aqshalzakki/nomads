@@ -15,6 +15,6 @@ class IsUser
      */
     public function handle($request, Closure $next)
     {
-        return auth()->user()->isUser() ? $next($request) : back();
+        return auth()->user()->isRole('USER') ? $next($request) : back();
     }
 }
