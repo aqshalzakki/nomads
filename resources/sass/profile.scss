@@ -1,0 +1,258 @@
+// --------Variables-&-Functions--------
+@import './variables';
+@import './functions';
+
+// --------Templates---------
+@import './templates/header';
+@import './templates/footer';
+@import './templates/sidebar';
+
+// ---------PROFILE---------
+
+#profile{
+	position: relative;
+	margin-top: -80px;
+	padding-top: 80px;
+	margin-bottom: 80px;
+
+	// --2
+	.profile-card{
+		
+
+		// --2
+		&.right{
+
+			.user-profile-photo-card{
+				padding: 10px;
+				background-color: rgba($abuCerah, 0.4);
+				border: 2px solid rgba(0, 0, 0, 0.08);
+				border-radius: 5px;
+
+				.photo{
+					width: 100%;
+					height: 200px;
+
+					img{
+						width: 100%;
+						height: 100%;
+						object-fit: cover;
+					}
+				}
+
+				.select-photo{
+					label{
+						color: #fff;
+						background-color: $biruGelap;
+						text-align: center;
+						padding: 5px;
+						display: block;
+						margin: 0;
+						font-size: 14px;
+						border-radius: 5px;
+						cursor: pointer;
+						user-select: none;
+						transition: .2s ease;
+
+						&:hover{
+							opacity: .7;
+						}
+					}
+
+					input[type="file"]{
+						display: none;
+					}
+				}
+
+				.rules{
+					list-style: none;
+					font-size: 14px;
+					color: inherit;
+					margin: 0;
+				}
+			}
+
+			.profile-form{
+				color: $biruGelap;
+
+				h4{
+					color: inherit;
+					font-size: 20px;
+					font-weight: 700;
+					margin-bottom: 20px;
+				}
+
+				.inputs{
+					width: 80%;
+
+					.input{
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+						margin-bottom: 30px;
+						position: relative;
+
+						label{
+							margin: 0;
+							font-size: 15px;
+							color: inherit;
+							display: inline-block;
+							width: 70%;
+						}
+
+						input,
+						select{
+							font-size: 15px;
+							border: 1px solid rgba(0, 0, 0, 0.2);
+							padding: 2px 5px;
+							color: inherit;
+							outline: none;
+							border-radius: 5px;
+						}
+
+						input[type="text"]{
+							width: 100%;						
+						}
+
+						.selects{
+							display: flex;
+
+							.select{
+								position: relative;
+								margin: 0 1px;
+								width: 100%;
+
+								select{	
+									
+								}
+
+								i{
+									top: 1px;
+									right: 1px;
+									bottom: 1px;
+									padding: 5px;
+									background-color: #fff;
+									pointer-events: none;
+									position: absolute;
+									z-index: 1;
+									border-radius: 5px;
+								}
+							}
+						}
+
+						.radios{
+							display: flex;
+							width: 100%;
+
+							.radio{
+								display: flex;
+								flex-direction: column;
+								align-items: center; 
+								width: 100%;
+									
+
+								.wrapper{
+									position: relative;
+
+									input[type="radio"]{
+										position: absolute;
+										z-index: 1;
+										opacity: 0;
+										cursor: pointer;
+									}
+
+									input[type="radio"]:checked + .custom-radio:before{
+										opacity: 1;
+										transform: translate(-50%, -50%) scale(1);
+									}
+
+									.custom-radio{
+										position: relative;
+										width: 12px;
+										height: 12px;
+										border-radius: 50%;
+										border: 1px solid $biruGelap;
+										display: block;
+										pointer-events: none;
+
+										&::before{
+											content: '';
+											position: absolute;
+											width: 70%;
+											height: 70%;
+											background-color: $biruGelap;
+											top: 50%;
+											left: 50%;
+											border-radius: 50%;
+											opacity: 0;
+											transform: translate(-50%, -50%) scale(2);
+											transition: .2s ease;
+										}
+									}
+								}
+
+								label{
+									color: inherit;
+									font-size: 12px;
+									text-align: center;
+									display: inline-block;
+									width: 100%;
+								}
+							}
+							
+						}
+
+						.relative{
+							position: relative;
+							width: 100%;
+
+							.verification{
+								position: absolute;
+								display: inline-block;
+								width: 100%;
+								left: 0;
+								font-size: 12px;
+								overflow: hidden;
+								text-overflow: ellipsis;
+								white-space: nowrap;
+								top: 100%;
+								text-decoration: underline;
+								color: rgba(0, 0, 0, 0.4);
+
+
+								&:hover{
+									color: rgba(0, 0, 0, 0.6);
+									overflow: unset;
+								}
+							
+							}
+							
+						}
+
+						.status{
+							position: absolute;
+							top: 50%;
+							left: calc(100% + 5px);
+							transform: translateY(-50%);
+							font-size: 10px;
+							display: inline-block;
+							border-radius: 10px;
+							padding: 0 5px;
+							color: #fff;
+							background-color: $orange;
+						}
+
+					}
+				}
+
+				button.nomads-btn{
+					padding: 2px 35px;
+					font-size: 15px;
+				}
+			}
+		}
+
+	}
+}
+
+// ===============SMALL=SCREEN=================
+@import './small-screen';

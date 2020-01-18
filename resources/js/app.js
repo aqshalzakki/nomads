@@ -1,32 +1,118 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+// require('./bootstrap');
 
-require('./bootstrap');
+// window.Vue = require('vue');
 
-window.Vue = require('vue');
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+// const app = new Vue({
+//     el: '#app',
+// });
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// ishan.js
+(function collapseMenu()
+{
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+	const openMenus = document.querySelectorAll('.open-collapse-menu')
 
-const app = new Vue({
-    el: '#app',
-});
+	openMenus.forEach(openMenu => {
+
+		const trigger = openMenu.dataset.collapsetrigger
+		const collapseMenu = document.querySelector(trigger)
+		const menuHeight = collapseMenu.getBoundingClientRect().height
+		const icon = openMenu.lastElementChild;
+
+
+		// Set default height to 0
+		collapseMenu.style.height = menuHeight + 'px'
+		collapseMenu.style.overflow = 'hidden'
+
+
+		openMenu.addEventListener('click', (e) => {
+
+			e.preventDefault()
+
+			if(collapseMenu.getBoundingClientRect().height == 0)
+			{
+
+				collapseMenu.style.height = menuHeight + 'px'
+				icon.style.transform = 'rotate(0deg)'
+
+			}
+			else
+			{
+
+				collapseMenu.style.height = '0px'
+				icon.style.transform = 'rotate(-180deg)'
+
+			}
+
+
+		})
+
+	})
+
+})();
+
+(function selectPhoto(){
+
+	const inputFile = document.querySelector('input#selectPhoto');
+	const userPhoto = document.querySelector('#userPhoto');
+	const fileNameElement = document.querySelector('#fileName');
+
+	if(inputFile)
+	{
+		inputFile.addEventListener('change', function(e){
+
+			let fileName = inputFile.files[0].name;
+			let filePath = inputFile.dataset.filepath;
+
+			userPhoto.src = filePath + fileName;
+			fileNameElement.innerHTML = 'Picture Selected : <span class="text-success">' + fileName + '</span>';
+
+
+
+		})
+	}
+
+})();
+
+(function seePassword(){
+
+	const toggler = document.querySelectorAll('button[data-passwordtarget]');
+
+	if(toggler)
+	{
+		toggler.forEach(toggle => {
+			
+			toggle.addEventListener('click', e => {
+
+				e.preventDefault();
+
+				const target = toggle.dataset.passwordtarget;
+
+				const passwordElement = document.querySelector(target);
+
+				const passwordElementType = passwordElement.getAttribute('type');
+
+				const icon = toggle.querySelector('i');
+
+				if(passwordElementType == 'password')
+				{
+					passwordElement.setAttribute('type', 'text');
+					icon.classList.remove('fa-eye');
+					icon.classList.add('fa-eye-slash');
+				}
+				else
+				{
+					passwordElement.setAttribute('type', 'password');
+					icon.classList.add('fa-eye');
+					icon.classList.remove('fa-eye-slash');
+				}
+
+			});
+
+		})
+	}
+
+})();
