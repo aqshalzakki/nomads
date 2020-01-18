@@ -135,11 +135,11 @@
                                                         value="{{ old('email') ?? auth()->user()->email }}"
                                                     />
                                                 
-                                                @if(!auth()->user()->isEmailVerified())
+                                                @if(!auth()->user()->hasVerifiedEmail())
                                                     <a class="verification" href="{{ url('/email/verify')}}">Klik disini untuk melakukan verifikasi Email anda.</a>
                                                 @endif
                                                 </div>
-                                                <span class="status">{{ auth()->user()->isEmailVerified() ? 'Terverifikasi' : 'Not Verified' }}</span>
+                                                <span class="status">{{ auth()->user()->hasVerifiedEmail() ? 'Terverifikasi' : 'Not Verified' }}</span>
                                             </div>
                                             <div class="input">
                                                 <label for="nomor-hp">Nomor HP</label>
