@@ -57,13 +57,10 @@
                                     @endif
 
                                     <li>
-                                        {{-- <form method="post" class="d-inline" action="{{ route('logout') }}">
+                                        <form action="{{ route('logout') }}" method="post">
                                             @csrf
-                                            <button class="btn btn-link profile-menu-link" type="submit">
-                                               Log Out 
-                                            </button>
-                                        </form> --}}
-                                        <a class="profile-menu-link" href="{{ route('logout') }}">Log Out</a>
+                                            <button class="profile-menu-link" type="submit">Log Out</button>
+                                        </form>
                                     </li>
                                 </ul>
                             </div>

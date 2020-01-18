@@ -3,7 +3,7 @@
 @section('title', 'Profile')
 @section('content')
     <!-- ----------------PROFILE-SECTION---------------- -->
-    <section id="profile">
+    <section class="custom-bg" id="profile">
         <div class="container">
             <div class="nomads-breadcrumb my-4">
                 <a href="{{ route('profile.index') }}">My Profile</a>

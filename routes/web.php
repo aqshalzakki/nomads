@@ -14,8 +14,14 @@
 
 Route::get('/', 'ShowHome')->name('home');
 
-// for testing only
-// Route::get('/admin/test', 'Admin\TravelPackageController@test');
+// for testing purposes only
+// Route::get('/notify', function(){
+//      // sending email notification...
+//      $user = App\User::find(19);
+
+//      $when = now()->addMinutes(10);
+//      $user->notify((new App\Notifications\User\PasswordChangedNotification($user))->delay($when));
+// });
 
 // Detail of Travel Package
     Route::get('travel-packages/{slug}', 'Admin\TravelPackageController@show')->name('travel-packages.detail');
@@ -85,8 +91,15 @@ Route::name('profile.')
 
         Route::get('/', 'ProfileController@index')->name('index');
         Route::patch('/{profile}', 'ProfileController@update')->name('update');
+        
+        Route::name('password.')
+             ->prefix('change-password')
+             ->group(function(){
 
+                  Route::get('/', 'ChangePasswordController@edit')->name('edit');
+                  Route::patch('/update/{user}', 'ChangePasswordController@update')->name('update');
+             
+               });
 });
 
-Route::get('/logout', 'Auth\\LoginController@logout');
 Auth::routes(['verify' => true]);

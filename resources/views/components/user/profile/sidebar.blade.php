@@ -17,8 +17,8 @@
         </div>
         <div class="menu">
             <ul>
-                <li>
-                    <a class="menu-link" href="#">Ganti Password</a>
+                <li class="{{ isActiveUrl('profile/change-password') ? 'menu-active' : '' }}">
+                    <a class="menu-link" href="{{ route('profile.password.edit') }}">Ganti Password</a>
                 </li>
                 <li>
                     <a class="menu-link" href="#">Passport</a>
@@ -51,10 +51,6 @@
         </div>
         <div class="menu">
             <div class="open-collapse-menu menu-name" data-collapsetrigger="#notification">
-
-                <!-- ============MENING PAKE TAG a ATAU h3???============ -->
-                <!-- --------------PILIH-WEH-BAHHH!!-------------- -->
-                {{-- <a href="#">Notification</a> --}}
                 <h3>Notifications</h3>
 
                 <!-- CLICK ME!!! -->   
@@ -75,10 +71,6 @@
         </div>
         <div class="menu">
             <div class="open-collapse-menu menu-name" data-collapsetrigger="#lainnya">
-
-                <!-- ============MENING PAKE TAG a ATAU h3???============ -->
-                <!-- --------------PILIH-WEH-BAHHH!!-------------- -->
-                {{-- <a href="#">Lainnya</a> --}}
                 <h3>Lainnya</h3>
 
                 <!-- CLICK ME!!! -->

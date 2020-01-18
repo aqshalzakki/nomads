@@ -2,7 +2,7 @@
 
 function isActiveUrl($currentRequest)
 {
-    return request()->is($currentRequest) ? 'active' : '';
+    return request()->is($currentRequest);
 }
 
 function imageStoragePath($image = null)
