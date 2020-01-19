@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\TravelPackage;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class ShowHome extends Controller
 {
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function __invoke()
     {
-        return view('user.home', [
-            'travelPackages' => TravelPackage::with(['galleries'])->get()
-        ]);
+        $travelPackages = Cache::remember('travelPackages', now()->addHours(24), function() {
+            return \App\TravelPackage::with(['galleries'])->get();
+        });
+        return view('user.home', compact('travelPackages'));
     }
 }
