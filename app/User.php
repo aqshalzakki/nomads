@@ -13,20 +13,10 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'username', 'email', 'password', 'email_verified_at'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
     ];
@@ -50,6 +40,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Role::class);
     }
 
+    public function isRole($role)
+    {
+        return $this->role->title == $role;
+    }
+
     public function profile()
     {
         return $this->hasOne(Profile::class);
@@ -59,9 +54,4 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         Mail::to($this->email)->send(new EmailVerification($this, $oldEmail));
     }
-
-    public function isRole($role)
-    {
-        return $this->role->title == $role;
-    }    
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\ChangePasswordRequest as Request;
+use App\Notifications\User\PasswordChangedNotification;
 
 class ChangePasswordController extends Controller
 {
@@ -18,8 +19,8 @@ class ChangePasswordController extends Controller
             'password' => Hash::make($request->input('new_password'))]
         );
 
-        // notify the user perhaps??
-        // ...
+        // notify the user
+        $user->notify(new PasswordChangedNotification($user));
         
         return back()->withMessage('Your password has been changed!');
     }

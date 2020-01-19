@@ -46,7 +46,7 @@
                                     <div class="password-input mb-2">
                                         <label for="currentPassword">Your current password</label>
                                         <div class="icon-group d-flex">
-                                            <input type="password" name="current_password" id="currentPassword" value="{{ old('current_password') }}">
+                                            <input required type="password" name="current_password" id="currentPassword" value="{{ old('current_password') }}">
                                             <button type="button" data-passwordtarget="#currentPassword">
                                                 <i class="fas fa-fw fa-eye"></i>
                                             </button>
@@ -56,7 +56,7 @@
                                     <div class="password-input mb-2">
                                         <label for="newPassword">Enter new password</label>
                                         <div class="icon-group d-flex">
-                                            <input type="password" name="new_password" id="newPassword">
+                                            <input required type="password" name="new_password" id="newPassword">
                                             <button type="button" data-passwordtarget="#newPassword">
                                                 <i class="fas fa-fw fa-eye"></i>
                                             </button>
@@ -66,7 +66,7 @@
                                     <div class="password-input mb-2">
                                         <label for="repeatPassword">Repeat new password</label>
                                         <div class="icon-group d-flex">
-                                            <input type="password" name="new_password_confirmation" id="repeatPassword">
+                                            <input required type="password" name="new_password_confirmation" id="repeatPassword">
                                             <button type="button" data-passwordtarget="#repeatPassword">
                                                 <i class="fas fa-fw fa-eye"></i>
                                             </button>
