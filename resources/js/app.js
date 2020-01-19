@@ -54,28 +54,29 @@
 
 })();
 
-(function selectPhoto(){
+// Preview image 
+	
+	let input = document.querySelector('.file-input')
 
-	const inputFile = document.querySelector('input#selectPhoto');
-	const userPhoto = document.querySelector('#userPhoto');
-	const fileNameElement = document.querySelector('#fileName');
+	input.addEventListener('change', preview)
 
-	if(inputFile)
-	{
-		inputFile.addEventListener('change', function(e){
+	function preview(){
+		let fileObject = this.files[0];
+		let fileReader = new FileReader();
 
-			let fileName = inputFile.files[0].name;
-			let filePath = inputFile.dataset.filepath;
+		fileReader.readAsDataURL(fileObject);
+		fileReader.onload = () => {
+			let result = fileReader.result;
+			let img = document.querySelector('#imageField');
 
-			userPhoto.src = filePath + fileName;
-			fileNameElement.innerHTML = 'Picture Selected : <span class="text-success">' + fileName + '</span>';
+			img.setAttribute('src', result)
+		}
 
-
-
-		})
+		document.querySelector('#fileName')
+			    .innerHTML = 'Picture Selected.';
 	}
 
-})();
+// -----------------
 
 (function seePassword(){
 

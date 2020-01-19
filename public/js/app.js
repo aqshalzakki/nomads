@@ -122,22 +122,26 @@
       }
     });
   });
-})();
+})(); // Preview image 
 
-(function selectPhoto() {
-  var inputFile = document.querySelector('input#selectPhoto');
-  var userPhoto = document.querySelector('#userPhoto');
-  var fileNameElement = document.querySelector('#fileName');
 
-  if (inputFile) {
-    inputFile.addEventListener('change', function (e) {
-      var fileName = inputFile.files[0].name;
-      var filePath = inputFile.dataset.filepath;
-      userPhoto.src = filePath + fileName;
-      fileNameElement.innerHTML = 'Picture Selected : <span class="text-success">' + fileName + '</span>';
-    });
-  }
-})();
+var input = document.querySelector('.file-input');
+input.addEventListener('change', preview);
+
+function preview() {
+  var fileObject = this.files[0];
+  var fileReader = new FileReader();
+  fileReader.readAsDataURL(fileObject);
+
+  fileReader.onload = function () {
+    var result = fileReader.result;
+    var img = document.querySelector('#imageField');
+    img.setAttribute('src', result);
+  };
+
+  document.querySelector('#fileName').innerHTML = 'Picture Selected.';
+} // -----------------
+
 
 (function seePassword() {
   var toggler = document.querySelectorAll('button[data-passwordtarget]');

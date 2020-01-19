@@ -39,16 +39,17 @@
                             <div class="col-lg-5 col-md-12">
                                 <div class="user-profile-photo-card mb-5">
                                     <div class="photo">
-                                        <img src="{{ imageStoragePath(auth()->user()->profile->image) }}">
+                                        <img id="imageField" src="{{ imageStoragePath(auth()->user()->profile->image) }}">
                                     </div>
                                     <div class="select-photo mt-2">
                                         <label for="selectPhoto">Pilih Foto</label>
-                                        <input type="file" name="image" id="selectPhoto">
+                                        <input type="file" name="image" class="file-input" id="selectPhoto">
                                     </div>
                                     <ul class="rules mt-1">
                                         <li>Besar file: maksimum 10.000.000 bytes (10 Megabytes)</li>
                                         <li>Ekstensi file yang diperbolehkan: .JPG, .JPEG, .PNG</li>
                                     </ul>
+                                    <span class="d-block mt-3" id="fileName"></span>
                                 </div>
                             </div>
                             <div class="col-lg-7">

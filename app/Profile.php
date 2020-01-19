@@ -35,7 +35,7 @@ class Profile extends Model
         }
 
         // store the image
-        return request()->image->storeAs('profiles', $this->user->username . ".jpg", 'public');
+        return request()->image->storeAs('profiles', $this->user->username . $this->user->id . ".jpg", 'public');
     }
 
     /**
