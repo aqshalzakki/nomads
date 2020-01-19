@@ -28,14 +28,20 @@ class Profile extends Model
 
     public function handleUploadedImage()
     {
-               
-        if ($this->isNewImage()){
-            Storage::disk('public')
-                   ->delete( imageStoragePath($this->image) );
+        if (request()->has('image')){
+
+            if ($this->isNewImage()){
+
+                // then delete the old image
+                Storage::disk('public')
+                       ->delete( imageStoragePath($this->image) );
+            }
+            
+            // store the image
+            return request()->image->storeAs('profiles', $this->user->username . $this->user->id . ".jpg", 'public');
         }
 
-        // store the image
-        return request()->image->storeAs('profiles', $this->user->username . $this->user->id . ".jpg", 'public');
+        return $this->image; 
     }
 
     /**

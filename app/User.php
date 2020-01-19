@@ -54,4 +54,22 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         Mail::to($this->email)->send(new EmailVerification($this, $oldEmail));
     }
+
+    public function handleUpdatedEmail($oldEmail)
+    {
+        // if user update an email
+        if ($this->email != $oldEmail){
+            
+            $this->update(['email_verified_at' => null]);
+            $this->handleEmailVerification($oldEmail);
+
+            return true;
+        }
+        return false;
+    }
+
+    public function emailChangedMessage()
+    {
+        return "We've been sending a link verification to <b>{$this->email}</b> please verify for further action";
+    }
 }
