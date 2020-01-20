@@ -126,23 +126,23 @@
 
 	let currentPassword = 'abah1234';
 	const csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content') 
-
-	fetch('http://127.0.0.1:8000/profile/password/check', {
-		method: 'post',
-		headers: {
-			'Content-Type' : 'application/json',
-	        'X-CSRF-TOKEN': csrf
-	    },
-	    body: JSON.stringify({
-	    	currentPassword
-	    })
-
-
-	}).then(response => response.json())
-	  .then(response => {
-
-  		console.log(response)
 	
-	  })
+	if (csrf && currentPassword)
+	{
+		fetch('http://127.0.0.1:8000/profile/password/check', {
+			method: 'post',
+			headers: {
+				'Content-Type' : 'application/json',
+		        'X-CSRF-TOKEN': csrf
+		    },
+		    body: JSON.stringify({ currentPassword })
+
+		}).then(response => response.json())
+		  .then(response => {
+
+	  		console.log(response)
+		
+		  })
+	}
 
 })();
