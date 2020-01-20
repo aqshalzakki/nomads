@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
 use App\Profile;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\UserAndProfileRequest as UserRequest;
 
 class ProfileController extends Controller
