@@ -15,7 +15,8 @@ class CheckoutController extends Controller
 {
     public function index($id)
     {
-        $transaction = Transaction::where([
+        $transaction = Transaction::with('user')
+        ->where([
             'id'                    => $id,
             'user_id'               => auth()->user()->id,
             'transaction_status_id' => 1

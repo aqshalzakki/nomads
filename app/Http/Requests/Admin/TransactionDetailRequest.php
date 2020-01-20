@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Rules\TransactionDetails\IsUsernameUnique as Unique;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -24,16 +25,12 @@ class TransactionDetailRequest extends FormRequest
      */
     public function rules()
     {
-        $unique = Rule::unique('transaction_details')->where(function($query){
-            return $query->where('deleted_at', null)
-                         ->where('transaction_id', last(explode('/', url()->current())));  
-        });
         $exists = Rule::exists('users')->where(function($query){
             return $query->where('role_id', 1)
                          ->whereNotNull('email_verified_at');
         });
         return [
-            'username'      => ['required', 'string', $exists, $unique],
+            'username'      => ['required', 'string', $exists, new Unique],
             'nationality'   => ['required', 'string', 'size:2'],
             'is_visa'       => ['required', 'boolean'],
             'doe_passport'  => ['required', 'date']
@@ -43,7 +40,6 @@ class TransactionDetailRequest extends FormRequest
     public function messages()
     {
         return [
-            'username.unique'         => "This member is already added to this travel package!",
             'username.required'       => 'Username is required!',
             'username.exists'         => 'This member is not verified to our application!',
             'nationality.required'    => 'Nationality?',

@@ -55,26 +55,34 @@
 })();
 
 // Preview image 
+(function previewImage(){
 	
 	let input = document.querySelector('.file-input')
+	
+	if (input)
+	{
+		input.addEventListener('change', preview)
 
-	input.addEventListener('change', preview)
+		function preview()
+		{
+			let fileObject = this.files[0];
+			
+			let fileReader = new FileReader();
 
-	function preview(){
-		let fileObject = this.files[0];
-		let fileReader = new FileReader();
+			fileReader.readAsDataURL(fileObject);
+			fileReader.onload = () => {
+				let result = fileReader.result;
 
-		fileReader.readAsDataURL(fileObject);
-		fileReader.onload = () => {
-			let result = fileReader.result;
-			let img = document.querySelector('#imageField');
+				let img = document.querySelector('#imageField');
+				img.setAttribute('src', result)
+			}
 
-			img.setAttribute('src', result)
+			document.querySelector('#fileName')
+				    .innerHTML = 'Picture Selected.';
 		}
-
-		document.querySelector('#fileName')
-			    .innerHTML = 'Picture Selected.';
 	}
+
+})();
 
 // -----------------
 

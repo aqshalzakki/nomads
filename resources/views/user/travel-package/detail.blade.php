@@ -98,10 +98,10 @@
                 <h2>Members are going</h2>
                 <div class="members my-2">
                   @if($transaction)
-                    @foreach($transaction->details as $member)
+                    @foreach($transaction->details as $detail)
                       <img
-                          title="{{ $member->username }}" 
-                          src="https://ui-avatars.com/api/?name={{ $member->username }}" 
+                          title="{{ $detail->user->username }}" 
+                          src="{{ imageStoragePath($detail->user->profile->image) ?? imageStoragePath('profiles/default.jpg') }}" 
                           class="rounded-circle"
                           style="width: 40px;" 
                       />

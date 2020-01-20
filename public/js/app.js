@@ -125,22 +125,27 @@
 })(); // Preview image 
 
 
-var input = document.querySelector('.file-input');
-input.addEventListener('change', preview);
+(function previewImage() {
+  var input = document.querySelector('.file-input');
 
-function preview() {
-  var fileObject = this.files[0];
-  var fileReader = new FileReader();
-  fileReader.readAsDataURL(fileObject);
+  if (input) {
+    var preview = function preview() {
+      var fileObject = this.files[0];
+      var fileReader = new FileReader();
+      fileReader.readAsDataURL(fileObject);
 
-  fileReader.onload = function () {
-    var result = fileReader.result;
-    var img = document.querySelector('#imageField');
-    img.setAttribute('src', result);
-  };
+      fileReader.onload = function () {
+        var result = fileReader.result;
+        var img = document.querySelector('#imageField');
+        img.setAttribute('src', result);
+      };
 
-  document.querySelector('#fileName').innerHTML = 'Picture Selected.';
-} // -----------------
+      document.querySelector('#fileName').innerHTML = 'Picture Selected.';
+    };
+
+    input.addEventListener('change', preview);
+  }
+})(); // -----------------
 
 
 (function seePassword() {

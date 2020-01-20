@@ -15,10 +15,10 @@ class TransactionObserver
     public function created(Transaction $transaction)
     {
         $transaction->details()->create([
-            'username'      => auth()->user()->username,
-            'nationality'   => 'ID',
-            'is_visa'       => false,
-            'doe_passport'  => now()->addYears(5)
+            'user_id'      => auth()->id(),
+            'nationality'  => 'ID',
+            'is_visa'      => false,
+            'doe_passport' => now()->addYears(5)
         ]);
     }
 

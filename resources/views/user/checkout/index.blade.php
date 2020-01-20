@@ -72,7 +72,7 @@
                             height="60"
                           />
                         </td>
-                        <td class="align-middle">{{ $detail->username }}</td>
+                        <td class="align-middle">{{ $detail->user->username }}</td>
                         <td class="align-middle">{{ $detail->nationality }}</td>
                         <td class="align-middle">{{ $detail->is_visa ? '30 Days' : 'N/A' }}</td>
                         <td class="align-middle">
