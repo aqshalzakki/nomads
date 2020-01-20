@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\TransactionDetailRequest;
 use App\Transaction;
 use App\TransactionDetail;
 use App\TravelPackage;
+use App\User;
 
 // use Carbon\Carbon;
 
@@ -68,9 +69,15 @@ class CheckoutController extends Controller
      **/
     public function create(TransactionDetailRequest $request, Transaction $transaction)
     {
-        // create details of transaction
-        $transaction->details()
-                    ->create($request->all());
+        // create details of transaction from user relationship
+        $user = User::whereUsername($request->username)->first();
+        $data = [
+            'transaction_id' => $transaction->id,
+            'nationality'    => $request->nationality,
+            'is_visa'        => $request->is_visa,
+            'doe_passport'   => $request->doe_passport
+        ];
+        $user->transaction_details()->create($data);
 
         // if user input a visa
         if ($request->is_visa)
