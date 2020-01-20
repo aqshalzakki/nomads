@@ -89,7 +89,7 @@ Route::namespace('User')
              ->group(function(){
 
                   Route::get('/', 'UserPasswordController@edit')->name('edit');
-                  Route::post('/check', 'UserPasswordController@checkPassword')->name('edit');
+                  Route::post('/check', 'UserPasswordController@checkPassword')->name('check');
                   Route::patch('/update/{user}', 'UserPasswordController@update')->name('update');
                   
                });

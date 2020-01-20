@@ -55,7 +55,7 @@
 })();
 
 // Preview image 
-	
+(function previewImage(){
 	let input = document.querySelector('.file-input')
 	
 	if (input){
@@ -78,6 +78,7 @@
 				    .innerHTML = 'Picture Selected.';
 		}
 	}
+})();
 
 // -----------------
 
@@ -123,7 +124,7 @@
 
 (function checkPassword(){
 
-	let currentPassword = 'abah123';
+	let currentPassword = 'abah1234';
 	const csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content') 
 
 	fetch('http://127.0.0.1:8000/profile/password/check', {

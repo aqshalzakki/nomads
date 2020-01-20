@@ -125,25 +125,27 @@
 })(); // Preview image 
 
 
-var input = document.querySelector('.file-input');
+(function previewImage() {
+  var input = document.querySelector('.file-input');
 
-if (input) {
-  var preview = function preview() {
-    var fileObject = this.files[0];
-    var fileReader = new FileReader();
-    fileReader.readAsDataURL(fileObject);
+  if (input) {
+    var preview = function preview() {
+      var fileObject = this.files[0];
+      var fileReader = new FileReader();
+      fileReader.readAsDataURL(fileObject);
 
-    fileReader.onload = function () {
-      var result = fileReader.result;
-      var img = document.querySelector('#imageField');
-      img.setAttribute('src', result);
+      fileReader.onload = function () {
+        var result = fileReader.result;
+        var img = document.querySelector('#imageField');
+        img.setAttribute('src', result);
+      };
+
+      document.querySelector('#fileName').innerHTML = 'Picture Selected.';
     };
 
-    document.querySelector('#fileName').innerHTML = 'Picture Selected.';
-  };
-
-  input.addEventListener('change', preview);
-} // -----------------
+    input.addEventListener('change', preview);
+  }
+})(); // -----------------
 
 
 (function seePassword() {
@@ -173,7 +175,7 @@ if (input) {
 })();
 
 (function checkPassword() {
-  var currentPassword = 'abah123';
+  var currentPassword = 'abah1234';
   var csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
   fetch('http://127.0.0.1:8000/profile/password/check', {
     method: 'post',
