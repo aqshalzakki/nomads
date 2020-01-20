@@ -56,24 +56,21 @@
 
 // Preview image 
 (function previewImage(){
-	
 	let input = document.querySelector('.file-input')
 	
-	if (input)
-	{
+	if (input){
+
 		input.addEventListener('change', preview)
 
-		function preview()
-		{
+		function preview(){
 			let fileObject = this.files[0];
-			
 			let fileReader = new FileReader();
 
 			fileReader.readAsDataURL(fileObject);
 			fileReader.onload = () => {
 				let result = fileReader.result;
-
 				let img = document.querySelector('#imageField');
+
 				img.setAttribute('src', result)
 			}
 
@@ -81,7 +78,6 @@
 				    .innerHTML = 'Picture Selected.';
 		}
 	}
-
 })();
 
 // -----------------
@@ -123,5 +119,30 @@
 
 		})
 	}
+
+})();
+
+(function checkPassword(){
+
+	let currentPassword = 'abah1234';
+	const csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content') 
+
+	fetch('http://127.0.0.1:8000/profile/password/check', {
+		method: 'post',
+		headers: {
+			'Content-Type' : 'application/json',
+	        'X-CSRF-TOKEN': csrf
+	    },
+	    body: JSON.stringify({
+	    	currentPassword
+	    })
+
+
+	}).then(response => response.json())
+	  .then(response => {
+
+  		console.log(response)
+	
+	  })
 
 })();

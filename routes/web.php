@@ -14,15 +14,6 @@
 
 Route::get('/', 'ShowHome')->name('home');
 
-// for testing purposes only
-// Route::get('/notify', function(){
-//      // sending email notification...
-//      $user = App\User::find(19);
-
-//      $when = now()->addMinutes(10);
-//      $user->notify((new App\Notifications\User\PasswordChangedNotification($user))->delay($when));
-// });
-
 // Detail of Travel Package
     Route::get('travel-packages/{slug}', 'Admin\TravelPackageController@show')->name('travel-packages.detail');
 // End Detail
@@ -84,7 +75,8 @@ Route::get('/', 'ShowHome')->name('home');
 
 // User Routes
 
-Route::name('profile.')
+Route::namespace('User')
+     ->name('profile.')
      ->prefix('profile')
      ->middleware(['auth', 'user'])
      ->group(function(){
@@ -93,12 +85,13 @@ Route::name('profile.')
         Route::patch('/{profile}', 'ProfileController@update')->name('update');
         
         Route::name('password.')
-             ->prefix('change-password')
+             ->prefix('password')
              ->group(function(){
 
-                  Route::get('/', 'ChangePasswordController@edit')->name('edit');
-                  Route::patch('/update/{user}', 'ChangePasswordController@update')->name('update');
-             
+                  Route::get('/', 'UserPasswordController@edit')->name('edit');
+                  Route::post('/check', 'UserPasswordController@checkPassword')->name('check');
+                  Route::patch('/update/{user}', 'UserPasswordController@update')->name('update');
+                  
                });
 });
 
