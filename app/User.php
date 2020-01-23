@@ -54,7 +54,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Profile::class);
     }
 
-    public function handleEmailVerification($oldEmail)
+    public function sendEmailVerification($oldEmail)
     {
         Mail::to($this->email)->send(new EmailVerification($this, $oldEmail));
     }
@@ -65,7 +65,7 @@ class User extends Authenticatable implements MustVerifyEmail
         if ($this->email != $oldEmail){
             
             $this->update(['email_verified_at' => null]);
-            $this->handleEmailVerification($oldEmail);
+            $this->sendEmailVerification($oldEmail);
 
             return true;
         }
