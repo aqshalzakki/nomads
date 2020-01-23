@@ -34,7 +34,7 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
-        $user = cache()->remember('user' . auth()->id(), now()->addMonths(1), function(){
+        $user = cache()->remember('user', now()->addMonths(1), function(){
             return auth()->user();
         });
         
@@ -53,7 +53,7 @@ class LoginController extends Controller
 
     protected function loggedOut(Request $request)
     {
-        cache()->forget('user' . auth()->id());
+        cache()->forget('user');
         return redirect()->route('login')->withMessage('Logout successful!');
     }
 }

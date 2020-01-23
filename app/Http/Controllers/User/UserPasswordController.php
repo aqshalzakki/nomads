@@ -11,7 +11,8 @@ class UserPasswordController extends Controller
 {
     public function edit()
     {
-        return view('user.password.edit');
+        $user = cache()->get('user');
+        return view('user.password.edit', compact('user'));
     }
 
     public function update(Request $request, \App\User $user)
@@ -23,6 +24,9 @@ class UserPasswordController extends Controller
         // notify the user
         $user->notify(new PasswordChangedNotification($user));
         
+        // set cache
+        cache()->put('user', $user, now()->addMonths(1));
+
         return back()->withMessage('Your password has been changed!');
     }
 

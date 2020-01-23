@@ -15,7 +15,7 @@ class IsUser
      */
     public function handle($request, Closure $next)
     {
-        $user = cache()->remember('user' . auth()->id(), now()->addMonths(1), function(){
+        $user = cache()->remember('user', now()->addMonths(1), function(){
             return auth()->user();
         });
         

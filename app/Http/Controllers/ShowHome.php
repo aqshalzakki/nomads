@@ -13,7 +13,7 @@ class ShowHome extends Controller
             return \App\TravelPackage::with(['galleries'])->get();
         });
 
-        $user = cache()->remember('user' . auth()->id(), now()->addMonths(1), function(){
+        $user = cache()->remember('user', now()->addMonths(1), function(){
             return auth()->user();
         });
 

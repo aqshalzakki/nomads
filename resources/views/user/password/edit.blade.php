@@ -38,7 +38,7 @@
                                     {{ session('message') }}
                                 </div>
                             @endif
-                                <form class="px-4" action="{{ route('profile.password.update', auth()->id()) }}" method="POST">
+                                <form class="px-4" action="{{ route('profile.password.update', $user->id) }}" method="POST">
                                     
                                     @csrf
                                     @method('patch')

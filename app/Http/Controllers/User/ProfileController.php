@@ -12,7 +12,7 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $user = cache()->remember('user' . auth()->id(), now()->addMonths(1), function(){
+        $user = cache()->remember('user', now()->addMonths(1), function(){
             return auth()->user();
         });
 
@@ -37,7 +37,7 @@ class ProfileController extends Controller
         $user->update($request->only(['username', 'email' ]));
 
         // set cache
-        cache()->put('user' . auth()->id(), $user, now()->addMonths(1));
+        cache()->put('user', $user, now()->addMonths(1));
 
         return ( $user->handleUpdatedEmail($oldEmail) ) ? redirect('/email/verify')
                                                           ->withMessage($user->emailChangedMessage())
