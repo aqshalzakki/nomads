@@ -12671,11 +12671,20 @@ a.text-dark:focus {
   transition: 0.3s ease;
 }
 
-.password-input label {
+form[data-urlcheckpassword] .nomads-btn.disabled {
+  background-color: #eaeaea;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: not-allowed;
+}
+
+form[data-urlcheckpassword] .password-input label {
   color: rgba(0, 0, 0, 0.7);
 }
 
-.password-input .icon-group input {
+form[data-urlcheckpassword] .password-input .icon-group input {
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px 0px 0px 5px;
@@ -12684,7 +12693,7 @@ a.text-dark:focus {
   padding: 0 10px;
 }
 
-.password-input .icon-group button[data-passwordtarget] {
+form[data-urlcheckpassword] .password-input .icon-group button[data-passwordtarget] {
   padding: 2px 8px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   background-color: transparent;
@@ -12693,12 +12702,12 @@ a.text-dark:focus {
   outline: none;
 }
 
-.password-input a {
+form[data-urlcheckpassword] .password-input a {
   font-size: 14px;
   text-decoration: none;
 }
 
-.password-input small {
+form[data-urlcheckpassword] .password-input small {
   font-size: 12px;
 }
 

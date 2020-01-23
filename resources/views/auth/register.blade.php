@@ -38,21 +38,21 @@
                 @csrf
                 <div class="form-group">
                   <label for="username">Username</label>
-                  <input required name="username" type="text" class="form-control" id="username">
+                  <input value="{{ old('username') }}" required name="username" type="text" class="form-control @error('username') is-invalid @enderror" id="username">
                 </div>
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input required name="email" type="email" class="form-control" id="email">
+                  <input value="{{ old('email') }}" required name="email" type="email" class="form-control @error('email') is-invalid @enderror" id="email">
                 </div>
                 <div class="form-group">
                   <label for="password">Password</label>
-                  <input required name="password" type="password" class="form-control" id="password">
+                  <input required name="password" type="password" class="form-control @error('password') is-invalid @enderror" id="password">
                 </div>
                 <div class="form-group">
                   <label for="password_confirmation">Password Confirmation</label>
-                  <input required name="password_confirmation" type="password" class="form-control" id="password_confirmation">
+                  <input required name="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation">
                 </div>
-                <button class="nomads-btn px-5 my-3 mx-auto d-block">Get Started</button>
+                <button class="nomads-btn px-5 my-3 mx-auto d-block">Register</button>
               </form>
             </div>
             <div class="text-center">

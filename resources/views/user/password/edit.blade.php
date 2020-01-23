@@ -38,7 +38,7 @@
                                     {{ session('message') }}
                                 </div>
                             @endif
-                                <form class="px-4" action="{{ route('profile.password.update', $user->id) }}" method="POST">
+                                <form class="px-4" action="{{ route('profile.password.update', $user->id) }}" method="POST" data-urlcheckpassword="{{ route('profile.password.check') }}">
                                     
                                     @csrf
                                     @method('patch')
@@ -51,6 +51,7 @@
                                                 <i class="fas fa-fw fa-eye"></i>
                                             </button>
                                         </div>
+                                        <div id="error"></div>
                                         <a href="#">Forgot password?</a>
                                     </div>
                                     <div class="password-input mb-2">
@@ -72,7 +73,7 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <button class="d-block nomads-btn px-5 ml-auto mt-3">Save</button>
+                                    <button class="d-block nomads-btn px-5 ml-auto mt-3 disabled" id="btnChangePass">Save</button>
                                 </form>    
                             </div>
                         </div>

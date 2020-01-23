@@ -14,12 +14,19 @@ use App\User;
 
 class CheckoutController extends Controller
 {
+    public $user;
+
+    public function __construct()
+    {
+        $this->user = cache()->get('user');
+    }
+
     public function index($id)
     {
         $transaction = Transaction::with('user')
         ->where([
             'id'                    => $id,
-            'user_id'               => auth()->user()->id,
+            'user_id'               => $this->user->id,
             'transaction_status_id' => 1
         ])->firstOrFail();
 
@@ -30,7 +37,7 @@ class CheckoutController extends Controller
     {
         // create transaction (that uses travel package relations) 
     	$transaction = $travelPackage->transactions()->create([
-    		'user_id' 				=> auth()->user()->id,
+    		'user_id' 				=> $this->user->id,
     		'additional_visa'		=> 0,
     		'total' 	            => $travelPackage->price,
     		'transaction_status_id'	=> 1,
@@ -129,7 +136,7 @@ class CheckoutController extends Controller
     {
         $transaction = Transaction::where([
             'id'      => $id,
-            'user_id' => auth()->id(),
+            'user_id' => $this->user->id,
         ])->firstOrFail();
         
         // update transaction status to pending

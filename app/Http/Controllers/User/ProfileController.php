@@ -12,11 +12,7 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $user = cache()->remember('user', now()->addMonths(1), function(){
-            return auth()->user();
-        });
-
-        return view('user.profiles.index', compact('user'));
+        return view('user.profiles.index');
     }
 
     public function update(UserRequest $request, Profile $profile)

@@ -124,12 +124,62 @@
 
 (function checkPassword(){
 
-	// let currentPassword = 'abah1234';
-	// const csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content') 
-	
-	if (csrf && currentPassword)
+	const formPassword = document.querySelector('[data-urlcheckpassword]');
+	const currentPassword = formPassword.querySelector('#currentPassword');
+	const newPassword = formPassword.querySelector('#newPassword');
+	const repeatPassword = formPassword.querySelector('#repeatPassword');
+	const btnChange = formPassword.querySelector('#btnChangePass');
+
+	const error = formPassword.querySelector('#error')
+
+	btnChange.classList.add('disabled');
+
+	if(formPassword)
 	{
-		fetch('http://127.0.0.1:8000/profile/password/check', {
+
+		currentPassword.addEventListener('blur', async() => {
+			
+			const currentPasswordVal = currentPassword.value;
+			const csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content') 
+
+			const data = await matchPassword(currentPasswordVal, csrf);
+
+			if(data.status)
+			{
+				
+				error.innerHTML = '';
+
+			}
+			else
+			{
+
+				error.innerHTML = `<small class="text-danger ml-2">${data.message}</small>`;
+
+			}
+
+		});
+
+		repeatPassword.addEventListener('keyup', () => {
+
+			if(currentPassword.value !== '' && newPassword.value !== '' && repeatPassword.value !=='')
+			{
+				if(btnChange.classList.contains('disabled')) btnChange.classList.remove('disabled');
+				btnChange.type = 'submit';
+			}
+			else
+			{
+				if(!btnChange.classList.contains('disabled')) btnChange.classList.add('disabled');
+				btnChange.type = 'button';
+			}
+
+		});
+
+	}
+
+
+	function matchPassword(currentPassword, csrf){
+		
+		return fetch('http://127.0.0.1:8000/profile/password/check', {
 			method: 'post',
 			headers: {
 				'Content-Type' : 'application/json',
@@ -137,12 +187,10 @@
 		    },
 		    body: JSON.stringify({ currentPassword })
 
-		}).then(response => response.json())
-		  .then(response => {
+		}).then(res => res.json())
+		  .then(res => res)
 
-	  		console.log(response)
-		
-		  })
 	}
+
 
 })();

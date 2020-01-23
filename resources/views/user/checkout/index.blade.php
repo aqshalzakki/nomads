@@ -67,7 +67,7 @@
                       <tr>
                         <td>
                           <img
-                            src="{{ imageStoragePath(auth()->user()->profile->image) }}"
+                            src="{{ imageStoragePath($detail->user->profile->image) }}"
                             class="rounded-circle"
                             height="60"
                           />
@@ -79,7 +79,7 @@
                           {{ \Carbon\Carbon::createFromDate($detail->doe_passport) > now() ? 'Active' : 'Inactive' }}
                         </td>
                         <td class="align-middle">
-                          @if($detail->username != auth()->user()->username)
+                          @if($detail->user->username != $user->username)
                             <form action="{{ route('checkout.remove', $detail->id) }}" method="post">
                              @csrf
                              @method('delete')

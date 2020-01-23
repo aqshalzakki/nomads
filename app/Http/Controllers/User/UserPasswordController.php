@@ -30,13 +30,13 @@ class UserPasswordController extends Controller
         return back()->withMessage('Your password has been changed!');
     }
 
-    // public function checkPassword()
-    // {
-    //     $requestPassword = request()->input('currentPassword');
-    //     $userPassword    = auth()->user()->password;
+    public function checkPassword()
+    {
+        $requestPassword = request()->input('currentPassword');
+        $userPassword    = auth()->user()->password;
 
-    //     return (Hash::check($requestPassword, $userPassword )) 
-    //             ? ['status'  => true]
-    //             : ['status'  => false, 'message' => 'Password don\'t match!'];
-    // }
+        return (Hash::check($requestPassword, $userPassword )) 
+                ? ['status'  => true]
+                : ['status'  => false, 'message' => 'Password don\'t match!'];
+    }
 }

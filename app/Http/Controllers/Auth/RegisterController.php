@@ -32,15 +32,14 @@ class RegisterController extends Controller
     protected $redirectTo = '/email/verify';
     public function redirectTo()
     {
+        cache()->remember('user', now()->addMonths(1), function(){
+            return auth()->user();
+        });
+        
         session()->flash('message', 'Your account has been created! please verify your email.');
         return '/email/verify';
     }
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('guest');
@@ -55,9 +54,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => ['required', 'string', 'max:255'],
+            'username' => ['unique:users', 'required', 'max:255', 'alpha_num', 'between:4,15'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
             'role_id' => ''
         ]);
     }
@@ -74,7 +73,7 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'role_id' => ''
+            'role_id' => '1'
         ]);
     }
 }
