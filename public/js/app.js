@@ -175,9 +175,8 @@
 })();
 
 (function checkPassword() {
-  var currentPassword = 'abah1234';
-  var csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
+  // let currentPassword = 'abah1234';
+  // const csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content') 
   if (csrf && currentPassword) {
     fetch('http://127.0.0.1:8000/profile/password/check', {
       method: 'post',

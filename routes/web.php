@@ -13,6 +13,7 @@
 
 
 Route::get('/', 'ShowHome')->name('home');
+Route::get('/logout', 'Auth\\LoginController@logout');
 
 // Detail of Travel Package
     Route::get('travel-packages/{slug}', 'Admin\TravelPackageController@show')->name('travel-packages.detail');

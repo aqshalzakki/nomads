@@ -4,11 +4,11 @@
         <div class="user">
             <div class="left">
                 <div class="user-img">
-                    <img src="{{ imageStoragePath(auth()->user()->profile->image) }}" title="{{ auth()->user()->username }}">
+                    <img src="{{ imageStoragePath($user->profile->image) }}" title="{{ $user->username }}">
                 </div>
             </div>
             <div class="right">
-                <h5 class="user-name">{{ auth()->user()->username }}</h5>
+                <h5 class="user-name">{{ $user->username }}</h5>
                 <a class="user-edit" href="{{ route('profile.index') }}">
                     <i class="fas fa-edit"></i>
                     Edit Profile
@@ -30,13 +30,7 @@
         </div>
         <div class="menu">
             <div class="menu-name open-collapse-menu" data-collapsetrigger="#transaction">
-
-                <!-- ============MENING PAKE TAG a ATAU h3???============ -->
-                <!-- --------------PILIH-WEH-BAHHH!!-------------- -->
-                {{-- <a href="#">My Transaction</a> --}}
                 <h3>My Transactions</h3>
-
-                <!-- CLICK ME!!! -->
                 <i class="fas fa-angle-down"></i>
 
             </div>
@@ -51,9 +45,7 @@
         </div>
         <div class="menu">
             <div class="open-collapse-menu menu-name" data-collapsetrigger="#notification">
-                <h3>Notifications</h3>
-
-                <!-- CLICK ME!!! -->   
+                <h3>Notifications</h3>   
                 <i class="fas fa-angle-down"></i>
 
             </div>
@@ -72,8 +64,6 @@
         <div class="menu">
             <div class="open-collapse-menu menu-name" data-collapsetrigger="#lainnya">
                 <h3>Lainnya</h3>
-
-                <!-- CLICK ME!!! -->
                 <i class="fas fa-angle-down"></i>
                 
 

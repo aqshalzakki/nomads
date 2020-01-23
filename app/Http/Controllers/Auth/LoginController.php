@@ -34,7 +34,11 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
-        return auth()->user()->role_id == 1 ? route('profile.index') : route('admin.index');
+        $user = cache()->remember('user' . auth()->id(), now()->addMonths(1), function(){
+            return auth()->user();
+        });
+        
+        return $user->role_id == 1 ? route('profile.index') : route('admin.index');
     }
 
     /**
@@ -47,14 +51,9 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    /**
-     * The user has logged out of the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return mixed
-     */
     protected function loggedOut(Request $request)
     {
+        cache()->forget('user' . auth()->id());
         return redirect()->route('login')->withMessage('Logout successful!');
     }
 }

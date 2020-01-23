@@ -13,7 +13,7 @@
             <div class="row">
                 
                 {{-- include card left / sidebar --}}
-                    @include('components.user.profile.sidebar')
+                    @include('components.user.profile.sidebar', compact('user'))
                 {{-- ------------- --}}
 
                 <div class="col-lg-9 col-md-8">
@@ -34,12 +34,12 @@
                             <h1>Profil Saya</h1>
                             <p>Kelola informasi profil Anda untuk mengontrol, melindungi dan mengamankan akun</p>
                         </div>
-                        <form action="{{ route('profile.update', auth()->user()->profile->id) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('profile.update', $user->profile->id) }}" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-lg-5 col-md-12">
                                 <div class="user-profile-photo-card mb-5">
                                     <div class="photo">
-                                        <img id="imageField" src="{{ imageStoragePath(auth()->user()->profile->image) }}">
+                                        <img id="imageField" src="{{ imageStoragePath($user->profile->image) }}">
                                     </div>
                                     <div class="select-photo mt-2">
                                         <label for="selectPhoto">Pilih Foto</label>
@@ -61,7 +61,7 @@
                                         <div class="inputs">
                                             <div class="input">
                                                 <label for="nama">Username</label>
-                                                <input required type="text" name="username" id="nama" value="{{ old('username') ?? auth()->user()->username }}">
+                                                <input required type="text" name="username" id="nama" value="{{ old('username') ?? $user->username }}">
                                             </div>
                                             <div class="input">
                                                 <label for="datePicker">
@@ -73,7 +73,7 @@
                                                       class="datePicker @error('date_birth') is-invalid @enderror"
                                                       id="datePicker"
                                                       style="width: 70%;"
-                                                      value="{{ old('date_of_birth') ?? auth()->user()->profile->date_of_birth }}"
+                                                      value="{{ old('date_of_birth') ?? $user->profile->date_of_birth }}"
                                                       name="date_of_birth" 
                                                     />
                                             </div>
@@ -83,7 +83,7 @@
                                                     <div class="radio">
                                                         <div class="wrapper">
                                                             <input
-                                                                {{ auth()->user()->profile->isGender('Laki-laki') }}
+                                                                {{ $user->profile->isGender('Laki-laki') }}
                                                                 type="radio"
                                                                 name="gender" 
                                                                 value="Laki-laki" 
@@ -96,7 +96,7 @@
                                                     <div class="radio">
                                                         <div class="wrapper">
                                                             <input
-                                                                {{ auth()->user()->profile->isGender('Perempuan') }} 
+                                                                {{ $user->profile->isGender('Perempuan') }} 
                                                                 type="radio"
                                                                 name="gender" 
                                                                 value="Perempuan"
@@ -109,7 +109,7 @@
                                                     <div class="radio">
                                                         <div class="wrapper">
                                                             <input
-                                                                {{ auth()->user()->profile->isGender('Lainnya') }}
+                                                                {{ $user->profile->isGender('Lainnya') }}
                                                                 type="radio"
                                                                 name="gender" 
                                                                 value="Lainnya"
@@ -133,14 +133,14 @@
                                                         type="text"
                                                         name="email" 
                                                         id="email" 
-                                                        value="{{ old('email') ?? auth()->user()->email }}"
+                                                        value="{{ old('email') ?? $user->email }}"
                                                     />
                                                 
-                                                @if(!auth()->user()->hasVerifiedEmail())
+                                                @if(!$user->hasVerifiedEmail())
                                                     <a class="verification" href="{{ url('/email/verify')}}">Klik disini untuk melakukan verifikasi Email anda.</a>
                                                 @endif
                                                 </div>
-                                                <span class="status">{{ auth()->user()->hasVerifiedEmail() ? 'Terverifikasi' : 'Not Verified' }}</span>
+                                                <span class="status">{{ $user->hasVerifiedEmail() ? 'Terverifikasi' : 'Not Verified' }}</span>
                                             </div>
                                             <div class="input">
                                                 <label for="nomor-hp">Nomor HP</label>
@@ -149,7 +149,7 @@
                                                         type="text" 
                                                         name="phone_number" 
                                                         id="nomor-hp"
-                                                        value="{{ old('phone_number') ?? auth()->user()->profile->phone_number }}" 
+                                                        value="{{ old('phone_number') ?? $user->profile->phone_number }}" 
                                                     />
 
                                                     <a class="verification" href="#">Klik disini untuk melakukan verifikasi Nomor anda.</a>

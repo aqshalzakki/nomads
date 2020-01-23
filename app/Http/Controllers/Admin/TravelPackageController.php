@@ -78,39 +78,20 @@ class TravelPackageController extends Controller
         return view('user.travel-package.detail', compact('travelPackage', 'transaction'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(TravelPackage $travelPackage)
     {
         return view('admin.travel-packages.edit', [
             'travelPackage' => $travelPackage
             ]);
-        }
-        
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    }
+
     public function update(TravelPackageRequest $request, TravelPackage $travelPackage)
     {   
         $travelPackage->updateTravelPackage($request->toArray());
         
         return redirect()->route('admin.travel-packages.index')->withMessage("{$request['title']} has been updated!");
     }
-        
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(TravelPackage $travelPackage)
     {
         $travelPackage->delete();

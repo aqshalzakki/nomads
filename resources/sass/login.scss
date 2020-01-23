@@ -1,0 +1,127 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+// --------Variables-&-Functions--------
+@import './variables';
+@import './functions';
+
+// ---------Components---------
+@import './components';
+
+// =============Styles==============
+
+.explore{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.explore-content{
+		width: 80%;
+
+		.title{
+			color: $biruGelap;
+			font-family: serif;
+			font-weight: bold;
+			font-size: 3em;
+		}
+
+		.explore-images{
+			display: grid;
+			grid-template-columns: 200px 200px;
+			grid-template-rows: 140px 140px 140px;
+			grid-column-gap: 10px;
+			grid-row-gap: 10px;
+			margin-top: 40px;
+
+			.img{
+				width: 100%;
+				grid-column: 1/2;
+				grid-row: 1/3;
+				border-radius: 10px;
+				overflow: hidden;
+
+
+				&:nth-child(2){
+					grid-column: 2/3;
+					grid-row: 1/2;					
+				}
+
+				&:nth-child(3){
+					grid-column: 1/2;
+					grid-row: 3/4;					
+				}
+
+				&:nth-child(4){
+					grid-column: 2/3;
+					grid-row: 2/4;				
+				}
+
+				img{
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+				}
+			}
+		}
+	}
+}
+
+.login{
+	background-color: $abuCerah;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	padding: 0;
+
+	.login-card{
+		--width: 350px;
+		width: var(--width);
+		background-color: #fff;
+		padding: 30px 20px;
+		margin-left: calc(var(--width) / -2.5);
+		border: 1px solid rgba(0, 0, 0, 0.3);
+		border-radius: 8px;
+
+		.logo{
+			width: 180px;
+			height: 50px;
+			margin: auto;
+
+			img{
+				object-fit: cover;
+				width: 100%;
+				height: 100%;
+			}
+		}
+
+		.form{
+
+			label{
+				color: $biruTua;
+			}
+			
+			.checkbox{
+				display: flex;
+				align-items: center;
+				// background-color: red;
+
+				label{
+					margin: 0;
+					margin-left: 8px;
+					user-select: none;
+				}
+			}
+
+		}
+
+		.forgot-password{
+			color: $biruTua;
+		}
+	}
+}
+
+// ===============SMALL=SCREEN=================
+@import './small-screen';

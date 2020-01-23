@@ -33,13 +33,13 @@
                     <li class="profile">
                         <div class="profile-wrapper">
                             <label class="profile-img" for="profileMenu">
-                                <img src="{{ imageStoragePath( (auth()->user()->profile->image ?? 'profiles/default.jpg') ) }}">
+                                <img src="{{ imageStoragePath( ($user->profile->image ?? 'profiles/default.jpg') ) }}">
                             </label>
                             <input type="checkbox" id="profileMenu">
                             <div class="profile-menu">
                                 <ul>
                                     
-                                    @if(auth()->user()->isRole('USER'))
+                                    @if($user->isRole('USER'))
                                         
                                         <li class="{{-- isActiveUrl('profile') --}}">
                                             <a class="profile-menu-link" href="{{ route('profile.index') }}">My Account</a>
@@ -66,7 +66,7 @@
                             </div>
                         </div>
                     </li>
-                @endauth
+                @endif
 
                 @guest
                     <a href="{{ route('login') }}" class="auth">

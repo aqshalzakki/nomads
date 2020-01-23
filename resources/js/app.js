@@ -124,8 +124,8 @@
 
 (function checkPassword(){
 
-	let currentPassword = 'abah1234';
-	const csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content') 
+	// let currentPassword = 'abah1234';
+	// const csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content') 
 	
 	if (csrf && currentPassword)
 	{

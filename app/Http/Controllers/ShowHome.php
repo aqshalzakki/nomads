@@ -7,16 +7,16 @@ use Illuminate\Support\Facades\Cache;
 
 class ShowHome extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function __invoke()
     {
-        $travelPackages = Cache::remember('travelPackages', now()->addHours(24), function() {
+        $travelPackages = Cache::remember('travelPackages', now()->addYears(1), function() {
             return \App\TravelPackage::with(['galleries'])->get();
         });
-        return view('user.home', compact('travelPackages'));
+
+        $user = cache()->remember('user' . auth()->id(), now()->addMonths(1), function(){
+            return auth()->user();
+        });
+
+        return view('user.home', compact('travelPackages', 'user'));
     }
 }
