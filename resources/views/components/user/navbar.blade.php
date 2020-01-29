@@ -20,7 +20,7 @@
                     <a class="link" href="/">Home</a>
                 </li>
                 <li class="{{ isActiveUrl('travel-packages') }}">
-                    <a class="link" href="#">Paket Travel</a>
+                    <a class="link" href="{{ route('travel-packages.index') }}">Paket Travel</a>
                 </li>
                 <li>
                     <a class="link" href="#">Service</a>

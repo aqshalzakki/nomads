@@ -13,7 +13,7 @@
     <br />
     moment you never see before
     </p>
-    <a href="#popular" class="btn btn-get-started px-4 mt-4">
+    <a href="{{ route('travel-packages.index') }}" class="btn btn-get-started px-4 mt-4">
     Get Started
     </a>
 </header>
@@ -65,7 +65,7 @@
                     <div class="travel-country">{{ $travelPackage->location }}</div>
                     <div class="travel-location">{{ $travelPackage->title }}</div>
                     <div class="travel-button mt-auto">
-                        <a href="{{ route('travel-packages.detail', $travelPackage->slug) }}" class="btn btn-travel-details px-4">
+                        <a href="{{ route('travel-packages.show', $travelPackage->slug) }}" class="btn btn-travel-details px-4">
                         View Details
                         </a>
                     </div>

@@ -38,7 +38,7 @@
                 @csrf
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input name="email" type="text" class="form-control" id="email">
+                  <input value="{{ old('email') }}" name="email" type="text" class="form-control" id="email">
                 </div>
                 <div class="form-group">
                   <label for="password">Password</label>

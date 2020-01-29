@@ -11,13 +11,10 @@
 |
 */
 
-
+Route::get('/logout', function(){
+    auth()->logout();
+});
 Route::get('/', 'ShowHome')->name('home');
-Route::get('/logout', 'Auth\\LoginController@logout');
-
-// Detail of Travel Package
-    Route::get('travel-packages/{slug}', 'Admin\TravelPackageController@show')->name('travel-packages.detail');
-// End Detail
 
 // Checkout Routes
     Route::prefix('checkout')
@@ -56,25 +53,33 @@ Route::get('/logout', 'Auth\\LoginController@logout');
 
 // Admin Routes 
 
-    Route::prefix('admin')
-        ->name('admin.')
-        ->namespace('Admin')
-        ->middleware(['verified', 'admin'])
-        ->group(function(){
-            
-            Route::get('/', 'ShowDashboard')->name('index');
-            
-            Route::resources([
-                'travel-packages' => 'TravelPackageController',
-                'galleries'       => 'GalleryController',
-                'transactions'    => 'TransactionController',
-            ]);
+Route::prefix('admin')
+    ->name('admin.')
+    ->namespace('Admin')
+    ->middleware(['verified', 'admin'])
+    ->group(function(){
+        
+        Route::get('/', 'ShowDashboard')->name('index');
+        
+        Route::resources([
+            'travel-packages' => 'TravelPackageController',
+            'galleries'       => 'GalleryController',
+            'transactions'    => 'TransactionController',
+        ]);
 
-        });
+    });
 
 // End Admin routes 
 
 // User Routes
+
+Route::namespace('User')
+     ->group(function(){
+
+        Route::resource('travel-packages', 'TravelPackageController')
+             ->only(['index', 'show']);
+
+     });
 
 Route::namespace('User')
      ->name('profile.')

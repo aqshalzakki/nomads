@@ -14,4 +14,5 @@ function dateFormat($date, string $format = 'n F Y')
 {
 	return Carbon\Carbon::create($date)->format($format);
 }
+
 ?>

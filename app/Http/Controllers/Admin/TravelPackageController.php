@@ -22,33 +22,17 @@ class TravelPackageController extends Controller
         $this->travel_package = new TravelPackage;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $travelPackages = $this->travel_package->paginate(5);
         return view('admin.travel-packages.index', compact('travelPackages') );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('admin.travel-packages.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(TravelPackageRequest $request)
     {
         $this->travel_package->createNewTravelPackage($request->toArray());
@@ -56,26 +40,9 @@ class TravelPackageController extends Controller
         return redirect()->route('admin.travel-packages.index')->withMessage("{$request->title} has been added successfully!");
     }
     
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($slug)
+    public function show()
     {
-        $travelPackage = $this->travel_package
-                            ->with(['galleries'])
-                            ->where('slug', $slug)
-                            ->firstOrFail();
-
-        $transaction = $travelPackage->transactions()
-                                     ->where('user_id', auth()->id())
-                                     ->where('transaction_status_id', 1)
-                                     ->with(['details'])
-                                     ->first();
-
-        return view('user.travel-package.detail', compact('travelPackage', 'transaction'));
+        abort(404);
     }
 
     public function edit(TravelPackage $travelPackage)
