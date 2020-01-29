@@ -8,6 +8,9 @@
 //     el: '#app',
 // });
 
+const csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+const baseUrl = "http://127.0.0.1:8000/";
 
 // ishan.js
 (function collapseMenu()
@@ -125,22 +128,21 @@
 (function checkPassword(){
 
 	const formPassword = document.querySelector('[data-urlcheckpassword]');
-	const currentPassword = formPassword.querySelector('#currentPassword');
-	const newPassword = formPassword.querySelector('#newPassword');
-	const repeatPassword = formPassword.querySelector('#repeatPassword');
-	const btnChange = formPassword.querySelector('#btnChangePass');
-
-	const error = formPassword.querySelector('#error')
-
-	btnChange.classList.add('disabled');
 
 	if(formPassword)
 	{
+		const currentPassword = formPassword.querySelector('#currentPassword');
+		const newPassword = formPassword.querySelector('#newPassword');
+		const repeatPassword = formPassword.querySelector('#repeatPassword');
+		const btnChange = formPassword.querySelector('#btnChangePass');
+
+		const error = formPassword.querySelector('#error')
+
+		btnChange.classList.add('disabled');
 
 		currentPassword.addEventListener('blur', async() => {
 			
-			const currentPasswordVal = currentPassword.value;
-			const csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content') 
+			const currentPasswordVal = currentPassword.value; 
 
 			const data = await matchPassword(currentPasswordVal, csrf);
 
@@ -179,7 +181,7 @@
 
 	function matchPassword(currentPassword, csrf){
 		
-		return fetch('http://127.0.0.1:8000/profile/password/check', {
+		return fetch(baseUrl + 'profile/password/check', {
 			method: 'post',
 			headers: {
 				'Content-Type' : 'application/json',
@@ -194,3 +196,4 @@
 
 
 })();
+

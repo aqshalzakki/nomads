@@ -4,11 +4,17 @@
         <div class="user">
             <div class="left">
                 <div class="user-img">
-                    <img src="{{ imageStoragePath($user->profile->image) }}" title="{{ $user->username }}">
+                    <a href="{{ route('profile.index') }}">
+                        <img src="{{ imageStoragePath($user->profile->image) }}" title="{{ $user->username }}">
+                    </a>
                 </div>
             </div>
             <div class="right">
-                <h5 class="user-name">{{ $user->username }}</h5>
+                {{-- <a href="{{ route('profile.index') }}">  --}}
+                    <h5 class="user-name">
+                        {{ $user->username }}
+                    </h5>
+                {{-- </a> --}}
                 <a class="user-edit" href="{{ route('profile.index') }}">
                     <i class="fas fa-edit"></i>
                     Edit Profile

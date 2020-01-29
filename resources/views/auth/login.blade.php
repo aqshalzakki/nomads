@@ -33,30 +33,32 @@
                     <img src="{{ url('frontend/images/nomads_logo/logo_nomads.png') }}">
                 </a>
             </div>
-            <div class="form mt-4">
-              <form action="{{ route('login') }}" method="POST">
-                @csrf
-                <div class="form-group">
-                  <label for="email">Email</label>
-                  <input value="{{ old('email') }}" name="email" type="text" class="form-control" id="email">
-                </div>
-                <div class="form-group">
-                  <label for="password">Password</label>
-                  <input name="password" type="password" class="form-control" id="password">
-                </div>
-                <div class="checkbox">
-                  <input type="checkbox" name="remember" id="remember">
-                  <label for="remember">Remember me</label>
-                </div>
-                <button class="nomads-btn px-5 my-3 mx-auto d-block">Get Started</button>
-              </form>
-            </div>
-            <div class="text-center">
-              <a class="forgot-password" href="{{ route('password.request') }}">Forgot Your Password?</a>
-            </div>
+            <div id="formBody">
+              <div class="form mt-4">
+                <form action="{{ route('login') }}" method="POST">
+                  @csrf
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input required value="{{ old('email') }}" name="email" type="text" class="form-control" id="email">
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input required name="password" type="password" class="form-control" id="password">
+                  </div>
+                  <div class="checkbox">
+                    <input type="checkbox" name="remember" id="remember">
+                    <label for="remember">Remember me</label>
+                  </div>
+                  <button class="nomads-btn px-5 my-3 mx-auto d-block">Get Started</button>
+                </form>
+              </div>
+              <div class="text-center">
+                <a class="forgot-password" href="{{ route('password.request') }}">Forgot Your Password?</a>
+              </div>
 
-            <div class="text-center">
-              <a class="forgot-password" href="{{ route('register') }}">Does'nt have an account?</a>
+              <div class="text-center">
+                <a class="forgot-password" href="{{ route('register') }}" data-authtype="register">Doesn't have an account?</a>
+              </div>              
             </div>
           </div>
         </div>

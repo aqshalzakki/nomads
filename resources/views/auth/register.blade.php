@@ -56,7 +56,7 @@
               </form>
             </div>
             <div class="text-center">
-              <a class="forgot-password" href="{{ route('login') }}">Already have an account?</a>
+              <a class="forgot-password" href="{{ route('login') }}" data-authtype="login">Already have an account?</a>
             </div>
           </div>
         </div>

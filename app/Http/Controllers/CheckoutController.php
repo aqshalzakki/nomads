@@ -65,7 +65,7 @@ class CheckoutController extends Controller
         $transaction->transaction_status_id = 4;
         $transaction->save();
 
-        return redirect()->route('travel-packages.detail', $transaction->travel_package->slug);
+        return redirect()->route('travel-packages.show', $transaction->travel_package->slug);
     }
 
     /**

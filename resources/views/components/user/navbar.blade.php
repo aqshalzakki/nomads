@@ -16,17 +16,17 @@
         <input type="checkbox" id="collapse">
         <div class="menu-links">
             <ul> 
-                <li class="{{ isActiveUrl('/') }}">
+                <li class="{{ request()->is('/') ? 'active' : '' }}">
                     <a class="link" href="/">Home</a>
                 </li>
-                <li class="{{ isActiveUrl('travel-packages') }}">
+                <li class="{{ request()->is('travel-packages*') ? 'active' : '' }}">
                     <a class="link" href="{{ route('travel-packages.index') }}">Paket Travel</a>
                 </li>
                 <li>
                     <a class="link" href="#">Service</a>
                 </li>
                 <li>
-                    <a class="link" href="#">Testimonial</a>
+                    <a class="link" href="#">Blog</a>
                 </li>
 
                 @auth
@@ -41,16 +41,16 @@
                                     
                                     @if($user->isRole('USER'))
                                         
-                                        <li class="{{-- isActiveUrl('profile') --}}">
+                                        <li class="{{ request()->is('profile*') }}">
                                             <a class="profile-menu-link" href="{{ route('profile.index') }}">My Account</a>
                                         </li>
-                                        <li class="{{ isActiveUrl('transactions') }}">
+                                        <li class="{{-- request()->is('profile*') --}}">
                                             <a class="profile-menu-link" href="#">My Transaction</a>
                                         </li>
 
                                     @else
                                         
-                                        <li class="{{ isActiveUrl('transactions') }}">
+                                        <li class="{{-- request()->is('profile*') --}}">
                                             <a class="profile-menu-link" href="{{ route('admin.index') }}">Dashboard</a>
                                         </li>
 

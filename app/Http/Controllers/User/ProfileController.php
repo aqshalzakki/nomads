@@ -26,11 +26,10 @@ class ProfileController extends Controller
         $dataProfile = $request->except(['username', 'email']);
         $dataProfile['image'] = $profile->handleUploadedImage();
 
-        // update profile
         $profile->update($dataProfile);
-
-        // update user
-        $user->update($request->only(['username', 'email' ]));
+        $user->update($request->only([
+            'username', 'email'
+        ]));
 
         // set cache
         cache()->put('user', $user, now()->addMonths(1));

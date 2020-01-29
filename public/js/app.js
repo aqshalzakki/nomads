@@ -847,14 +847,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 
-
 // require('./bootstrap');
 // window.Vue = require('vue');
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 // const app = new Vue({
 //     el: '#app',
 // });
-// ishan.js
+var csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
+
 (function collapseMenu() {
   var openMenus = document.querySelectorAll('.open-collapse-menu');
   openMenus.forEach(function (openMenu) {
@@ -931,26 +932,25 @@ __webpack_require__.r(__webpack_exports__);
 
 (function checkPassword() {
   var formPassword = document.querySelector('[data-urlcheckpassword]');
-  var currentPassword = formPassword.querySelector('#currentPassword');
-  var newPassword = formPassword.querySelector('#newPassword');
-  var repeatPassword = formPassword.querySelector('#repeatPassword');
-  var btnChange = formPassword.querySelector('#btnChangePass');
-  var error = formPassword.querySelector('#error');
-  btnChange.classList.add('disabled');
 
   if (formPassword) {
+    var currentPassword = formPassword.querySelector('#currentPassword');
+    var newPassword = formPassword.querySelector('#newPassword');
+    var repeatPassword = formPassword.querySelector('#repeatPassword');
+    var btnChange = formPassword.querySelector('#btnChangePass');
+    var error = formPassword.querySelector('#error');
+    btnChange.classList.add('disabled');
     currentPassword.addEventListener('blur', function _callee() {
-      var currentPasswordVal, csrf, data;
+      var currentPasswordVal, data;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               currentPasswordVal = currentPassword.value;
-              csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-              _context.next = 4;
+              _context.next = 3;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(matchPassword(currentPasswordVal, csrf));
 
-            case 4:
+            case 3:
               data = _context.sent;
 
               if (data.status) {
@@ -959,7 +959,7 @@ __webpack_require__.r(__webpack_exports__);
                 error.innerHTML = "<small class=\"text-danger ml-2\">".concat(data.message, "</small>");
               }
 
-            case 6:
+            case 5:
             case "end":
               return _context.stop();
           }
@@ -978,7 +978,7 @@ __webpack_require__.r(__webpack_exports__);
   }
 
   function matchPassword(currentPassword, csrf) {
-    return fetch('http://127.0.0.1:8000/profile/password/check', {
+    return fetch(baseUrl + 'profile/password/check', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',

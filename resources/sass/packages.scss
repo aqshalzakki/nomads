@@ -1,0 +1,242 @@
+// --------Variables-&-Functions--------
+@import './variables';
+@import './functions';
+
+// --------Templates---------
+@import './templates/header';
+@import './templates/footer';
+
+// ---------Components---------
+@import './components';
+
+// ====================Styles====================
+
+// ------------HERO-------------
+#packagesHero{
+	position: relative;
+	margin-top: -80px;
+	width: 100%;
+	height: 500px;
+	background-size: cover;
+	@include flexCenter();
+	z-index: 1;
+	
+
+	&::before{
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.25);
+		z-index: -1;
+	}
+
+	.hero-title{
+		max-width: 65%;
+		text-align: center;
+		color: #fff;
+		text-transform: uppercase;
+	}
+
+	.search-package{
+		position: absolute;
+		bottom: 0;
+		transform: translateY(50%);
+		display: flex;
+		width: 65%;
+		padding: 0 20px;
+		background-color: #fff;
+		border-radius: 5px;
+		box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+		
+		input,
+		button[type="submit"]{
+			outline: none;
+			border: none;
+			background-color: #fff;
+		}
+
+		input{
+			width: 100%;
+			padding: 20px 10px;
+			font-size: 18px;
+		}
+
+		button[type="submit"]{
+			padding: 0px 10px;
+			font-size: 30px;
+			color: rgba(0, 0, 0, 0.4);
+			cursor: pointer;
+			transition: .3s;
+
+			&:hover{
+				color: rgba(0, 0, 0, 0.7);
+			}
+
+		}
+	}
+}
+
+// --------------Packages---------------
+
+#packages{
+	padding-top: 100px;
+	padding-bottom: 100px;
+	background-color: #eaeaea;
+
+	.categories{
+		display: grid;
+		grid-template-columns: repeat(auto-fit, 180px);
+		justify-content: center;
+
+		.category{
+			text-align: center;
+			color: rgba(0, 0, 0, 0.5);
+			border: 1px solid rgba(0, 0, 0, 0.2);
+			background-color: #fff;
+			
+
+			&:first-child{
+				border-top-left-radius: 5px;
+				border-bottom-left-radius: 5px;
+			}
+
+			&:last-child{
+				border-top-right-radius: 5px;
+				border-bottom-right-radius: 5px;
+			}
+
+
+			&.active{
+				color: #fff;
+				background-color: $biruGelap;
+			}
+
+			&:not(.active):hover .category-link{
+				color: rgba(0, 0, 0, 0.8);
+			}
+
+			.category-link{
+				display: inline-block;
+				width: 100%;
+				word-break: break-all;
+				padding: 15px 0;
+				color: inherit;
+				text-decoration: none;
+				transition: .3s ease;
+			}
+		}
+
+	}
+
+	.filter{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		.category-type{
+			margin: 0;
+			color: $biruGelap;
+		}
+
+		.filter-selects{
+
+			.filter-select{
+				position: relative;
+				display: inline-block;
+
+				select{
+					padding: 5px 15px;
+					width: 100%;
+					border: 1px solid rgba(0, 0, 0, 0.2);
+					border-radius: 5px;
+					outline: none;
+				}
+
+				i{
+					position: absolute;
+					top: 1px;
+					right: 2px;
+					bottom: 1px;
+					padding: 10px;
+					pointer-events: none;
+					background-color: #fff;
+					color: $biruGelap;
+				}
+
+			}
+
+		}
+	}
+
+	.packages{
+
+		.package-card{
+			width: 100%;
+			background-color: #fff;
+			border-radius: 5px;
+			overflow: hidden;
+			box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+
+			.travel-img{
+				width: 100%;
+				height: 180px;
+
+				img{
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+				}
+			}
+
+			.body{
+				padding: 10px 15px;
+
+				.package-name{
+					display: block;
+					text-decoration: none;
+					color: $biruGelap;
+					font-size: 16px;
+					font-weight: 500;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					margin-bottom: 10px;
+				}
+
+				.options{
+					list-style: none;
+
+					li{
+						color: rgba(0, 0, 0, 0.4);
+
+						span{
+							font-size: 12px;
+						}
+					}
+				}
+			}
+
+			.see-detail{
+				display: block;
+				background-color: $orange;
+				color: #fff;
+				padding: 10px;
+				text-align: center;
+				text-decoration: none;
+				transition: .3s ease;
+
+				&:hover{
+					background-color: rgba($orange, 0.9);
+				}
+			}
+
+		}
+
+	}
+
+}
+
+
+// ===============SMALL=SCREEN=================
+@import './small-screen';
