@@ -12,12 +12,12 @@ function dateFormat($date, string $format = 'n F Y')
 function rememberUserCache()
 {
 	return cache()->remember('user', now()->addMonths(1), function(){
-			return auth()->user()->load([
+			return auth()->user() ? auth()->user()->load([
             	'transactions', 
             	'transaction_details', 
             	'role',
             	'profile',
-            ]);	
+            ]) : null;	
         });
 }
 
