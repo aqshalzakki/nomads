@@ -18,7 +18,7 @@ class CheckoutController extends Controller
 
     public function __construct()
     {
-        $this->user = cache()->get('user');
+        $this->user = rememberUserCache();
     }
 
     public function index($id)

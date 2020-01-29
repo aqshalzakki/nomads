@@ -15,9 +15,7 @@ class IsUser
      */
     public function handle($request, Closure $next)
     {
-        $user = cache()->remember('user', now()->addMonths(1), function(){
-            return auth()->user();
-        });
+        $user = rememberUserCache();
         
         return $user->isRole('USER') ? $next($request) : back();
     }

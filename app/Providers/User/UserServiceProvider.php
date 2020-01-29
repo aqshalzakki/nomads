@@ -24,13 +24,12 @@ class UserServiceProvider extends ServiceProvider
             'components.user.navbar',
             'user.profiles.index',
             'user.checkout.index',
+            'user.password.edit',
             
         ],  
             // What data should be shared...
             function($view){
-            $userCache = cache()->remember('user', now()->addMonths(1), function(){
-                            return auth()->user();
-                        });
+            $userCache = rememberUserCache();
 
             $view->with('user', $userCache);
         });

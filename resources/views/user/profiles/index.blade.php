@@ -137,7 +137,7 @@
                                                     />
                                                 
                                                 @if(!$user->hasVerifiedEmail())
-                                                    <a class="verification" href="{{ url('/email/verify')}}">Klik disini untuk melakukan verifikasi Email anda.</a>
+                                                    <a class="verification" href="{{ url('/email/verify') }}">Klik disini untuk melakukan verifikasi Email anda.</a>
                                                 @endif
                                                 </div>
                                                 <span class="status">{{ $user->hasVerifiedEmail() ? 'Terverifikasi' : 'Not Verified' }}</span>

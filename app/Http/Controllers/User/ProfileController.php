@@ -32,7 +32,7 @@ class ProfileController extends Controller
         ]));
 
         // set cache
-        cache()->put('user', $user, now()->addMonths(1));
+        putUserCache($user);
 
         return ( $user->handleUpdatedEmail($oldEmail) ) ? redirect('/email/verify')
                                                           ->withMessage($user->emailChangedMessage())

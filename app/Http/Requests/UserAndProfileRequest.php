@@ -24,7 +24,7 @@ class UserAndProfileRequest extends FormRequest
      */
     public function rules()
     {
-        $userId = auth()->id();
+        $userId = rememberUserCache()->id;
 
         $inGenders = Rule::in(['Laki-laki', 'Perempuan', 'Lainnya']);
 

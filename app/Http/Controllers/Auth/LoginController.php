@@ -34,9 +34,7 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
-        $user = cache()->remember('user', now()->addMonths(1), function(){
-            return auth()->user();
-        });
+        $user = rememberUserCache();
         
         return $user->role_id == 1 ? route('profile.index') : route('admin.index');
     }

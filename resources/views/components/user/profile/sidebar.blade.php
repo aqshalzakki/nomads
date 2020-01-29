@@ -23,7 +23,7 @@
         </div>
         <div class="menu">
             <ul>
-                <li class="{{ isActiveUrl('profile/password') ? 'menu-active' : '' }}">
+                <li class="{{ request()->is('profile/password') ? 'menu-active' : '' }}">
                     <a class="menu-link" href="{{ route('profile.password.edit') }}">Ganti Password</a>
                 </li>
                 <li>
