@@ -9,9 +9,7 @@ class ShowHome extends Controller
 {
     public function __invoke()
     {
-        $travelPackages = Cache::remember('travelPackages', now()->addMonths(1), function() {
-            return \App\TravelPackage::with(['transactions', 'galleries'])->take(4)->get();
-        });
+        $travelPackages = \App\TravelPackage::with(['transactions', 'galleries'])->take(4)->get();
 
         return view('user.home', compact('travelPackages'));
     }
