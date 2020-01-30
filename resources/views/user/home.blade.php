@@ -56,21 +56,23 @@
     <div class="container">
         <div class="section-popular-travel row justify-content-center">
             @foreach ($travelPackages as $travelPackage)
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div
-                        class="card-travel text-center d-flex flex-column"
-                        style="border-radius: 10px; background-image: 
-                        url('{{ $travelPackage->galleries->count() ? imageStoragePath($travelPackage->galleries->first()->image) : '' }}');"
-                    >
-                    <div class="travel-country">{{ $travelPackage->location }}</div>
-                    <div class="travel-location">{{ $travelPackage->title }}</div>
-                    <div class="travel-button mt-auto">
-                        <a href="{{ route('travel-packages.show', $travelPackage->slug) }}" class="btn btn-travel-details px-4">
-                        View Details
-                        </a>
+                @if($travelPackage->galleries->count() > 0)
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div
+                            class="card-travel text-center d-flex flex-column"
+                            style="border-radius: 10px; background-image: 
+                            url('{{ imageStoragePath($travelPackage->galleries->first()->image) }}');"
+                        >
+                        <div class="travel-country">{{ $travelPackage->location }}</div>
+                        <div class="travel-location">{{ $travelPackage->title }}</div>
+                        <div class="travel-button mt-auto">
+                            <a href="{{ route('travel-packages.show', $travelPackage->slug) }}" class="btn btn-travel-details px-4">
+                            View Details
+                            </a>
+                        </div>
+                        </div>
                     </div>
-                    </div>
-                </div>
+                @endif
             @endforeach
         </div>
     </div>
