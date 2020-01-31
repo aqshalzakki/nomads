@@ -46,4 +46,10 @@ class TravelPackage extends Model
     {
     	return $this->hasMany(Transaction::class);
     }
+
+    public function hasImage()
+    {
+        $image = $this->galleries->first()->image ?? null;
+        return $image ? imageStoragePath($image) : null;
+    }
 }

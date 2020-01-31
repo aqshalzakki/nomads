@@ -63,7 +63,9 @@
                 <div class="package-card mb-5">
                   <a href="{{ route('travel-packages.show', $travel_package->slug) }}">
                     <div class="travel-img">
-                      <img src="{{ imageStoragePath($travel_package->galleries->first()->image) }}">
+                      @if($travel_package->hasImage())
+                        <img src="{{ $travel_package->hasImage() }}">
+                      @endif
                     </div>
                   </a>
                   <div class="body">
