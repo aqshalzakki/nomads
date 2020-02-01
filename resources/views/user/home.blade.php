@@ -173,7 +173,7 @@
             <a href="#" class="btn btn-need-help px-4 mt-4 mx-1">
             I Need Help
             </a>
-            <a href="{{ route('register') }}" class="btn btn-get-started px-4 mt-4 mx-1">
+            <a href="{{ route('travel-packages.index') }}" class="btn btn-get-started px-4 mt-4 mx-1">
             Get Started
             </a>
         </div>

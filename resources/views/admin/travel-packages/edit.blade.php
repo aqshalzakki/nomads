@@ -177,6 +177,21 @@
                         </div>
                     @enderror
                 </div>
+                
+                <div class="form-group">
+                    <label for="category_id">Category :</label>
+                    <select class="form-control" name="category_id" id="category_id">
+                        @foreach($categories as $category)
+                            <option {{ $category->isSelected($travelPackage->category) ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->title }}</option>
+                        @endforeach
+                    </select>
+                    
+                    @error('category_id')
+                        <div class="ml-2 invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
 
                 <div class="form-group">
                     <label for="price">Price</label>

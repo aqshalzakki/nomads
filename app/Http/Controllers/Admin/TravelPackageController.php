@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\TravelPackageRequest;
+
 use App\TravelPackage;
+use App\Category;
 
 use Illuminate\Http\Request;
 
@@ -17,9 +19,9 @@ class TravelPackageController extends Controller
      * @author aqshalzakki
      */
     protected $travel_package;
-    public function __construct()
+    public function __construct(TravelPackage $travelPackage)
     {
-        $this->travel_package = new TravelPackage;
+        $this->travel_package = $travelPackage;
     }
 
     public function index()
@@ -35,9 +37,10 @@ class TravelPackageController extends Controller
 
     public function store(TravelPackageRequest $request)
     {
-        $this->travel_package->createNewTravelPackage($request->toArray());
+        $this->travel_package->createNewTravelPackage($request->except('add_more'));
 
-        return redirect()->route('admin.travel-packages.index')->withMessage("{$request->title} has been added successfully!");
+        return ($request->add_more) ? back()->withMessage("{$request->title} has been added!")
+                                    : redirect()->route('admin.travel-packages.index')->withMessage("{$request->title} has been added!");
     }
     
     public function show()
@@ -47,9 +50,7 @@ class TravelPackageController extends Controller
 
     public function edit(TravelPackage $travelPackage)
     {
-        return view('admin.travel-packages.edit', [
-            'travelPackage' => $travelPackage
-            ]);
+        return view('admin.travel-packages.edit', compact('travelPackage'));
     }
 
     public function update(TravelPackageRequest $request, TravelPackage $travelPackage)

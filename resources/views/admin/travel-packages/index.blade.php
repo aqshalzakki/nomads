@@ -41,7 +41,7 @@
                     <tbody>
                         @forelse ($travelPackages as $travelPackage)
                             <tr>
-                                <th>{{ $travelPackage->id }}</th>
+                                <th>{{ $loop->iteration }}</th>
                                 <td>{{ $travelPackage->title }}</td>
                                 <td>{{ $travelPackage->location }}</td>
                                 <td>{{ dateFormat($travelPackage->departure_date, 'n F Y') }}</td>

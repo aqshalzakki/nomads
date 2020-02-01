@@ -14,11 +14,14 @@
 
     <div class="card-shadow">
         <div class="card-body">
+            @if(session()->has('message'))
+                <div class="alert alert-success">{{ session('message') }}</div>
+            @endif
             <form action="{{ route('admin.travel-packages.store') }}" method="post">
                 @csrf
                 
                 <div class="form-group">
-                    <label for="title">Title</label>
+                    <label for="title">Title :</label>
                     <input
                         id="title" 
                         placeholder="Title..." 
@@ -36,7 +39,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="location">Location</label>
+                    <label for="location">Location :</label>
                     <input
                         id="location" 
                         placeholder="Location..." 
@@ -54,7 +57,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="about">About</label>
+                    <label for="about">About :</label>
                     <textarea 
                         name="about" 
                         id="about" 
@@ -71,7 +74,7 @@
 
 
                 <div class="form-group">
-                    <label for="featured_event">Featured event</label>
+                    <label for="featured_event">Featured event :</label>
                     <input
                         id="featured_event" 
                         placeholder="Featured event..." 
@@ -89,7 +92,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="language">Language</label>
+                    <label for="language">Language :</label>
                     <input
                         id="language" 
                         placeholder="Language..." 
@@ -107,7 +110,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="foods">Foods</label>
+                    <label for="foods">Foods :</label>
                     <input
                         id="foods" 
                         placeholder="Foods..." 
@@ -125,7 +128,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="departure_date">Departure Date</label>
+                    <label for="departure_date">Departure Date :</label>
                     <input
                         id="departure_date" 
                         placeholder="Departure Date..." 
@@ -143,7 +146,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="duration">Duration</label>
+                    <label for="duration">Duration :</label>
                     <input
                         id="duration" 
                         placeholder="Duration..." 
@@ -161,7 +164,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="type">Type</label>
+                    <label for="type">Type :</label>
                     <input
                         id="type" 
                         placeholder="Type..." 
@@ -177,9 +180,24 @@
                         </div>
                     @enderror
                 </div>
+                
+                <div class="form-group">
+                    <label for="category_id">Category :</label>
+                    <select class="form-control" name="category_id" id="category_id">
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->title }}</option>
+                        @endforeach
+                    </select>
+                    
+                    @error('category_id')
+                        <div class="ml-2 invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
 
                 <div class="form-group">
-                    <label for="price">Price</label>
+                    <label for="price">Price :</label>
                     <input
                         id="price" 
                         placeholder="Price..." 
@@ -194,6 +212,11 @@
                             {{ $message }}
                         </div>
                     @enderror
+                </div>
+                
+                <div class="form-group ml-2">
+                    <input id="add_more" type="checkbox" name="add_more">
+                    <label style="user-select: none;" for="add_more">Create more travel package after this</label>
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-block">

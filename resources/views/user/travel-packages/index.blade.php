@@ -4,10 +4,10 @@
 
 @section('content')
   <!-- ---------------Hero-Section---------------- -->
-    <section id="packagesHero" style="background-image: url({{ imageStoragePath('travel-package/pic9.jpg')  }});">
+    <section id="packagesHero" style="background-image: url({{ url('frontend/images/pic9.jpg')  }});">
      <h1 class="hero-title">Temukan paket travel seperti yang anda inginkan</h1>
-     <form class="search-package">
-       <input type="text" name="search_package" placeholder="Search travel package...">
+     <form class="search-package" action="{{ route('travel-packages.search') }}">
+       <input autocomplete="off" autofocus required type="text" name="keyword" placeholder="Search travel package...">
        <button type="submit">
          <i class="fas fa-fw fa-search"></i>
        </button>
@@ -19,17 +19,13 @@
 
         <div class="categories mb-5">
           <div class="category active">
-            <a class="category-link" href="#">All</a>
+            <a class="category-link" href="{{ route('travel-packages.index') }}">All</a>
           </div>
-          <div class="category">
-            <a class="category-link" href="#">Entertainment</a>
-          </div>
-          <div class="category">
-            <a class="category-link" href="#">Event</a>
-          </div>
-          <div class="category">
-            <a class="category-link" href="#">Exclusive</a>
-          </div>
+          @foreach($categories as $category)
+            <div class="category">
+              <a class="category-link" href="{{ route('travel-packages.category', $category->title) }}">{{ $category->title }}</a>
+            </div>
+          @endforeach
         </div>
 
         <div class="filter mb-4">
@@ -56,7 +52,7 @@
           </div>
         </div>
 
-        <div class="packages">
+        <div class="packages" id="travel-packages">
           <div class="row">
             @foreach ($travelPackages as $travel_package)
               <div class="col-lg-4 col-md-4 col-sm-6 col-6">

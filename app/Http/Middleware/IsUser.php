@@ -17,6 +17,6 @@ class IsUser
     {
         $user = rememberUserCache();
         
-        return $user->isRole('USER') ? $next($request) : back();
+        return $user->isRole('USER') ? $next($request) : abort(401);
     }
 }

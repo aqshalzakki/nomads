@@ -36,7 +36,8 @@ class TravelPackage extends Model
         $data['slug'] = Str::slug($data['title']);
         $this->update($data);
     }
-
+    // All relationship
+    
     public function galleries()
     {
     	return $this->hasMany(Gallery::class);
@@ -47,9 +48,29 @@ class TravelPackage extends Model
     	return $this->hasMany(Transaction::class);
     }
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+    
+    // ----------------- //
+
     public function hasImage()
     {
         $image = $this->galleries->first()->image ?? null;
         return $image ? imageStoragePath($image) : null;
+    }
+
+    public function getByKeyword($keyword)
+    {
+        return $this->with(['galleries'])
+             ->where('title', 'like', "%$keyword%")
+             ->orWhere('location', 'like', "%$keyword%")
+             ->orWhere('featured_event', 'like', "%$keyword%")   
+             ->orWhere('language', 'like', "%$keyword%")
+             ->orWhere('departure_date', 'like', "%$keyword%")
+             ->orWhere('type', 'like', "%$keyword%")
+             ->orWhere('price', 'like', "%$keyword%")
+             ->paginate(9);
     }
 }
