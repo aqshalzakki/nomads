@@ -22,4 +22,9 @@ class Category extends Model
 	{
 	    return $this->where('title', $value)->firstOrFail();
 	}
+
+	public function isActive()
+	{
+		return request('category')->title == $this->title;
+	}
 }

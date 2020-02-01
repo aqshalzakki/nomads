@@ -7,7 +7,7 @@
     <section id="packagesHero" style="background-image: url({{ url('frontend/images/pic9.jpg')  }});">
      <h1 class="hero-title">Temukan paket travel seperti yang anda inginkan</h1>
      <form class="search-package" action="{{ route('travel-packages.search') }}">
-       <input autocomplete="off" autofocus required type="text" name="keyword" placeholder="Search travel package...">
+       <input id="keyword" autocomplete="off" autofocus required type="text" name="keyword" placeholder="Search travel package...">
        <button type="submit">
          <i class="fas fa-fw fa-search"></i>
        </button>
@@ -18,12 +18,18 @@
       <div class="container">
 
         <div class="categories mb-5">
-          <div class="category active">
-            <a class="category-link" href="{{ route('travel-packages.index') }}">All</a>
-          </div>
           @foreach($categories as $category)
-            <div class="category">
-              <a class="category-link" href="{{ route('travel-packages.category', $category->title) }}">{{ $category->title }}</a>
+            @if($loop->iteration == 1)
+              <div class="category {{ !request('category') ? 'active' : '' }}">
+                <a href="{{ route('travel-packages.index') }}" class="category-link">
+                  All
+                </a>
+              </div>
+            @endif
+            <div class="category {{ (request('category') AND $category->isActive()) ? 'active' : '' }}">
+              <a class="category-link" href="{{ route('travel-packages.category', $category->title) }}">
+                  {{ $category->title }}
+              </a>
             </div>
           @endforeach
         </div>
@@ -53,7 +59,7 @@
         </div>
 
         <div class="packages" id="travel-packages">
-          <div class="row">
+          <div class="row card-root">
             @foreach ($travelPackages as $travel_package)
               <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                 <div class="package-card mb-5">

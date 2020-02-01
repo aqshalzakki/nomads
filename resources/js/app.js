@@ -197,3 +197,30 @@ const baseUrl = "http://127.0.0.1:8000/";
 
 })();
 
+(function searchTravelPackage(){
+
+	let searchForm = document.querySelector('.search-package');
+	if (searchForm)
+	{
+		let searchUrl = searchForm.getAttribute('action')
+		let cardRoot = document.querySelector('.card-root')
+
+		searchForm.addEventListener('submit', (e) => {
+			e.preventDefault()
+			let keyword = document.querySelector('#keyword').value 
+		
+			fetch(searchUrl+ "?keyword=" +keyword, {
+				headers : {
+					'X-CSRF-TOKEN': csrf,
+				},
+			})
+			.then(res => res.text())
+			.then(data => {
+
+				cardRoot.innerHTML = data
+
+			})
+			.catch(exception => console.log(exception))
+		})
+	}
+})();

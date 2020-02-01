@@ -13,7 +13,7 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         DB::table('categories')->insert([
-        	[
+            [
         		'title'	     => 'Entertainment',
         		'created_at' => now()
         	],

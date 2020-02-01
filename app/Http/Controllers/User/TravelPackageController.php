@@ -22,10 +22,15 @@ class TravelPackageController extends Controller
       	return view('user.travel-packages.index', compact('travelPackages'));
     }
 
+    /**
+     * Perform a search features using ajax
+     *
+     * @return card view
+     */
     public function search()
     {
         $travelPackages = $this->travel_package->getByKeyword(request()->query('keyword'));
-        return view('user.travel-packages.index', compact('travelPackages'));
+        return view('user.travel-packages.card', compact('travelPackages'));
     }
 
     public function category(Category $category)

@@ -995,6 +995,30 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
   }
 })();
 
+(function searchTravelPackage() {
+  var searchForm = document.querySelector('.search-package');
+
+  if (searchForm) {
+    var searchUrl = searchForm.getAttribute('action');
+    var cardRoot = document.querySelector('.card-root');
+    searchForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var keyword = document.querySelector('#keyword').value;
+      fetch(searchUrl + "?keyword=" + keyword, {
+        headers: {
+          'X-CSRF-TOKEN': csrf
+        }
+      }).then(function (res) {
+        return res.text();
+      }).then(function (data) {
+        cardRoot.innerHTML = data;
+      })["catch"](function (exception) {
+        return console.log(exception);
+      });
+    });
+  }
+})();
+
 /***/ }),
 
 /***/ "./resources/sass/app.scss":
