@@ -999,8 +999,26 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
   var searchForm = document.querySelector('.search-package');
 
   if (searchForm) {
+    var searchTravelPackage = function searchTravelPackage(keyword, searchUrl) {
+      return fetch(searchUrl + "?keyword=" + keyword, {
+        headers: {
+          'X-CSRF-TOKEN': csrf,
+          'Content-Type': 'application/json'
+        }
+      }).then(function (res) {
+        return res.text();
+      }).then(function (data) {
+        return data;
+      })["catch"](function (exception) {
+        return console.log(exception);
+      });
+    };
+
     var searchUrl = searchForm.getAttribute('action');
-    var cardRoot = document.querySelector('.card-root'); // Search input
+    var cardRoot = document.querySelector('.card-root'); // categories
+
+    var categories = document.querySelectorAll('.category');
+    var categoryType = document.querySelector('.category-type'); // Search input
 
     searchForm.addEventListener('submit', function _callee2(e) {
       var keyword, data;
@@ -1008,31 +1026,37 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              e.preventDefault();
-              keyword = document.querySelector('#keyword').value;
-              _context2.next = 4;
+              e.preventDefault(); // get keyword
+
+              keyword = document.querySelector('#keyword').value; // change url
+
+              window.history.pushState("", "", searchUrl + "?keyword=" + keyword); // change title category
+
+              categoryType.innerHTML = 'All'; // await for data
+
+              _context2.next = 6;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(searchTravelPackage(keyword, searchUrl));
 
-            case 4:
+            case 6:
               data = _context2.sent;
+              // apply it to card root
               cardRoot.innerHTML = data;
 
-            case 6:
+            case 8:
             case "end":
               return _context2.stop();
           }
         }
       });
-    }); // categories
-
-    var categories = document.querySelectorAll('.category');
-    var categoryType = document.querySelector('.category-type');
+    });
     categories.forEach(function (category) {
       category.addEventListener('click', function (el) {
         el.preventDefault();
         var urlRequest = this.lastElementChild.getAttribute('href');
         categoryType.innerHTML = this.dataset.value;
-        this.classList.toggle('active'); // perform a http request
+        this.classList.toggle('active'); // change url
+
+        window.history.pushState("", "", urlRequest); // perform a http request
 
         fetch(urlRequest, {
           headers: {
@@ -1047,20 +1071,6 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
           return console.log(exception);
         });
       });
-    });
-  }
-
-  function searchTravelPackage(keyword, searchUrl) {
-    return fetch(searchUrl + "?keyword=" + keyword, {
-      headers: {
-        'X-CSRF-TOKEN': csrf
-      }
-    }).then(function (res) {
-      return res.text();
-    }).then(function (data) {
-      return data;
-    })["catch"](function (exception) {
-      return console.log(exception);
     });
   }
 })();

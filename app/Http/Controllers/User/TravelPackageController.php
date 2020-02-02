@@ -32,7 +32,8 @@ class TravelPackageController extends Controller
     public function search()
     {
         $travelPackages = $this->travel_package->getByKeyword(request()->query('keyword'));
-        return view('user.travel-packages.card', compact('travelPackages'));
+        return (request()->isJson()) ? view('user.travel-packages.card', compact('travelPackages'))
+                                     : view('user.travel-packages.index', compact('travelPackages'));
     }
 
     public function category(Category $category)
