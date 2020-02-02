@@ -197,7 +197,7 @@ const baseUrl = "http://127.0.0.1:8000/";
 
 })();
 
-(function searchTravelPackage(){
+(function travelPackage(){
 
 	let searchForm = document.querySelector('.search-package');
 	if (searchForm)
@@ -205,22 +205,51 @@ const baseUrl = "http://127.0.0.1:8000/";
 		let searchUrl = searchForm.getAttribute('action')
 		let cardRoot = document.querySelector('.card-root')
 
-		searchForm.addEventListener('submit', (e) => {
+		// Search input
+		searchForm.addEventListener('submit', async(e) => {
 			e.preventDefault()
 			let keyword = document.querySelector('#keyword').value 
 		
-			fetch(searchUrl+ "?keyword=" +keyword, {
+			const data = await searchTravelPackage(keyword, searchUrl)
+			cardRoot.innerHTML = data
+		})
+
+		// categories
+		let categories = document.querySelectorAll('.category')
+		let categoryType = document.querySelector('.category-type') 
+
+		categories.forEach(category => {
+			
+			category.addEventListener('click', function(el){
+				el.preventDefault()
+				
+				let urlRequest = this.lastElementChild.getAttribute('href')
+				categoryType.innerHTML = this.dataset.value
+				this.classList.toggle('active')
+
+				// perform a http request
+				fetch(urlRequest, {
+					headers: {
+						'X-CSRF-TOKEN' : csrf,
+						'Content-Type' : 'application/json'
+					},
+
+				})
+				.then(res => res.text())
+				.then(data => cardRoot.innerHTML = data)
+				.catch(exception => console.log(exception))
+			})
+		})
+	}
+
+	function searchTravelPackage(keyword, searchUrl){
+		return fetch(searchUrl+ "?keyword=" +keyword, {
 				headers : {
 					'X-CSRF-TOKEN': csrf,
 				},
 			})
 			.then(res => res.text())
-			.then(data => {
-
-				cardRoot.innerHTML = data
-
-			})
+			.then(data => data)
 			.catch(exception => console.log(exception))
-		})
 	}
 })();

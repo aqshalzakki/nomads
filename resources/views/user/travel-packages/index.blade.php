@@ -19,14 +19,7 @@
 
         <div class="categories mb-5">
           @foreach($categories as $category)
-            @if($loop->iteration == 1)
-              <div class="category {{ !request('category') ? 'active' : '' }}">
-                <a href="{{ route('travel-packages.index') }}" class="category-link">
-                  All
-                </a>
-              </div>
-            @endif
-            <div class="category {{ (request('category') AND $category->isActive()) ? 'active' : '' }}">
+            <div data-value="{{ $category->title }}" class="category {{ (request('category') AND $category->isActive()) ? 'active' : '' }}">
               <a class="category-link" href="{{ route('travel-packages.category', $category->title) }}">
                   {{ $category->title }}
               </a>
@@ -35,7 +28,7 @@
         </div>
 
         <div class="filter mb-4">
-          <h3 class="category-type">All</h3>
+          <h3 class="category-type">{{ (request('category')->title) ?? 'All' }}</h3>
           <div class="filter-selects">
             <div class="filter-select">
               <select>

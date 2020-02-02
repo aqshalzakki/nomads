@@ -14,6 +14,10 @@ class CategoriesTableSeeder extends Seeder
     {
         DB::table('categories')->insert([
             [
+                'title'      => 'All',
+                'created_at' => now()
+            ],
+            [
         		'title'	     => 'Entertainment',
         		'created_at' => now()
         	],

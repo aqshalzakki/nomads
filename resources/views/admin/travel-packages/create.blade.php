@@ -185,7 +185,9 @@
                     <label for="category_id">Category :</label>
                     <select class="form-control" name="category_id" id="category_id">
                         @foreach($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->title }}</option>
+                            @if($category->title != 'All')
+                                <option value="{{ $category->id }}">{{ $category->title }}</option>
+                            @endif
                         @endforeach
                     </select>
                     

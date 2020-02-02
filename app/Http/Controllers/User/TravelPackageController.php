@@ -19,7 +19,9 @@ class TravelPackageController extends Controller
     public function index()
     {
       	$travelPackages = $this->travel_package->with('galleries')->paginate(9);
-      	return view('user.travel-packages.index', compact('travelPackages'));
+        return request()->isJson() ? view('user.travel-packages.card', compact('travelPackages'))
+                                   : view('user.travel-packages.index', compact('travelPackages'));
+
     }
 
     /**
@@ -35,8 +37,11 @@ class TravelPackageController extends Controller
 
     public function category(Category $category)
     {
-        $travelPackages = $category->travel_packages()->with('galleries')->paginate(9);
-        return view('user.travel-packages.index', compact('travelPackages'));           
+        $travelPackages = ($category->title == 'All') ? $this->travel_package->with('galleries')->paginate(9)
+                                                    : $category->travel_packages()->with('galleries')->paginate(9);
+
+        return request()->isJson() ? view('user.travel-packages.card', compact('travelPackages'))
+                                   : view('user.travel-packages.index', compact('travelPackages'));           
     }
 
     public function show($slug)
