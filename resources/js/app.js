@@ -239,13 +239,16 @@ const baseUrl = "http://127.0.0.1:8000/";
 		}
 
 		categories.forEach(category => {
-			
+
 			category.addEventListener('click', function(el){
 				el.preventDefault()
-				
+
+				categories.forEach(category => category.classList.remove('active'))
+
+				category.classList.add('active')
+
 				let urlRequest = this.lastElementChild.getAttribute('href')
 				categoryType.innerHTML = this.dataset.value
-				this.classList.toggle('active')
 
 				// change url
 				window.history.pushState("", "", urlRequest);

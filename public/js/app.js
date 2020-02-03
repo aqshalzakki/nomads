@@ -1052,9 +1052,12 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
     categories.forEach(function (category) {
       category.addEventListener('click', function (el) {
         el.preventDefault();
+        categories.forEach(function (category) {
+          return category.classList.remove('active');
+        });
+        category.classList.add('active');
         var urlRequest = this.lastElementChild.getAttribute('href');
-        categoryType.innerHTML = this.dataset.value;
-        this.classList.toggle('active'); // change url
+        categoryType.innerHTML = this.dataset.value; // change url
 
         window.history.pushState("", "", urlRequest); // perform a http request
 

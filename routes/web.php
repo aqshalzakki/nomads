@@ -77,7 +77,7 @@ Route::prefix('admin')
 Route::namespace('User')
      ->group(function(){
 
-        Route::get('/travel-packages/c/{category}', 'TravelPackageController@category')->name('travel-packages.category');
+        Route::get('/travel-packages/category/{category}', 'TravelPackageController@category')->name('travel-packages.category');
         Route::get('/travel-packages/search', 'TravelPackageController@search')->name('travel-packages.search');
         Route::resource('travel-packages', 'TravelPackageController')
              ->only(['index', 'show']);

@@ -8,7 +8,7 @@ class UserObserver
 {
     public function created(User $user)
     {
-        ($user->role_id == 1) ? $user->profile()->create() : null;
+        (int) $user->role_id == 1 ? $user->profile()->create() : null;
     }
 
     public function updated(User $user)
