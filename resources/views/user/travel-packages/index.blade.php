@@ -19,7 +19,7 @@
 
         <div class="categories mb-5">
           @foreach($categories as $category)
-            <div data-value="{{ $category->title }}" class="category {{ (request('category') AND $category->isActive()) }}">
+            <div data-value="{{ $category->title }}" class="category {{ (request('category') AND $category->isActive()) ? 'active' : '' }}">
               <a class="category-link" href="{{ route('travel-packages.category', $category->title) }}">
                   {{ $category->title }}
               </a>
