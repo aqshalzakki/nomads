@@ -25,6 +25,6 @@ class Category extends Model
 
 	public function isActive()
 	{
-		return request('category')->title == $this->title;
+		return request('category')->title == $this->title ? 'active' : '';
 	}
 }
