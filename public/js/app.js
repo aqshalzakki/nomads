@@ -878,7 +878,7 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
       }
     });
   });
-})(); // Preview image 
+})(); // Preview image
 
 
 (function previewImage() {
@@ -1072,6 +1072,36 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
           return cardRoot.innerHTML = data;
         })["catch"](function (exception) {
           return console.log(exception);
+        });
+      });
+    });
+  }
+})();
+
+(function profile() {
+  var editProfile = document.querySelector('.user-edit');
+
+  if (editProfile) {
+    var urlRequest = editProfile.getAttribute('href');
+    var userImage = document.querySelector('.user-img');
+    var editable = [editProfile, userImage];
+    var section = document.querySelector('section');
+    var container = section.firstElementChild;
+    editable.forEach(function (edit) {
+      edit.addEventListener('click', function (e) {
+        event.preventDefault(); // change section id
+
+        section.id = 'profile';
+        window.history.pushState("", "", urlRequest);
+        fetch(urlRequest, {
+          headers: {
+            'X-CSRF-TOKEN': csrf,
+            'Content-Type': 'application/json'
+          }
+        }).then(function (res) {
+          return res.text();
+        }).then(function (data) {
+          return container.innerHTML = data;
         });
       });
     });

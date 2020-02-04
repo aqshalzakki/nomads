@@ -57,10 +57,10 @@ const baseUrl = "http://127.0.0.1:8000/";
 
 })();
 
-// Preview image 
+// Preview image
 (function previewImage(){
 	let input = document.querySelector('.file-input')
-	
+
 	if (input){
 
 		input.addEventListener('change', preview)
@@ -92,7 +92,7 @@ const baseUrl = "http://127.0.0.1:8000/";
 	if(toggler)
 	{
 		toggler.forEach(toggle => {
-			
+
 			toggle.addEventListener('click', e => {
 
 				e.preventDefault();
@@ -141,14 +141,14 @@ const baseUrl = "http://127.0.0.1:8000/";
 		btnChange.classList.add('disabled');
 
 		currentPassword.addEventListener('blur', async() => {
-			
-			const currentPasswordVal = currentPassword.value; 
+
+			const currentPasswordVal = currentPassword.value;
 
 			const data = await matchPassword(currentPasswordVal, csrf);
 
 			if(data.status)
 			{
-				
+
 				error.innerHTML = '';
 
 			}
@@ -180,7 +180,7 @@ const baseUrl = "http://127.0.0.1:8000/";
 
 
 	function matchPassword(currentPassword, csrf){
-		
+
 		return fetch(baseUrl + 'profile/password/check', {
 			method: 'post',
 			headers: {
@@ -204,7 +204,7 @@ const baseUrl = "http://127.0.0.1:8000/";
 	{
 		let searchUrl = searchForm.getAttribute('action')
 		let cardRoot = document.querySelector('.card-root')
-		
+
 		// categories
 		let categories = document.querySelectorAll('.category')
 		let categoryType = document.querySelector('.category-type')
@@ -212,16 +212,16 @@ const baseUrl = "http://127.0.0.1:8000/";
 		// Search input
 		searchForm.addEventListener('submit', async(e) => {
 			e.preventDefault()
-			
+
 			// get keyword
-			let keyword = document.querySelector('#keyword').value 
-			
+			let keyword = document.querySelector('#keyword').value
+
 			// change url
 			window.history.pushState("", "", searchUrl + "?keyword=" + keyword);
 
 			// change title category
 			categoryType.innerHTML = 'All'
-			
+
 			// await for data
 			const data = await searchTravelPackage(keyword, searchUrl)
 
@@ -252,7 +252,7 @@ const baseUrl = "http://127.0.0.1:8000/";
 
 				// change url
 				window.history.pushState("", "", urlRequest);
-				
+
 				// perform a http request
 				fetch(urlRequest, {
 					headers: {'X-CSRF-TOKEN' : csrf, 'Content-Type' : 'application/json'},
@@ -263,4 +263,41 @@ const baseUrl = "http://127.0.0.1:8000/";
 			})
 		})
 	}
+})();
+
+(function profile(){
+
+    let editProfile = document.querySelector('.user-edit')
+
+    if (editProfile)
+    {
+        let urlRequest = editProfile.getAttribute('href')
+        let userImage = document.querySelector('.user-img')
+        let editable = [editProfile, userImage]
+        let section = document.querySelector('section')
+        let container = section.firstElementChild
+
+        editable.forEach(edit => {
+
+            edit.addEventListener('click', e => {
+                event.preventDefault()
+
+                // change section id
+                section.id = 'profile'
+
+                window.history.pushState("", "", urlRequest)
+                fetch(urlRequest, {
+                    headers: {
+                        'X-CSRF-TOKEN': csrf,
+                        'Content-Type': 'application/json'
+                    },
+                })
+                .then(res => res.text())
+                .then(data => container.innerHTML = data)
+            })
+
+        })
+
+    }
+
 })();
