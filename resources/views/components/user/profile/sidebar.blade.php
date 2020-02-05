@@ -51,7 +51,7 @@
         </div>
         <div class="menu">
             <div class="open-collapse-menu menu-name" data-collapsetrigger="#notification">
-                <h3>Notifications</h3>   
+                <h3>Notifications</h3>
                 <i class="fas fa-angle-down"></i>
 
             </div>
@@ -71,7 +71,7 @@
             <div class="open-collapse-menu menu-name" data-collapsetrigger="#lainnya">
                 <h3>Lainnya</h3>
                 <i class="fas fa-angle-down"></i>
-                
+
 
             </div>
             <ul id="lainnya">

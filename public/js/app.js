@@ -878,7 +878,7 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
       }
     });
   });
-})(); // Preview image 
+})(); // Preview image
 
 
 (function previewImage() {
@@ -1078,6 +1078,36 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
   }
 })();
 
+(function profile() {
+  var editProfile = document.querySelector('.user-edit');
+
+  if (editProfile) {
+    var urlRequest = editProfile.getAttribute('href');
+    var userImage = document.querySelector('.user-img');
+    var editable = [editProfile, userImage];
+    var section = document.querySelector('section');
+    var container = section.firstElementChild;
+    editable.forEach(function (edit) {
+      edit.addEventListener('click', function (e) {
+        event.preventDefault(); // change section id
+
+        section.id = 'profile';
+        window.history.pushState("", "", urlRequest);
+        fetch(urlRequest, {
+          headers: {
+            'X-CSRF-TOKEN': csrf,
+            'Content-Type': 'application/json'
+          }
+        }).then(function (res) {
+          return res.text();
+        }).then(function (data) {
+          return container.innerHTML = data;
+        });
+      });
+    });
+  }
+})();
+
 /***/ }),
 
 /***/ "./resources/sass/app.scss":
@@ -1098,8 +1128,8 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\user\Desktop\projects\nomads\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\user\Desktop\projects\nomads\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\Programming\PROJECTS\nomads\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\Programming\PROJECTS\nomads\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

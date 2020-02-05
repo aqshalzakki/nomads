@@ -22,7 +22,7 @@ Route::get('/', 'ShowHome')->name('home');
         ->name('checkout.')
         ->middleware(['verified'])
         ->group(function(){
-            
+
             // PROCESS
             Route::post('/{travelPackage}', 'CheckoutController@process')
                  ->name('process');
@@ -49,19 +49,19 @@ Route::get('/', 'ShowHome')->name('home');
                  ->name('success')
                  ->middleware('is_pending');
         });
-        
+
 // End Checkout Routes
 
-// Admin Routes 
+// Admin Routes
 
 Route::prefix('admin')
     ->name('admin.')
     ->namespace('Admin')
     ->middleware(['verified', 'admin'])
     ->group(function(){
-        
+
         Route::get('/', 'ShowDashboard')->name('index');
-        
+
         Route::resources([
             'travel-packages' => 'TravelPackageController',
             'galleries'       => 'GalleryController',
@@ -70,7 +70,7 @@ Route::prefix('admin')
 
     });
 
-// End Admin routes 
+// End Admin routes
 
 // User Routes
 
@@ -92,7 +92,7 @@ Route::namespace('User')
 
         Route::get('/', 'ProfileController@index')->name('index');
         Route::patch('/{profile}', 'ProfileController@update')->name('update');
-        
+
         Route::name('password.')
              ->prefix('password')
              ->group(function(){
@@ -100,7 +100,7 @@ Route::namespace('User')
                   Route::get('/', 'UserPasswordController@edit')->name('edit');
                   Route::post('/check', 'UserPasswordController@checkPassword')->name('check');
                   Route::patch('/update/{user}', 'UserPasswordController@update')->name('update');
-                  
+
                });
 });
 

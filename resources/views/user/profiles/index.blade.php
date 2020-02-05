@@ -11,7 +11,7 @@
                 <a href="{{ route('profile.index') }}">Edit Profile</a>
             </div>
             <div class="row">
-                
+
                 {{-- include card left / sidebar --}}
                     @include('components.user.profile.sidebar', compact('user'))
                 {{-- ------------- --}}
@@ -19,7 +19,7 @@
                 <div class="col-lg-9 col-md-8">
                     <!-- ---------Card-Right--------- -->
                     <div class="profile-card right">
-                        
+
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -68,13 +68,13 @@
                                                     Tanggal Lahir
                                                 </label>
                                                     <input required
-                                                      autocomplete="0" 
+                                                      autocomplete="0"
                                                       type="text"
                                                       class="datePicker @error('date_birth') is-invalid @enderror"
                                                       id="datePicker"
                                                       style="width: 70%;"
                                                       value="{{ old('date_of_birth') ?? $user->profile->date_of_birth }}"
-                                                      name="date_of_birth" 
+                                                      name="date_of_birth"
                                                     />
                                             </div>
                                             <div class="input">
@@ -85,8 +85,8 @@
                                                             <input
                                                                 {{ $user->profile->isGender('Laki-laki') }}
                                                                 type="radio"
-                                                                name="gender" 
-                                                                value="Laki-laki" 
+                                                                name="gender"
+                                                                value="Laki-laki"
                                                                 id="laki-laki"
                                                             />
                                                             <span class="custom-radio"></span>
@@ -96,11 +96,11 @@
                                                     <div class="radio">
                                                         <div class="wrapper">
                                                             <input
-                                                                {{ $user->profile->isGender('Perempuan') }} 
+                                                                {{ $user->profile->isGender('Perempuan') }}
                                                                 type="radio"
-                                                                name="gender" 
+                                                                name="gender"
                                                                 value="Perempuan"
-                                                                id="perempuan" 
+                                                                id="perempuan"
                                                             />
                                                             <span class="custom-radio"></span>
                                                         </div>
@@ -111,7 +111,7 @@
                                                             <input
                                                                 {{ $user->profile->isGender('Lainnya') }}
                                                                 type="radio"
-                                                                name="gender" 
+                                                                name="gender"
                                                                 value="Lainnya"
                                                                 id="jenisLainnya"
                                                             />
@@ -120,7 +120,7 @@
                                                         <label class="radio-value" for="jenisLainnya">Lainnya</label>
                                                     </div>
                                                 </div>
-                                            </div>   
+                                            </div>
                                         </div>
 
                                         <h4>Ubah Kontak</h4>
@@ -128,14 +128,14 @@
                                             <div class="input mb-4">
                                                 <label for="email">Email</label>
                                                 <div class="relative">
-                                                    <input 
-                                                        required 
+                                                    <input
+                                                        required
                                                         type="text"
-                                                        name="email" 
-                                                        id="email" 
+                                                        name="email"
+                                                        id="email"
                                                         value="{{ old('email') ?? $user->email }}"
                                                     />
-                                                
+
                                                 @if(!$user->hasVerifiedEmail())
                                                     <a class="verification" href="{{ url('/email/verify') }}">Klik disini untuk melakukan verifikasi Email anda.</a>
                                                 @endif
@@ -145,11 +145,11 @@
                                             <div class="input">
                                                 <label for="nomor-hp">Nomor HP</label>
                                                 <div class="relative">
-                                                    <input 
-                                                        type="text" 
-                                                        name="phone_number" 
+                                                    <input
+                                                        type="text"
+                                                        name="phone_number"
                                                         id="nomor-hp"
-                                                        value="{{ old('phone_number') ?? $user->profile->phone_number }}" 
+                                                        value="{{ old('phone_number') ?? $user->profile->phone_number }}"
                                                     />
 
                                                     <a class="verification" href="#">Klik disini untuk melakukan verifikasi Nomor anda.</a>

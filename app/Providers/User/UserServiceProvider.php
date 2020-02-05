@@ -23,10 +23,11 @@ class UserServiceProvider extends ServiceProvider
             // What views should be shared with some data
             'components.user.navbar',
             'user.profiles.index',
+            'user.profiles.card',
             'user.checkout.index',
             'user.password.edit',
-            
-        ],  
+
+        ],
             // What data should be shared...
             function($view){
             $userCache = rememberUserCache();

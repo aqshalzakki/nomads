@@ -12,7 +12,8 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        return view('user.profiles.index');
+        return request()->isJson() ? view('user.profiles.card')
+                                   : view('user.profiles.index');
     }
 
     public function update(UserRequest $request, Profile $profile)
