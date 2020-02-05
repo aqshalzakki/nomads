@@ -8,32 +8,22 @@
     
     <title>@yield('title')</title>
     
-    {{-- Styles --}}
       @include('components.user.styles')
       @stack('addon-style')
       
       <link rel="stylesheet" href="{{ url('frontend/libraries/gijgo/css/gijgo.min.css')}}" />
-    {{-- end styles --}}
 
   </head>
   <body>
 
-    {{-- Navbar --}}
       @include('components.user.navbar')
-    {{-- end Navbar --}}
 
-    {{-- content --}}
-        @yield('content')
-    {{-- end content --}}
+        @yield('content')    
     
-    {{-- Footer --}}
       @include('components.user.footer')
-      {{-- end footer --}}
       
-    {{-- Scripts --}}
       @include('components.user.scripts') 
       @stack('addon-script')
-    {{-- end scripts --}}
-
+      
   </body>
 </html>

@@ -1083,8 +1083,7 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
 
   if (editProfile) {
     var urlRequest = editProfile.getAttribute('href');
-    var userImage = document.querySelector('.user-img');
-    var editable = [editProfile, userImage];
+    var editable = [editProfile, document.querySelector('.user-img'), document.querySelector('.user-name')];
     var section = document.querySelector('section');
     var container = section.firstElementChild;
     editable.forEach(function (edit) {
@@ -1092,6 +1091,7 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
         event.preventDefault(); // change section id
 
         section.id = 'profile';
+        document.querySelector('title').innerHTML = 'Profile';
         window.history.pushState("", "", urlRequest);
         fetch(urlRequest, {
           headers: {
@@ -1128,8 +1128,8 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\Programming\PROJECTS\nomads\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\Programming\PROJECTS\nomads\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\user\Desktop\projects\nomads\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\user\Desktop\projects\nomads\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

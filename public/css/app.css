@@ -11722,7 +11722,11 @@ a.text-dark:focus {
 }
 
 .profile-card.left .user .right .user-name {
+  display: block;
   margin: 0;
+  text-decoration: none;
+  color: #0B1C4D;
+  font-size: 20px;
 }
 
 .profile-card.left .user .right .user-edit {
@@ -12589,7 +12593,11 @@ a.text-dark:focus {
 }
 
 .profile-card.left .user .right .user-name {
+  display: block;
   margin: 0;
+  text-decoration: none;
+  color: #0B1C4D;
+  font-size: 20px;
 }
 
 .profile-card.left .user .right .user-edit {

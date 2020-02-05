@@ -271,9 +271,8 @@ const baseUrl = "http://127.0.0.1:8000/";
 
     if (editProfile)
     {
-        let urlRequest = editProfile.getAttribute('href')
-        let userImage = document.querySelector('.user-img')
-        let editable = [editProfile, userImage]
+    	let urlRequest = editProfile.getAttribute('href')
+        let editable = [editProfile, document.querySelector('.user-img'), document.querySelector('.user-name')]
         let section = document.querySelector('section')
         let container = section.firstElementChild
 
@@ -284,6 +283,7 @@ const baseUrl = "http://127.0.0.1:8000/";
 
                 // change section id
                 section.id = 'profile'
+                document.querySelector('title').innerHTML = 'Profile'
 
                 window.history.pushState("", "", urlRequest)
                 fetch(urlRequest, {

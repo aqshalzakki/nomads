@@ -9,12 +9,10 @@
                     </a>
                 </div>
             </div>
-            <div class="right">
-                {{-- <a href="{{ route('profile.index') }}">  --}}
-                    <h5 class="user-name">
-                        {{ $user->username }}
-                    </h5>
-                {{-- </a> --}}
+            <div class="right"> 
+                <a href="{{ route('profile.index') }}" class="user-name">
+                    {{ $user->username }}
+                </a>
                 <a class="user-edit" href="{{ route('profile.index') }}">
                     <i class="fas fa-edit"></i>
                     Edit Profile

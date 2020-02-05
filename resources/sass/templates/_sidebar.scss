@@ -1,6 +1,8 @@
 // -----------Sidebar------------
 .profile-card.left{
 	color: $biruGelap;
+	
+	
 
 	// --1
 	.user{
@@ -39,7 +41,11 @@
 			margin-left: 15px;
 
 			.user-name{
+				display: block;
 				margin: 0;
+				text-decoration: none;
+				color: $biruGelap;
+				font-size: 20px;
 			}
 
 			.user-edit{
