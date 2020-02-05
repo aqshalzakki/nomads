@@ -856,12 +856,6 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
-// require('./bootstrap');
-// window.Vue = require('vue');
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-// const app = new Vue({
-//     el: '#app',
-// });
 var csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
 

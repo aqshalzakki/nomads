@@ -146,6 +146,7 @@
                                                 <label for="nomor-hp">Nomor HP</label>
                                                 <div class="relative">
                                                     <input
+                                                        required
                                                         type="text"
                                                         name="phone_number"
                                                         id="nomor-hp"

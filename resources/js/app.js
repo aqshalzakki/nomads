@@ -1,13 +1,3 @@
-// require('./bootstrap');
-
-// window.Vue = require('vue');
-
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
-// const app = new Vue({
-//     el: '#app',
-// });
-
 const csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
 const baseUrl = "http://127.0.0.1:8000/";
