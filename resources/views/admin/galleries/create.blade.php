@@ -4,7 +4,7 @@
 
 @section('content')
     <!-- Begin Page Content -->
-<div class="container-fluid">
+<div class="container-fluid dynamic-content">
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -16,7 +16,7 @@
         <div class="card-body">
             <form action="{{ route('admin.galleries.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
-                
+
                 <div class="form-group">
                     <label for="travel_package_id">Travel Packages</label>
                     <select class="form-control" name="travel_package_id" id="travel_package_id">
@@ -32,14 +32,14 @@
                 <div class="form-group">
                     <label for="image">Image</label>
                     <input
-                        id="image" 
-                        placeholder="image..." 
-                        value="{{ old('image') }}" 
-                        type="file" 
-                        class="form-control @error('image') is-invalid @enderror" 
+                        id="image"
+                        placeholder="image..."
+                        value="{{ old('image') }}"
+                        type="file"
+                        class="form-control @error('image') is-invalid @enderror"
                         name="image"
                     >
-                    
+
                     @error('image')
                         <div class="ml-2 invalid-feedback">
                             {{ $message }}

@@ -1,17 +1,9 @@
-@extends('layouts.admin')
-
-@section('title', 'Travel Packages Gallery')
-
-@section('content')
-    <!-- Begin Page Content -->
-<div class="container-fluid dynamic-content">
-
-    <!-- Page Heading -->
+<!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Travel Packages Gallery</h1>
-        <a href="{{ route('admin.galleries.create') }}" class="btn btn-sm btn-primary shadow-sm">
+        <h1 class="h3 mb-0 text-gray-800">Travel Packages</h1>
+        <a href="{{ route('admin.travel-packages.create') }}" class="btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-plus fa-sm text-white-50"></i>
-            Add new Gallery
+            Add new Travel Package
         </a>
     </div>
 
@@ -31,35 +23,37 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Travel</th>
-                            <th>Image</th>
+                            <th>Title</th>
+                            <th>Location</th>
+                            <th>Departure Date</th>
+                            <th>Type</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($galleries as $gallery)
+                        @forelse ($travelPackages as $travelPackage)
                             <tr>
                                 <th>{{ $loop->iteration }}</th>
-                                <th>{{ $gallery->travel_package->title }}</th>
-                                <th>
-                                    <img src="{{ imageStoragePath($gallery->image) }}" class="img-thumbnail" style="width: 300px; height: 200px;" />
-                                </th>
+                                <td>{{ $travelPackage->title }}</td>
+                                <td>{{ $travelPackage->location }}</td>
+                                <td>{{ dateFormat($travelPackage->departure_date, 'n F Y') }}</td>
+                                <td>{{ $travelPackage->type }}</td>
                                 <td>
-                                    <a class="btn btn-info" href="{{ route('admin.galleries.edit', $gallery->id) }}">
+                                    <a class="btn btn-info" href="{{ route('admin.travel-packages.edit', $travelPackage->id) }}">
                                         <i class="fa fa-pencil-alt"></i>
                                     </a>
 
-                                    <form class="d-inline" method="post" action="{{ route('admin.galleries.destroy', $gallery->id) }}">
+                                    <form class="d-inline" method="post" action="{{ route('admin.travel-packages.destroy', $travelPackage->id) }}">
                                         @csrf
                                         @method('delete')
 
-                                        <button onclick="return confirm('Are you sure you want to delete this from the list?')" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        <button onclick="return confirm('Are you sure you want to delete {{ $travelPackage->title }} from the list?')" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7" class="text-center">There is no gallery.</td>
+                                <td colspan="7" class="text-center">There is no travel packages.</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -67,13 +61,6 @@
             </div>
         </div>
     </div>
-
-    <div class="row offset-3 justify-content-center">
-        <div class="col-6">
-            {{ $galleries->links() }}
-        </div>
+    <div class="row justify-content-center">
+        {{ $travelPackages->links() }}
     </div>
-
-</div>
-<!-- /.container-fluid -->
-@endsection

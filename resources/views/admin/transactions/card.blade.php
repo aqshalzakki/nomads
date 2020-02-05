@@ -1,11 +1,4 @@
-@extends('layouts.admin')
-
-@section('title', 'Transactions')
-@section('content')
-    <!-- Begin Page Content -->
-<div class="container-fluid dynamic-content">
-
-    <!-- Page Heading -->
+<!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Transactions</h1>
         {{-- <a href="{{ route('admin.transactions.create') }}" class="btn btn-sm btn-primary shadow-sm">
@@ -74,7 +67,3 @@
             </div>
         </div>
     </div>
-
-</div>
-<!-- /.container-fluid -->
-@endsection

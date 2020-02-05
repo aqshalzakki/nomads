@@ -1,12 +1,4 @@
-@extends('layouts.admin')
-
-@section('title', 'Travel Packages Gallery')
-
-@section('content')
-    <!-- Begin Page Content -->
-<div class="container-fluid dynamic-content">
-
-    <!-- Page Heading -->
+<!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Travel Packages Gallery</h1>
         <a href="{{ route('admin.galleries.create') }}" class="btn btn-sm btn-primary shadow-sm">
@@ -73,7 +65,3 @@
             {{ $galleries->links() }}
         </div>
     </div>
-
-</div>
-<!-- /.container-fluid -->
-@endsection

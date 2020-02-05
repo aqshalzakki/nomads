@@ -30,7 +30,8 @@ class GalleryController extends Controller
         $galleries = $this->gallery
                           ->getPaginateWith(3, 'travel_package');
 
-        return view('admin.galleries.index', compact('galleries'));
+        return request()->isJson() ? view('admin.galleries.card', compact('galleries'))
+                                   : view('admin.galleries.index', compact('galleries'));
     }
 
     public function create()
@@ -66,6 +67,6 @@ class GalleryController extends Controller
     {
         $this->gallery->destroy($id);
         return redirect()->route('admin.galleries.index')->withMessage('Image has been deleted!');
-    }   
+    }
 }
 

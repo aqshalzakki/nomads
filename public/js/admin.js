@@ -2,18 +2,24 @@ const csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('con
 
 (function admin(){
 
-	const content = document.querySelector('.dynamic-content')
+    let menu = document.querySelectorAll('.side-menu .nav-link')
 
-	if (content)
+    if (menu)
 	{
-		let menu = document.querySelectorAll('.side-menu .nav-link')
+        const content = document.querySelector('.dynamic-content')
 
 		menu.forEach(item => {
-			
-			item.addEventListener('click', e => {
- 				e.preventDefault()
 
+            console.log(item);
+
+            item.addEventListener('click', e => {
+ 				e.preventDefault()
        			let urlRequest = item.getAttribute('href')
+
+                // sintaks hoki
+                if (window.location.href == urlRequest) return
+
+                window.history.pushState("", "", urlRequest)
 
        			fetch(urlRequest, {
        				headers: {

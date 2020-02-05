@@ -4,7 +4,7 @@
 
 @section('content')
     <!-- Begin Page Content -->
-<div class="container-fluid">
+<div class="container-fluid dynamic-content">
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -26,18 +26,18 @@
                         </div>
                         <div class="col-6">
                             <label for="status">To :</label>
-                            <select 
-                                class="form-control @error('transaction_status_id') is-invalid @enderror" name="transaction_status_id" 
+                            <select
+                                class="form-control @error('transaction_status_id') is-invalid @enderror" name="transaction_status_id"
                                 id="status">
                                 @foreach($statuses as $status)
                                     @if($transaction->status->id == $status->id)
-                                
+
                                         <option selected disabled value="">{{ $status->name }}</option>
-                                
+
                                     @else
 
                                         <option value="{{ $status->id }}">{{ $status->name }}</option>
-                                        
+
                                     @endif
                                 @endforeach
                             </select>
