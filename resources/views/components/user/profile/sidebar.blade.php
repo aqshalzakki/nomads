@@ -21,14 +21,14 @@
         </div>
         <div class="menu">
             <ul>
-                <li class="{{ request()->is('profile/password') ? 'menu-active' : '' }}">
-                    <a class="menu-link" href="{{ route('profile.password.edit') }}">Ganti Password</a>
+                <li class="{{-- request()->is('profile/password') ? 'menu-active' : '' --}}">
+                    <a id="menu" class="menu-link" href="{{ route('profile.password.edit') }}">Ganti Password</a>
                 </li>
                 <li>
-                    <a class="menu-link" href="#">Passport</a>
+                    <a id="menu" class="menu-link" href="#">Passport</a>
                 </li>
                 <li>
-                    <a class="menu-link" href="#">Visa</a>
+                    <a id="menu" class="menu-link" href="#">Visa</a>
                 </li>
             </ul>
         </div>
@@ -40,10 +40,10 @@
             </div>
             <ul id="transaction">
                 <li>
-                    <a class="menu-link" href="#">Menunggu Pembayaran</a>
+                    <a id="menu" class="menu-link" href="#">Menunggu Pembayaran</a>
                 </li>
                 <li>
-                    <a class="menu-link" href="#">Daftar Transaksi</a>
+                    <a id="menu" class="menu-link" href="#">Daftar Transaksi</a>
                 </li>
             </ul>
         </div>
@@ -55,13 +55,13 @@
             </div>
             <ul id="notification">
                 <li>
-                    <a class="menu-link" href="#">Ulasan</a>
+                    <a id="menu" class="menu-link" href="#">Ulasan</a>
                 </li>
                 <li>
-                    <a class="menu-link" href="#">Komplain Pemesanan</a>
+                    <a id="menu" class="menu-link" href="#">Komplain Pemesanan</a>
                 </li>
                 <li>
-                    <a class="menu-link" href="#">Pesan Bantuan</a>
+                    <a id="menu" class="menu-link" href="#">Pesan Bantuan</a>
                 </li>
             </ul>
         </div>
@@ -74,10 +74,10 @@
             </div>
             <ul id="lainnya">
                 <li>
-                    <a class="menu-link" href="#">Destinasi Favorit</a>
+                    <a id="menu" class="menu-link" href="#">Destinasi Favorit</a>
                 </li>
                 <li>
-                    <a class="menu-link" href="#">Saved Place</a>
+                    <a id="menu" class="menu-link" href="#">Saved Place</a>
                 </li>
             </ul>
         </div>

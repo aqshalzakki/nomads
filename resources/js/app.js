@@ -243,11 +243,15 @@ const baseUrl = "http://127.0.0.1:8000/";
 			category.addEventListener('click', function(el){
 				el.preventDefault()
 
+				let urlRequest = this.lastElementChild.getAttribute('href')
+
+				// sintaks hoki
+				if (window.location.href == urlRequest) return
+
 				categories.forEach(category => category.classList.remove('active'))
 
 				category.classList.add('active')
 
-				let urlRequest = this.lastElementChild.getAttribute('href')
 				categoryType.innerHTML = this.dataset.value
 
 				// change url
@@ -265,24 +269,32 @@ const baseUrl = "http://127.0.0.1:8000/";
 	}
 })();
 
-(function profile(){
+(function profileMenu(){
 
-    let editProfile = document.querySelector('.user-edit')
+    let menu   = [
+    	document.querySelector('.user-edit'), 
+    	document.querySelector('.user-img a'), 
+    	document.querySelector('.user-name'), 
+    	...document.querySelectorAll('#menu')
+    ]
 
-    if (editProfile)
+    if (menu)
     {
-    	let urlRequest = editProfile.getAttribute('href')
-        let editable = [editProfile, document.querySelector('.user-img'), document.querySelector('.user-name')]
-        let section = document.querySelector('section')
-        let container = section.firstElementChild
+        let cardRoot  = document.querySelector('#cardRoot')
 
-        editable.forEach(edit => {
+        menu.forEach(item => {
 
-            edit.addEventListener('click', e => {
+            item.addEventListener('click', e => {
                 event.preventDefault()
 
+                let urlRequest = item.getAttribute('href')
+				
+				// sintaks hoki
+                if (window.location.href == urlRequest) return
+
                 // change section id
-                section.id = 'profile'
+                document.querySelector('.dynamic-content').id = 'profile'
+
                 document.querySelector('title').innerHTML = 'Profile'
 
                 window.history.pushState("", "", urlRequest)
@@ -293,7 +305,7 @@ const baseUrl = "http://127.0.0.1:8000/";
                     },
                 })
                 .then(res => res.text())
-                .then(data => container.innerHTML = data)
+                .then(data => cardRoot.innerHTML = data)
             })
 
         })

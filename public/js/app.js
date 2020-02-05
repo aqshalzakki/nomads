@@ -847,6 +847,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 // require('./bootstrap');
 // window.Vue = require('vue');
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
@@ -1052,11 +1061,13 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
     categories.forEach(function (category) {
       category.addEventListener('click', function (el) {
         el.preventDefault();
+        var urlRequest = this.lastElementChild.getAttribute('href'); // sintaks hoki
+
+        if (window.location.href == urlRequest) return;
         categories.forEach(function (category) {
           return category.classList.remove('active');
         });
         category.classList.add('active');
-        var urlRequest = this.lastElementChild.getAttribute('href');
         categoryType.innerHTML = this.dataset.value; // change url
 
         window.history.pushState("", "", urlRequest); // perform a http request
@@ -1078,19 +1089,19 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
   }
 })();
 
-(function profile() {
-  var editProfile = document.querySelector('.user-edit');
+(function profileMenu() {
+  var menu = [document.querySelector('.user-edit'), document.querySelector('.user-img a'), document.querySelector('.user-name')].concat(_toConsumableArray(document.querySelectorAll('#menu')));
 
-  if (editProfile) {
-    var urlRequest = editProfile.getAttribute('href');
-    var editable = [editProfile, document.querySelector('.user-img'), document.querySelector('.user-name')];
-    var section = document.querySelector('section');
-    var container = section.firstElementChild;
-    editable.forEach(function (edit) {
-      edit.addEventListener('click', function (e) {
-        event.preventDefault(); // change section id
+  if (menu) {
+    var cardRoot = document.querySelector('#cardRoot');
+    menu.forEach(function (item) {
+      item.addEventListener('click', function (e) {
+        event.preventDefault();
+        var urlRequest = item.getAttribute('href'); // sintaks hoki
 
-        section.id = 'profile';
+        if (window.location.href == urlRequest) return; // change section id
+
+        document.querySelector('.dynamic-content').id = 'profile';
         document.querySelector('title').innerHTML = 'Profile';
         window.history.pushState("", "", urlRequest);
         fetch(urlRequest, {
@@ -1101,7 +1112,7 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
         }).then(function (res) {
           return res.text();
         }).then(function (data) {
-          return container.innerHTML = data;
+          return cardRoot.innerHTML = data;
         });
       });
     });

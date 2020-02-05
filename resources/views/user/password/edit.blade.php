@@ -3,7 +3,7 @@
 
 @section('content')
     <!-- -------------Change-Password-Section------------- -->
-    <section class="custom-bg" id="changePasword">
+    <section class="custom-bg dynamic-content" id="changePasword">
         <div class="container">
             <div class="nomads-breadcrumb my-4">
                 <a href="{{ route('profile.index') }}">My Profile</a>
@@ -14,7 +14,7 @@
                     <!-- ---------Card-left--------- -->
                     @include('components.user.profile.sidebar')
 
-                <div class="col-lg-9 col-md-8 mb-4">
+                <div class="col-lg-9 col-md-8 mb-4" id="cardRoot">
 
                     <div class="profile-card right">
                         <div class="title mb-3">

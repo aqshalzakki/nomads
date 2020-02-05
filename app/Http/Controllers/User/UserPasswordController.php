@@ -11,7 +11,7 @@ class UserPasswordController extends Controller
 {
     public function edit()
     {
-        return view('user.password.edit');
+        return request()->isJson() ? view('user.password.card') : view('user.password.edit');
     }
 
     public function update(Request $request, \App\User $user)

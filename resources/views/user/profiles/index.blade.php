@@ -3,7 +3,7 @@
 @section('title', 'Profile')
 @section('content')
     <!-- ----------------PROFILE-SECTION---------------- -->
-    <section class="custom-bg" id="profile">
+    <section class="custom-bg dynamic-content" id="profile">
         <div class="container">
             <div class="nomads-breadcrumb my-4">
                 <a href="{{ route('profile.index') }}">My Profile</a>
@@ -16,7 +16,7 @@
                     @include('components.user.profile.sidebar', compact('user'))
                 {{-- ------------- --}}
 
-                <div class="col-lg-9 col-md-8">
+                <div class="col-lg-9 col-md-8" id="cardRoot">
                     <!-- ---------Card-Right--------- -->
                     <div class="profile-card right">
 

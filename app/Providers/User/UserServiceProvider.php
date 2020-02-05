@@ -26,7 +26,7 @@ class UserServiceProvider extends ServiceProvider
             'user.profiles.card',
             'user.checkout.index',
             'user.password.edit',
-
+            'user.password.card',
         ],
             // What data should be shared...
             function($view){
