@@ -41,8 +41,8 @@
                     <h4>Ubah Data Diri</h4>
                     <div class="inputs">
                         <div class="input">
-                            <label for="nama">Username</label>
-                            <input required type="text" name="username" id="nama" value="{{ old('username') ?? $user->username }}">
+                            <label for="name">Name</label>
+                            <input required type="text" name="name" id="name" value="{{ old('name') ?? $user->name }}">
                         </div>
                         <div class="input">
                             <label for="datePicker">
@@ -50,10 +50,10 @@
                             </label>
                                 <input required
                                     autocomplete="0"
-                                    type="text"
+                                    type="date"
                                     class="datePicker @error('date_birth') is-invalid @enderror"
                                     id="datePicker"
-                                    style="width: 70%;"
+                                    style="width: 100%;"
                                     value="{{ old('date_of_birth') ?? $user->profile->date_of_birth }}"
                                     name="date_of_birth"
                                 />

@@ -24,12 +24,12 @@ class ProfileController extends Controller
         // old email
         $oldEmail = $user->email;
 
-        $dataProfile = $request->except(['username', 'email']);
+        $dataProfile = $request->except(['name', 'email']);
         $dataProfile['image'] = $profile->handleUploadedImage();
 
         $profile->update($dataProfile);
         $user->update($request->only([
-            'username', 'email'
+            'name', 'email'
         ]));
 
         // set cache
@@ -37,6 +37,6 @@ class ProfileController extends Controller
 
         return ( $user->handleUpdatedEmail($oldEmail) ) ? redirect('/email/verify')
                                                           ->withMessage($user->emailChangedMessage())
-                                                        : back();
+                                                        : back()->withMessage('Profil anda telah diperbarui!');
     }
 }

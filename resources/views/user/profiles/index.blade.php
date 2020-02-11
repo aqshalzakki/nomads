@@ -31,9 +31,12 @@
                         @endif
 
                         <div class="title mb-3">
-                            <h1>Profil Saya</h1>
+                            <h1>My Profile</h1>
                             <p>Kelola informasi profil Anda untuk mengontrol, melindungi dan mengamankan akun</p>
                         </div>
+                        @if(session()->has('message'))
+                            <div class="alert alert-success">{{ session('message') }}</div>
+                        @endif
                         <form action="{{ route('profile.update', $user->profile->id) }}" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-lg-5 col-md-12">
@@ -60,8 +63,8 @@
                                         <h4>Ubah Data Diri</h4>
                                         <div class="inputs">
                                             <div class="input">
-                                                <label for="nama">Username</label>
-                                                <input required type="text" name="username" id="nama" value="{{ old('username') ?? $user->username }}">
+                                                <label for="nama">Name</label>
+                                                <input required type="text" name="name" id="nama" value="{{ old('name') ?? $user->name }}">
                                             </div>
                                             <div class="input">
                                                 <label for="datePicker">
@@ -69,10 +72,10 @@
                                                 </label>
                                                     <input required
                                                       autocomplete="0"
-                                                      type="text"
+                                                      type="date"
                                                       class="datePicker @error('date_birth') is-invalid @enderror"
                                                       id="datePicker"
-                                                      style="width: 70%;"
+                                                      style="width: 100%;"
                                                       value="{{ old('date_of_birth') ?? $user->profile->date_of_birth }}"
                                                       name="date_of_birth"
                                                     />
@@ -140,7 +143,7 @@
                                                     <a class="verification" href="{{ url('/email/verify') }}">Klik disini untuk melakukan verifikasi Email anda.</a>
                                                 @endif
                                                 </div>
-                                                <span class="status">{{ $user->hasVerifiedEmail() ? 'Terverifikasi' : 'Not Verified' }}</span>
+                                                <span class="status">{{ $user->hasVerifiedEmail() ? 'Terverifikasi' : 'Unverified' }}</span>
                                             </div>
                                             <div class="input">
                                                 <label for="nomor-hp">Nomor HP</label>

@@ -5,13 +5,13 @@
             <div class="left">
                 <div class="user-img">
                     <a href="{{ route('profile.index') }}">
-                        <img src="{{ imageStoragePath($user->profile->image) }}" title="{{ $user->username }}">
+                        <img src="{{ imageStoragePath($user->profile->image) }}" title="{{ $user->name }}">
                     </a>
                 </div>
             </div>
             <div class="right"> 
                 <a href="{{ route('profile.index') }}" class="user-name">
-                    {{ $user->username }}
+                    {{ $user->name }}
                 </a>
                 <a class="user-edit" href="{{ route('profile.index') }}">
                     <i class="fas fa-edit"></i>
