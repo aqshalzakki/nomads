@@ -5,7 +5,7 @@ namespace App\Providers\User;
 use Illuminate\Support\ServiceProvider;
 
 use App\User;
-use App\Observers\UserObserver;
+use App\Observers\User\UserObserver;
 
 class UserServiceProvider extends ServiceProvider
 {

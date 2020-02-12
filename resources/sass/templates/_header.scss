@@ -10,7 +10,7 @@
 	position: relative;
 	margin: auto;
 	padding: 0;
-	width: 92%;
+	width: 90%;
 	z-index: 10;
 	background-color: $putih;
 	border-bottom-left-radius: 8px;
@@ -171,6 +171,7 @@
 											text-decoration: none;
 											color: $biruGelap;
 											border: none;
+											outline: none;
 											display: inline;
 											background-color: transparent;
 

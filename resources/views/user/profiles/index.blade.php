@@ -4,7 +4,7 @@
 @section('content')
     <!-- ----------------PROFILE-SECTION---------------- -->
     <section class="custom-bg dynamic-content" id="profile">
-        <div class="container">
+        <div class="nomads-container">
             <div class="nomads-breadcrumb my-4">
                 <a href="{{ route('profile.index') }}">My Profile</a>
                 <span>/</span>
@@ -39,7 +39,7 @@
                         @endif
                         <form action="{{ route('profile.update', $user->profile->id) }}" method="post" enctype="multipart/form-data">
                         <div class="row">
-                            <div class="col-lg-5 col-md-12">
+                            <div class="col-lg-4 col-md-11">
                                 <div class="user-profile-photo-card mb-5">
                                     <div class="photo">
                                         <img id="imageField" src="{{ imageStoragePath($user->profile->image) }}">
@@ -55,7 +55,7 @@
                                     <span class="d-block mt-3" id="fileName"></span>
                                 </div>
                             </div>
-                            <div class="col-lg-7">
+                            <div class="col-lg-8">
                                 <div class="profile-form">
                                         @csrf
                                         @method('PATCH')
@@ -143,7 +143,7 @@
                                                     <a class="verification" href="{{ url('/email/verify') }}">Klik disini untuk melakukan verifikasi Email anda.</a>
                                                 @endif
                                                 </div>
-                                                <span class="status">{{ $user->hasVerifiedEmail() ? 'Terverifikasi' : 'Unverified' }}</span>
+                                                <span style="width: 20%;" class="status text-center">{{ $user->hasVerifiedEmail() ? 'Terverifikasi' : 'Tidak Terverifikasi' }}</span>
                                             </div>
                                             <div class="input">
                                                 <label for="nomor-hp">Nomor HP</label>
@@ -156,9 +156,13 @@
                                                         value="{{ old('phone_number') ?? $user->profile->phone_number }}"
                                                     />
 
-                                                    <a class="verification" href="#">Klik disini untuk melakukan verifikasi Nomor anda.</a>
+                                                    @unless($user->profile->hasVerifiedPhoneNumber())
+                                                        <a class="verification" href="#" data-nmodal="#verifyPhone">
+                                                            Klik disini untuk melakukan verifikasi Nomor anda.
+                                                        </a>
+                                                    @endunless
                                                 </div>
-                                                <span class="status">Terverifikasi</span>
+                                                <span style="width: 20%;" class="status text-center">{{ $user->profile->hasVerifiedPhoneNumber() ? 'Terverifikasi' : 'Tidak Terverifikasi'}}</span>
                                             </div>
                                         </div>
 
@@ -172,7 +176,11 @@
             </div>
         </div>
     </section>
+
+    @include('user.profiles.modals.email')
+    @include('user.profiles.modals.phone', compact('user'))
 @endsection
+
 
 @push('addon-script')
 

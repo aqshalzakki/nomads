@@ -1113,6 +1113,46 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
   }
 })();
 
+(function nomadsModal() {
+  var modalTogglers = document.querySelectorAll('[data-nmodal]');
+
+  if (modalTogglers) {
+    modalTogglers.forEach(function (toggler) {
+      toggler.addEventListener('click', function (e) {
+        e.preventDefault();
+        var modalTarget = toggler.dataset.nmodal;
+        document.querySelector('.nomads-modal' + modalTarget).classList.add('active');
+      });
+    });
+  } // Close Modal
+
+
+  var nomadsModals = document.querySelectorAll('.nomads-modal');
+  nomadsModals.forEach(function (modal) {
+    modal.querySelectorAll('[data-close]').forEach(function (close) {
+      close.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        if (close.dataset.close == 'true') {
+          modal.classList.remove('active');
+        }
+      });
+    });
+  });
+})();
+
+(function numberOnly() {
+  var magicNumberInputs = document.querySelectorAll('#magicNumberInputs input');
+
+  if (magicNumberInputs) {
+    magicNumberInputs.forEach(function (input) {
+      input.addEventListener('keyup', function (e) {
+        input.value = input.value.slice(0, 1);
+      });
+    });
+  }
+})();
+
 /***/ }),
 
 /***/ "./resources/sass/app.scss":

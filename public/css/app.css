@@ -11433,6 +11433,140 @@ a.text-dark:focus {
   font-size: 15px;
 }
 
+.nomads-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.nomads-modal.active {
+  visibility: visible;
+  pointer-events: all;
+}
+
+.nomads-modal.active .overlay {
+  opacity: 1;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+}
+
+.nomads-modal.active .modal-box {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition-delay: 0.5s;
+          transition-delay: 0.5s;
+}
+
+.nomads-modal .overlay {
+  background-color: rgba(0, 0, 0, 0.25);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+  -webkit-transition-delay: 0.4s;
+          transition-delay: 0.4s;
+  opacity: 0;
+}
+
+.nomads-modal .modal-box {
+  position: relative;
+  padding: 40px 30px;
+  width: 50vh;
+  background-color: #fff;
+  text-align: center;
+  box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+}
+
+.nomads-modal .modal-box .close-modal {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 30px;
+  height: 30px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.nomads-modal .modal-box .close-modal:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.nomads-modal .modal-box .ilustration {
+  width: 150px;
+  margin: auto;
+}
+
+.nomads-modal .modal-box .ilustration img {
+  width: 100%;
+}
+
+.nomads-modal .modal-box .title {
+  color: #0B1C4D;
+}
+
+.nomads-modal .modal-box .message {
+  color: #0B1C4D;
+}
+
+.nomads-modal .modal-box .verify-phone .magic-number-inputs.error input {
+  border: 1px solid red;
+}
+
+.nomads-modal .modal-box .verify-phone .magic-number-inputs input {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  text-align: center;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  margin: 0 5px;
+  outline: none;
+}
+
+.nomads-modal .modal-box .verify-phone .magic-number-inputs input::-webkit-outer-spin-button,
+.nomads-modal .modal-box .verify-phone .magic-number-inputs input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.nomads-modal .modal-box .verify-phone .verify-error {
+  display: block;
+  color: red;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -11443,7 +11577,7 @@ a.text-dark:focus {
   position: relative;
   margin: auto;
   padding: 0;
-  width: 92%;
+  width: 90%;
   z-index: 10;
   background-color: #FFF;
   border-bottom-left-radius: 8px;
@@ -11618,6 +11752,7 @@ a.text-dark:focus {
   text-decoration: none;
   color: #0B1C4D;
   border: none;
+  outline: none;
   display: inline;
   background-color: transparent;
 }
@@ -11813,6 +11948,11 @@ a.text-dark:focus {
   margin-top: -80px;
   padding-top: 80px;
   margin-bottom: 80px;
+}
+
+#profile .nomads-container {
+  width: 90%;
+  margin: auto;
 }
 
 #profile .profile-card.right .user-profile-photo-card {
@@ -12304,6 +12444,140 @@ a.text-dark:focus {
   font-size: 15px;
 }
 
+.nomads-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.nomads-modal.active {
+  visibility: visible;
+  pointer-events: all;
+}
+
+.nomads-modal.active .overlay {
+  opacity: 1;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+}
+
+.nomads-modal.active .modal-box {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition-delay: 0.5s;
+          transition-delay: 0.5s;
+}
+
+.nomads-modal .overlay {
+  background-color: rgba(0, 0, 0, 0.25);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+  -webkit-transition-delay: 0.4s;
+          transition-delay: 0.4s;
+  opacity: 0;
+}
+
+.nomads-modal .modal-box {
+  position: relative;
+  padding: 40px 30px;
+  width: 50vh;
+  background-color: #fff;
+  text-align: center;
+  box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+}
+
+.nomads-modal .modal-box .close-modal {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 30px;
+  height: 30px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.nomads-modal .modal-box .close-modal:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.nomads-modal .modal-box .ilustration {
+  width: 150px;
+  margin: auto;
+}
+
+.nomads-modal .modal-box .ilustration img {
+  width: 100%;
+}
+
+.nomads-modal .modal-box .title {
+  color: #0B1C4D;
+}
+
+.nomads-modal .modal-box .message {
+  color: #0B1C4D;
+}
+
+.nomads-modal .modal-box .verify-phone .magic-number-inputs.error input {
+  border: 1px solid red;
+}
+
+.nomads-modal .modal-box .verify-phone .magic-number-inputs input {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  text-align: center;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  margin: 0 5px;
+  outline: none;
+}
+
+.nomads-modal .modal-box .verify-phone .magic-number-inputs input::-webkit-outer-spin-button,
+.nomads-modal .modal-box .verify-phone .magic-number-inputs input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.nomads-modal .modal-box .verify-phone .verify-error {
+  display: block;
+  color: red;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -12314,7 +12588,7 @@ a.text-dark:focus {
   position: relative;
   margin: auto;
   padding: 0;
-  width: 92%;
+  width: 90%;
   z-index: 10;
   background-color: #FFF;
   border-bottom-left-radius: 8px;
@@ -12489,6 +12763,7 @@ a.text-dark:focus {
   text-decoration: none;
   color: #0B1C4D;
   border: none;
+  outline: none;
   display: inline;
   background-color: transparent;
 }
@@ -12984,6 +13259,140 @@ form[data-urlcheckpassword] .password-input small {
   font-size: 15px;
 }
 
+.nomads-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.nomads-modal.active {
+  visibility: visible;
+  pointer-events: all;
+}
+
+.nomads-modal.active .overlay {
+  opacity: 1;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+}
+
+.nomads-modal.active .modal-box {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition-delay: 0.5s;
+          transition-delay: 0.5s;
+}
+
+.nomads-modal .overlay {
+  background-color: rgba(0, 0, 0, 0.25);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+  -webkit-transition-delay: 0.4s;
+          transition-delay: 0.4s;
+  opacity: 0;
+}
+
+.nomads-modal .modal-box {
+  position: relative;
+  padding: 40px 30px;
+  width: 50vh;
+  background-color: #fff;
+  text-align: center;
+  box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+}
+
+.nomads-modal .modal-box .close-modal {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 30px;
+  height: 30px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.nomads-modal .modal-box .close-modal:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.nomads-modal .modal-box .ilustration {
+  width: 150px;
+  margin: auto;
+}
+
+.nomads-modal .modal-box .ilustration img {
+  width: 100%;
+}
+
+.nomads-modal .modal-box .title {
+  color: #0B1C4D;
+}
+
+.nomads-modal .modal-box .message {
+  color: #0B1C4D;
+}
+
+.nomads-modal .modal-box .verify-phone .magic-number-inputs.error input {
+  border: 1px solid red;
+}
+
+.nomads-modal .modal-box .verify-phone .magic-number-inputs input {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  text-align: center;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  margin: 0 5px;
+  outline: none;
+}
+
+.nomads-modal .modal-box .verify-phone .magic-number-inputs input::-webkit-outer-spin-button,
+.nomads-modal .modal-box .verify-phone .magic-number-inputs input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.nomads-modal .modal-box .verify-phone .verify-error {
+  display: block;
+  color: red;
+}
+
 .explore {
   display: -webkit-box;
   display: flex;
@@ -13292,7 +13701,7 @@ form[data-urlcheckpassword] .password-input small {
   position: relative;
   margin: auto;
   padding: 0;
-  width: 92%;
+  width: 90%;
   z-index: 10;
   background-color: #FFF;
   border-bottom-left-radius: 8px;
@@ -13467,6 +13876,7 @@ form[data-urlcheckpassword] .password-input small {
   text-decoration: none;
   color: #0B1C4D;
   border: none;
+  outline: none;
   display: inline;
   background-color: transparent;
 }
@@ -13605,6 +14015,140 @@ form[data-urlcheckpassword] .password-input small {
 .profile-card.right .title p {
   color: inherit;
   font-size: 15px;
+}
+
+.nomads-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.nomads-modal.active {
+  visibility: visible;
+  pointer-events: all;
+}
+
+.nomads-modal.active .overlay {
+  opacity: 1;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+}
+
+.nomads-modal.active .modal-box {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition-delay: 0.5s;
+          transition-delay: 0.5s;
+}
+
+.nomads-modal .overlay {
+  background-color: rgba(0, 0, 0, 0.25);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+  -webkit-transition-delay: 0.4s;
+          transition-delay: 0.4s;
+  opacity: 0;
+}
+
+.nomads-modal .modal-box {
+  position: relative;
+  padding: 40px 30px;
+  width: 50vh;
+  background-color: #fff;
+  text-align: center;
+  box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+}
+
+.nomads-modal .modal-box .close-modal {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 30px;
+  height: 30px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.nomads-modal .modal-box .close-modal:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.nomads-modal .modal-box .ilustration {
+  width: 150px;
+  margin: auto;
+}
+
+.nomads-modal .modal-box .ilustration img {
+  width: 100%;
+}
+
+.nomads-modal .modal-box .title {
+  color: #0B1C4D;
+}
+
+.nomads-modal .modal-box .message {
+  color: #0B1C4D;
+}
+
+.nomads-modal .modal-box .verify-phone .magic-number-inputs.error input {
+  border: 1px solid red;
+}
+
+.nomads-modal .modal-box .verify-phone .magic-number-inputs input {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  text-align: center;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  margin: 0 5px;
+  outline: none;
+}
+
+.nomads-modal .modal-box .verify-phone .magic-number-inputs input::-webkit-outer-spin-button,
+.nomads-modal .modal-box .verify-phone .magic-number-inputs input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.nomads-modal .modal-box .verify-phone .verify-error {
+  display: block;
+  color: red;
 }
 
 #packagesHero {
