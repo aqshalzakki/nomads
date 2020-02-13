@@ -41,8 +41,11 @@ class ProfileController extends Controller
         // set cache
         putUserCache($user);
 
-        return ( $user->handleUpdatedEmail($oldEmail) ) ? redirect('/email/verify')
-                                                          ->withMessage($user->emailChangedMessage())
+        return ( $user->handleUpdatedEmail($oldEmail) ) ? back()
+                                                          ->with('email', [
+                                                            'title'   => 'Email Sent!',
+                                                            'message' => 'Kindly check your inbox in order to verify the account.'
+                                                          ])
                                                         : back()->withMessage('Profil anda telah diperbarui!');
     }
 

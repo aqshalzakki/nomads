@@ -40,20 +40,20 @@
                         <form action="{{ route('profile.update', $user->profile->id) }}" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-lg-4 col-md-11">
-                                <div class="user-profile-photo-card mb-5">
-                                    <div class="photo">
-                                        <img id="imageField" src="{{ imageStoragePath($user->profile->image) }}">
+                                    <div class="user-profile-photo-card mb-5">
+                                        <label class="photo m-0" for="selectPhoto" title="Pilih gambar...">
+                                            <img id="imageField" src="{{ imageStoragePath($user->profile->image) }}">
+                                        </label>
+                                        <div class="select-photo mt-2">
+                                            <label for="selectPhoto">Pilih Foto</label>
+                                            <input type="file" name="image" class="file-input" id="selectPhoto">
+                                        </div>
+                                        <ul class="rules mt-1">
+                                            <li>Besar file: maksimum 10.000.000 bytes (10 Megabytes)</li>
+                                            <li>Ekstensi file yang diperbolehkan: .JPG, .JPEG, .PNG</li>
+                                        </ul>
+                                        <span class="d-block mt-3" id="fileName"></span>
                                     </div>
-                                    <div class="select-photo mt-2">
-                                        <label for="selectPhoto">Pilih Foto</label>
-                                        <input type="file" name="image" class="file-input" id="selectPhoto">
-                                    </div>
-                                    <ul class="rules mt-1">
-                                        <li>Besar file: maksimum 10.000.000 bytes (10 Megabytes)</li>
-                                        <li>Ekstensi file yang diperbolehkan: .JPG, .JPEG, .PNG</li>
-                                    </ul>
-                                    <span class="d-block mt-3" id="fileName"></span>
-                                </div>
                             </div>
                             <div class="col-lg-8">
                                 <div class="profile-form">

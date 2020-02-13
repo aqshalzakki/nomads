@@ -11356,6 +11356,11 @@ a.text-dark:focus {
   }
 }
 
+.nomads-container {
+  width: 90%;
+  margin: auto;
+}
+
 .nomads-btn {
   text-decoration: none;
   display: inline-block;
@@ -12367,6 +12372,11 @@ a.text-dark:focus {
   }
 }
 
+.nomads-container {
+  width: 90%;
+  margin: auto;
+}
+
 .nomads-btn {
   text-decoration: none;
   display: inline-block;
@@ -13182,6 +13192,11 @@ form[data-urlcheckpassword] .password-input small {
   box-sizing: border-box;
 }
 
+.nomads-container {
+  width: 90%;
+  margin: auto;
+}
+
 .nomads-btn {
   text-decoration: none;
   display: inline-block;
@@ -13938,6 +13953,11 @@ form[data-urlcheckpassword] .password-input small {
 #footer .footer-contents .copyright p {
   color: #fff;
   margin: 0;
+}
+
+.nomads-container {
+  width: 90%;
+  margin: auto;
 }
 
 .nomads-btn {

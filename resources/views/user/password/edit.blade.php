@@ -4,7 +4,7 @@
 @section('content')
     <!-- -------------Change-Password-Section------------- -->
     <section class="custom-bg dynamic-content" id="changePasword">
-        <div class="container">
+        <div class="nomads-container">
             <div class="nomads-breadcrumb my-4">
                 <a href="{{ route('profile.index') }}">My Profile</a>
                 <span>/</span>

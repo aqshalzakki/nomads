@@ -16,7 +16,8 @@ class ChangePasswordRequest extends FormRequest
     {
         return [
             'current_password' => ['required', new IsPasswordMatches ],
-            'new_password'     => ['required', 'different:current_password', 'confirmed', 'min:6'],
+            'new_password'     => ['required', 'different:current_password', 'confirmed', 'min:8', 
+                                   'regex: ^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%])?.*$^'],
         ];
     }
 
