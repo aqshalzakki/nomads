@@ -20,24 +20,22 @@
                     <!-- ---------Card-Right--------- -->
                     <div class="profile-card right">
 
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+                        <div id="errors">
+                            
+                        </div>
 
                         <div class="title mb-3">
                             <h1>My Profile</h1>
                             <p>Kelola informasi profil Anda untuk mengontrol, melindungi dan mengamankan akun</p>
                         </div>
-                        @if(session()->has('message'))
-                            <div class="alert alert-success">{{ session('message') }}</div>
-                        @endif
-                        <form action="{{ route('profile.update', $user->profile->id) }}" method="post" enctype="multipart/form-data">
+
+                        <div id="message">
+                            @if(session()->has('message'))
+                                {{ session('message') }}
+                            @endif
+                        </div>
+
+                        <form id="profileForm" action="{{ route('profile.update', $user->profile->id) }}" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-lg-4 col-md-11">
                                     <div class="user-profile-photo-card mb-5">
@@ -140,10 +138,10 @@
                                                     />
 
                                                 @if(!$user->hasVerifiedEmail())
-                                                    <a class="verification" href="{{ url('/email/verify') }}">Klik disini untuk melakukan verifikasi Email anda.</a>
+                                                    <a id="verifyEmail" style="cursor: pointer;" class="verification">Klik disini untuk melakukan verifikasi Email anda.</a>
                                                 @endif
                                                 </div>
-                                                <span style="width: 20%;" class="status text-center">{{ $user->hasVerifiedEmail() ? 'Terverifikasi' : 'Tidak Terverifikasi' }}</span>
+                                                <span id="emailStatus" style="width: 20%;" class="status text-center">{{ $user->hasVerifiedEmail() ? 'Terverifikasi' : 'Tidak Terverifikasi' }}</span>
                                             </div>
                                             <div class="input">
                                                 <label for="nomor-hp">Nomor HP</label>
@@ -162,7 +160,7 @@
                                                         </a>
                                                     @endunless
                                                 </div>
-                                                <span style="width: 20%;" class="status text-center">{{ $user->profile->hasVerifiedPhoneNumber() ? 'Terverifikasi' : 'Tidak Terverifikasi'}}</span>
+                                                <span id="phoneStatus" style="width: 20%;" class="status text-center">{{ $user->profile->hasVerifiedPhoneNumber() ? 'Terverifikasi' : 'Tidak Terverifikasi'}}</span>
                                             </div>
                                         </div>
 

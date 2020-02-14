@@ -1153,6 +1153,82 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
   }
 })();
 
+(function updateProfile() {
+  var form = document.getElementById('profileForm');
+
+  if (form) {
+    var messageContainer = document.getElementById('message');
+    var oldEmail = form.querySelector('#email').value;
+    var emailModal = document.getElementById('emailSent');
+    var modalTitle = document.querySelector('h4.title');
+    var modalMessage = document.querySelector('p.message');
+    var modalConfirmation = document.getElementById('confirmation');
+    var oldPhoneNumber = form.querySelector('#nomor-hp').value;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var data = {
+        name: form.querySelector('#nama').value,
+        date_of_birth: form.querySelector('#datePicker').value,
+        gender: form.querySelector('input[checked]').value,
+        email: form.querySelector('#email').value,
+        phone_number: form.querySelector('#nomor-hp').value,
+        _method: 'PATCH'
+      };
+      fetch(form.action, {
+        method: form.method,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'X-CSRF-TOKEN': csrf
+        },
+        body: JSON.stringify(data)
+      }).then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        if (res.status == 204) {
+          messageContainer.classList.add('alert', 'alert-primary');
+          messageContainer.innerHTML = res.message; // set email verification status
+
+          if (oldEmail != data.email) {
+            document.getElementById('emailStatus').innerHTML = 'Tidak Terverifikasi';
+            emailModal.classList.add('active');
+          }
+        } else {
+          console.log(res.errors);
+        }
+      })["catch"](function (e) {
+        return console.log(e);
+      });
+    });
+    var requestEmailForm = document.getElementById('requestEmail');
+    document.getElementById('verifyEmail').addEventListener('click', function (e) {
+      emailModal.classList.toggle('active');
+      modalTitle.innerHTML = 'Email is already sent!';
+      modalMessage.innerHTML = 'Please check your email for verification.';
+      modalConfirmation.innerHTML = 'Oke';
+      requestEmailForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        fetch(requestEmailForm.action, {
+          method: 'post',
+          headers: {
+            'X-CSRF-TOKEN': csrf,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }
+        }).then(function (res) {
+          return res.json();
+        }).then(function (res) {
+          modalTitle.innerHTML = res.title;
+          modalMessage.innerHTML = res.message;
+          modalConfirmation.innerHTML = 'Done';
+        })["catch"](function (er) {
+          return console.log(er);
+        });
+      });
+    });
+  }
+})();
+
 /***/ }),
 
 /***/ "./resources/sass/app.scss":

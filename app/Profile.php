@@ -75,11 +75,11 @@ class Profile extends Model
 
 
             // Send the message
-            Nexmo::message()->send([
-                'to'   => $this->phone_number,
-                'from' => env('NEXMO_FROM'),
-                'text' => 'Kode verifikasi untuk nomor telepon akun nomads anda ' . (int) $token . ' .Jangan bagikan kode ini kepada siapapun.',
-            ]);
+            // Nexmo::message()->send([
+            //     'to'   => $this->phone_number,
+            //     'from' => env('NEXMO_FROM'),
+            //     'text' => 'Kode verifikasi untuk nomor telepon akun nomads anda ' . (int) $token . ' .Jangan bagikan kode ini kepada siapapun.',
+            // ]);
 
             // Update verified at to null
             $this->update(['verified_at' => null]);
