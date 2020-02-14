@@ -17,7 +17,7 @@
     </div>
     <form action="{{ route('profile.update', $user->profile->id) }}" method="post" enctype="multipart/form-data">
     <div class="row">
-        <div class="col-lg-5 col-md-12">
+        <div class="col-lg-4 col-md-11">
             <div class="user-profile-photo-card mb-5">
                 <div class="photo">
                     <img id="imageField" src="{{ imageStoragePath($user->profile->image) }}">
@@ -33,7 +33,7 @@
                 <span class="d-block mt-3" id="fileName"></span>
             </div>
         </div>
-        <div class="col-lg-7">
+        <div class="col-lg-8">
             <div class="profile-form">
                     @csrf
                     @method('PATCH')
@@ -41,8 +41,8 @@
                     <h4>Ubah Data Diri</h4>
                     <div class="inputs">
                         <div class="input">
-                            <label for="nama">Username</label>
-                            <input required type="text" name="username" id="nama" value="{{ old('username') ?? $user->username }}">
+                            <label for="name">Name</label>
+                            <input required type="text" name="name" id="name" value="{{ old('name') ?? $user->name }}">
                         </div>
                         <div class="input">
                             <label for="datePicker">
@@ -50,10 +50,10 @@
                             </label>
                                 <input required
                                     autocomplete="0"
-                                    type="text"
+                                    type="date"
                                     class="datePicker @error('date_birth') is-invalid @enderror"
                                     id="datePicker"
-                                    style="width: 70%;"
+                                    style="width: 100%;"
                                     value="{{ old('date_of_birth') ?? $user->profile->date_of_birth }}"
                                     name="date_of_birth"
                                 />
@@ -121,7 +121,7 @@
                                 <a class="verification" href="{{ url('/email/verify') }}">Klik disini untuk melakukan verifikasi Email anda.</a>
                             @endif
                             </div>
-                            <span class="status">{{ $user->hasVerifiedEmail() ? 'Terverifikasi' : 'Not Verified' }}</span>
+                            <span style="width: 20%;" class="status text-center">{{ $user->hasVerifiedEmail() ? 'Terverifikasi' : 'Not Verified' }}</span>
                         </div>
                         <div class="input">
                             <label for="nomor-hp">Nomor HP</label>
@@ -135,7 +135,7 @@
 
                                 <a class="verification" href="#">Klik disini untuk melakukan verifikasi Nomor anda.</a>
                             </div>
-                            <span class="status">Terverifikasi</span>
+                            <span style="width: 20%;" class="status text-center">{{ $user->profile->hasVerifiedPhoneNumber() ? 'Terverifikasi' : 'Tidak Terverifikasi' }}</span>
                         </div>
                     </div>
 

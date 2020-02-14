@@ -7,6 +7,7 @@ use App\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserAndProfileRequest as UserRequest;
+use App\Http\Requests\PhoneNumber\TokenRequest;
 
 class ProfileController extends Controller
 {
@@ -21,22 +22,40 @@ class ProfileController extends Controller
         // User Instance... so i dont have to call it over and over again
         $user = $profile->user;
 
-        // old email
-        $oldEmail = $user->email;
+        // old email and phone number
+        $oldEmail       = $user->email;
+        $oldPhoneNumber = $profile->phone_number;
 
-        $dataProfile = $request->except(['username', 'email']);
+        // Prepare for data
+        $dataProfile = $request->except(['name', 'email']);
         $dataProfile['image'] = $profile->handleUploadedImage();
 
+        // update user and profile 
         $profile->update($dataProfile);
         $user->update($request->only([
-            'username', 'email'
+            'name', 'email'
         ]));
+
+        $profile->handleUpdatedPhoneNumber($oldPhoneNumber);
 
         // set cache
         putUserCache($user);
 
-        return ( $user->handleUpdatedEmail($oldEmail) ) ? redirect('/email/verify')
-                                                          ->withMessage($user->emailChangedMessage())
-                                                        : back();
+        return ( $user->handleUpdatedEmail($oldEmail) ) ? back()
+                                                          ->with('email', [
+                                                            'title'   => 'Email Sent!',
+                                                            'message' => 'Kindly check your inbox in order to verify the account.'
+                                                          ])
+                                                        : back()->withMessage('Profil anda telah diperbarui!');
+    }
+
+    public function verifyToken(TokenRequest $request, User $user)
+    {
+        $user->profile->update(['verified_at' => now()]);
+        $user->sms_token()->where('user_id', $user->id)->delete();
+
+        putUserCache($user);
+        return $request->isJson() ? ['status' => 204, 'message' => 'Phone number has been verified!']
+                                  : back()->withMessage('Phone number has been verified!');
     }
 }

@@ -18,13 +18,18 @@
 	padding-top: 80px;
 	margin-bottom: 80px;
 
+	.nomads-container{
+		width: 90%;
+		margin: auto;
+	}
+
 	// --2
 	.profile-card{
 		
 
 		// --2
 		&.right{
-			
+
 			.user-profile-photo-card{
 				padding: 10px;
 				background-color: rgba($abuCerah, 0.4);

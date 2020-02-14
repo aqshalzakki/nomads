@@ -39,11 +39,12 @@
                   @csrf
                   <div class="form-group">
                     <label for="email">Email</label>
-                    <input required value="{{ old('email') }}" name="email" type="text" class="form-control" id="email">
+                    <input required value="{{ old('email') }}" name="email" type="text" class="form-control @error('email') is-invalid @enderror" id="email">
                   </div>
                   <div class="form-group">
                     <label for="password">Password</label>
-                    <input required name="password" type="password" class="form-control" id="password">
+                    <input required name="password" type="password" class="form-control @error('email') is-invalid @enderror" id="password">
+                    @error('email') <small class="text-danger ml-2"> {{ $message }} </small> @enderror
                   </div>
                   <div class="checkbox">
                     <input type="checkbox" name="remember" id="remember">

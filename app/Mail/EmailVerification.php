@@ -23,6 +23,10 @@ class EmailVerification extends Mailable
         $this->oldEmail = $oldEmail;
 
         $this->urlVerification = $this->getUrlVerification(); 
+        session('verify', [
+            'title'   => 'Success!',
+            'message' => 'Email Successfully Verified.'
+        ]);
     }
 
     public function getUrlVerification()

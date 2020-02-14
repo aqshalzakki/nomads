@@ -30,7 +30,7 @@ class UserAndProfileRequest extends FormRequest
 
         return [
             // user
-            'username'      => ['required', 'alpha_num', 'between:4,15', Rule::unique('users')->ignore($userId)],
+            'name'          => ['required', 'between:4,15', Rule::unique('users')->ignore($userId)],
             'email'         => ['email', Rule::unique('users')->ignore($userId)],
 
             // profile

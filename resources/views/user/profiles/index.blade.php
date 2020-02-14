@@ -4,7 +4,7 @@
 @section('content')
     <!-- ----------------PROFILE-SECTION---------------- -->
     <section class="custom-bg dynamic-content" id="profile">
-        <div class="container">
+        <div class="nomads-container">
             <div class="nomads-breadcrumb my-4">
                 <a href="{{ route('profile.index') }}">My Profile</a>
                 <span>/</span>
@@ -31,28 +31,31 @@
                         @endif
 
                         <div class="title mb-3">
-                            <h1>Profil Saya</h1>
+                            <h1>My Profile</h1>
                             <p>Kelola informasi profil Anda untuk mengontrol, melindungi dan mengamankan akun</p>
                         </div>
+                        @if(session()->has('message'))
+                            <div class="alert alert-success">{{ session('message') }}</div>
+                        @endif
                         <form action="{{ route('profile.update', $user->profile->id) }}" method="post" enctype="multipart/form-data">
                         <div class="row">
-                            <div class="col-lg-5 col-md-12">
-                                <div class="user-profile-photo-card mb-5">
-                                    <div class="photo">
-                                        <img id="imageField" src="{{ imageStoragePath($user->profile->image) }}">
+                            <div class="col-lg-4 col-md-11">
+                                    <div class="user-profile-photo-card mb-5">
+                                        <label class="photo m-0" for="selectPhoto" title="Pilih gambar...">
+                                            <img id="imageField" src="{{ imageStoragePath($user->profile->image) }}">
+                                        </label>
+                                        <div class="select-photo mt-2">
+                                            <label for="selectPhoto">Pilih Foto</label>
+                                            <input type="file" name="image" class="file-input" id="selectPhoto">
+                                        </div>
+                                        <ul class="rules mt-1">
+                                            <li>Besar file: maksimum 10.000.000 bytes (10 Megabytes)</li>
+                                            <li>Ekstensi file yang diperbolehkan: .JPG, .JPEG, .PNG</li>
+                                        </ul>
+                                        <span class="d-block mt-3" id="fileName"></span>
                                     </div>
-                                    <div class="select-photo mt-2">
-                                        <label for="selectPhoto">Pilih Foto</label>
-                                        <input type="file" name="image" class="file-input" id="selectPhoto">
-                                    </div>
-                                    <ul class="rules mt-1">
-                                        <li>Besar file: maksimum 10.000.000 bytes (10 Megabytes)</li>
-                                        <li>Ekstensi file yang diperbolehkan: .JPG, .JPEG, .PNG</li>
-                                    </ul>
-                                    <span class="d-block mt-3" id="fileName"></span>
-                                </div>
                             </div>
-                            <div class="col-lg-7">
+                            <div class="col-lg-8">
                                 <div class="profile-form">
                                         @csrf
                                         @method('PATCH')
@@ -60,8 +63,8 @@
                                         <h4>Ubah Data Diri</h4>
                                         <div class="inputs">
                                             <div class="input">
-                                                <label for="nama">Username</label>
-                                                <input required type="text" name="username" id="nama" value="{{ old('username') ?? $user->username }}">
+                                                <label for="nama">Name</label>
+                                                <input required type="text" name="name" id="nama" value="{{ old('name') ?? $user->name }}">
                                             </div>
                                             <div class="input">
                                                 <label for="datePicker">
@@ -69,10 +72,10 @@
                                                 </label>
                                                     <input required
                                                       autocomplete="0"
-                                                      type="text"
+                                                      type="date"
                                                       class="datePicker @error('date_birth') is-invalid @enderror"
                                                       id="datePicker"
-                                                      style="width: 70%;"
+                                                      style="width: 100%;"
                                                       value="{{ old('date_of_birth') ?? $user->profile->date_of_birth }}"
                                                       name="date_of_birth"
                                                     />
@@ -140,7 +143,7 @@
                                                     <a class="verification" href="{{ url('/email/verify') }}">Klik disini untuk melakukan verifikasi Email anda.</a>
                                                 @endif
                                                 </div>
-                                                <span class="status">{{ $user->hasVerifiedEmail() ? 'Terverifikasi' : 'Not Verified' }}</span>
+                                                <span style="width: 20%;" class="status text-center">{{ $user->hasVerifiedEmail() ? 'Terverifikasi' : 'Tidak Terverifikasi' }}</span>
                                             </div>
                                             <div class="input">
                                                 <label for="nomor-hp">Nomor HP</label>
@@ -153,9 +156,13 @@
                                                         value="{{ old('phone_number') ?? $user->profile->phone_number }}"
                                                     />
 
-                                                    <a class="verification" href="#">Klik disini untuk melakukan verifikasi Nomor anda.</a>
+                                                    @unless($user->profile->hasVerifiedPhoneNumber())
+                                                        <a class="verification" href="#" data-nmodal="#verifyPhone">
+                                                            Klik disini untuk melakukan verifikasi Nomor anda.
+                                                        </a>
+                                                    @endunless
                                                 </div>
-                                                <span class="status">Terverifikasi</span>
+                                                <span style="width: 20%;" class="status text-center">{{ $user->profile->hasVerifiedPhoneNumber() ? 'Terverifikasi' : 'Tidak Terverifikasi'}}</span>
                                             </div>
                                         </div>
 
@@ -169,7 +176,11 @@
             </div>
         </div>
     </section>
+
+    @include('user.profiles.modals.email')
+    @include('user.profiles.modals.phone', compact('user'))
 @endsection
+
 
 @push('addon-script')
 

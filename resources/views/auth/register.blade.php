@@ -37,16 +37,19 @@
               <form action="{{ route('register') }}" method="POST">
                 @csrf
                 <div class="form-group">
-                  <label for="username">Username</label>
-                  <input value="{{ old('username') }}" required name="username" type="text" class="form-control @error('username') is-invalid @enderror" id="username">
+                  <label for="name">Name</label>
+                  <input value="{{ old('name') }}" required name="name" type="text" class="form-control @error('name') is-invalid @enderror" id="name">
+                  @error('name') <small class="text-danger ml-2">{{ $message }}</small> @enderror
                 </div>
                 <div class="form-group">
                   <label for="email">Email</label>
                   <input value="{{ old('email') }}" required name="email" type="email" class="form-control @error('email') is-invalid @enderror" id="email">
+                  @error('email') <small class="text-danger ml-2">{{ $message }}</small> @enderror
                 </div>
                 <div class="form-group">
                   <label for="password">Password</label>
                   <input required name="password" type="password" class="form-control @error('password') is-invalid @enderror" id="password">
+                  @error('password') <small class="text-danger ml-2">{{ $message }}</small> @enderror
                 </div>
                 <div class="form-group">
                   <label for="password_confirmation">Password Confirmation</label>

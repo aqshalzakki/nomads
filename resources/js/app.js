@@ -303,3 +303,71 @@ const baseUrl = "http://127.0.0.1:8000/";
     }
 
 })();
+
+(function nomadsModal(){
+
+	const modalTogglers = document.querySelectorAll('[data-nmodal]');
+
+	if(modalTogglers)
+	{
+		modalTogglers.forEach(toggler => {
+
+			toggler.addEventListener('click', e => {
+
+				e.preventDefault();
+
+				const modalTarget = toggler.dataset.nmodal;
+
+				document.querySelector('.nomads-modal' + modalTarget).classList.add('active');
+
+			})
+
+		})
+	}
+
+	// Close Modal
+	const nomadsModals = document.querySelectorAll('.nomads-modal');
+
+	nomadsModals.forEach(modal => {
+
+		modal.querySelectorAll('[data-close]').forEach(close => {
+
+			close.addEventListener('click', e => {
+
+				e.preventDefault();
+
+				if(close.dataset.close == 'true')
+				{
+
+					modal.classList.remove('active');
+
+				}
+				
+			})
+
+		})
+
+	})
+
+})();
+
+
+(function numberOnly(){
+
+	const magicNumberInputs = document.querySelectorAll('#magicNumberInputs input');
+
+	if(magicNumberInputs)
+	{
+		magicNumberInputs.forEach(input => {
+
+			input.addEventListener('keyup', e => {
+
+			    input.value = input.value.slice(0, 1);
+
+			})
+
+		});
+	}
+
+
+})();
