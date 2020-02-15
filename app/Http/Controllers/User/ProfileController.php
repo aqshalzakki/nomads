@@ -46,7 +46,7 @@ class ProfileController extends Controller
             return ( $user->handleUpdatedEmail($oldEmail) ) ? [
                                                                 'title'         => 'Email Sent!',
                                                                 'emailMessage'  => 'Kindly check your inbox in order to verify the account.',
-                                                                'message'       => 'Profil anda telah diperbarui!',
+                                                                'message'       => 'Profil anda berhasil diperbarui!',
                                                                 'status'        => 204 
                                                               ]
                                                             : ['status' => 204, 'message' => 'Profil anda telah diperbarui!'];

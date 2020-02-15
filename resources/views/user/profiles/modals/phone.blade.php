@@ -6,8 +6,8 @@
         <div class="ilustration">
             <img src="{{ url('frontend/img/verify-phone.png')}}">
         </div>
-        <h4 class="title mt-2">Verify Your Phone</h4>
-        <p class="message">Please type the magic number sent to +{{ $user->profile->phone_number }}</p>
+        <h4 class="title mt-2">Verify Your Phone Number</h4>
+        <p class="message">Please type the magic number we've sent to +{{ $user->profile->phone_number }}</p>
         <form class="verify-phone" action="{{ route('profile.token', $user->id) }}" method="post">
             @csrf
             @method('put')
@@ -19,7 +19,7 @@
             </div>
             @error('token') <small class="verify-error mt-2">{{ $message }}</small> @enderror
             
-            <button class="nomads-btn py-2 px-5 mt-2" type="submit" style="font-size: 16px;">Verify</button>
+            <button class="nomads-btn py-2 px-5 mt-3" type="submit" style="font-size: 16px;">Verify</button>
         </form>
     </div>
 </div>

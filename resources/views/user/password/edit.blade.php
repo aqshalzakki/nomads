@@ -48,7 +48,7 @@
                                         <div class="icon-group d-flex">
                                             <input required type="password" name="current_password" id="currentPassword" value="{{ old('current_password') }}">
                                             <button type="button" data-passwordtarget="#currentPassword">
-                                                <i class="fas fa-fw fa-eye"></i>
+                                                <i class="fas fa-fw fa-eye-slash"></i>
                                             </button>
                                         </div>
                                         <div id="error"></div>
@@ -59,7 +59,7 @@
                                         <div class="icon-group d-flex">
                                             <input required type="password" name="new_password" id="newPassword">
                                             <button type="button" data-passwordtarget="#newPassword">
-                                                <i class="fas fa-fw fa-eye"></i>
+                                                <i class="fas fa-fw fa-eye-slash"></i>
                                             </button>
                                         </div>
                                         <small>6 characters minimum</small>
@@ -69,7 +69,7 @@
                                         <div class="icon-group d-flex">
                                             <input required type="password" name="new_password_confirmation" id="repeatPassword">
                                             <button type="button" data-passwordtarget="#repeatPassword">
-                                                <i class="fas fa-fw fa-eye"></i>
+                                                <i class="fas fa-fw fa-eye-slash"></i>
                                             </button>
                                         </div>
                                     </div>

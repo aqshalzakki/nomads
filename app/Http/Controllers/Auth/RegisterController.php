@@ -34,8 +34,13 @@ class RegisterController extends Controller
     {
         rememberUserCache();
         
-        session()->flash('message', 'Your account has been created! please verify your email.');
-        return '/email/verify';
+        $response = [
+            'title'   => 'Account Created!',
+            'message' => 'Your account has been created! please verify your email account.'
+        ];
+
+        session()->flash('emailSent', $response);
+        return route('profile.index');
     }
 
     public function __construct()
@@ -51,11 +56,14 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $errorMessages = [
+            'password.regex' => 'Password must contain letters and numbers'
+        ];
         return Validator::make($data, [
-            'name'     => ['required', 'max:15', 'between:4,15'],
+            'name'     => ['required', 'between:4,20'],
             'email'    => ['required', 'string', 'email', 'max:25', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);
+            'password' => ['required', 'string', 'min:8', 'confirmed', 'regex: ^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%])?.*$^'],
+        ], $errorMessages);
     }
 
     /**

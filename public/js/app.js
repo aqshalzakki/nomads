@@ -921,12 +921,12 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
 
         if (passwordElementType == 'password') {
           passwordElement.setAttribute('type', 'text');
-          icon.classList.remove('fa-eye');
-          icon.classList.add('fa-eye-slash');
-        } else {
-          passwordElement.setAttribute('type', 'password');
           icon.classList.add('fa-eye');
           icon.classList.remove('fa-eye-slash');
+        } else {
+          passwordElement.setAttribute('type', 'password');
+          icon.classList.remove('fa-eye');
+          icon.classList.add('fa-eye-slash');
         }
       });
     });
@@ -1169,7 +1169,7 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
       var data = {
         name: form.querySelector('#nama').value,
         date_of_birth: form.querySelector('#datePicker').value,
-        gender: form.querySelector('input[checked]').value,
+        gender: form.querySelector('input[checked]') ? form.querySelector('input[checked]').value : 'Lainnya',
         email: form.querySelector('#email').value,
         phone_number: form.querySelector('#nomor-hp').value,
         _method: 'PATCH'
