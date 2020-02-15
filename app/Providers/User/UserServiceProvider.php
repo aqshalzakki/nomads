@@ -30,9 +30,9 @@ class UserServiceProvider extends ServiceProvider
         ],
             // What data should be shared...
             function($view){
-            $userCache = rememberUserCache();
+            $user = auth()->user();
 
-            $view->with('user', $userCache);
+            $view->with('user', $user);
         });
     }
 }

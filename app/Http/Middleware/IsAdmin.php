@@ -15,6 +15,6 @@ class IsAdmin
      */
     public function handle($request, Closure $next)
     {
-        return cache()->get('user')->isRole('ADMIN') ? $next($request) : redirect()->route('home');
+        return auth()->user()->isRole('ADMIN') ? $next($request) : redirect()->route('home');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use Illuminate\Http\Request;
 
 class VerificationController extends Controller
 {
@@ -30,9 +31,6 @@ class VerificationController extends Controller
 
     public function redirectTo()
     {
-        // set cache
-        cache()->put('user', auth()->user(), now()->addMonths(1));
-        
         return route('profile.index');
     }
     /**
@@ -45,5 +43,29 @@ class VerificationController extends Controller
         $this->middleware('auth');
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
+    }
+
+    /**
+     * Resend the email verification notification.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function resend(Request $request)
+    {
+        if ($request->user()->hasVerifiedEmail()) {
+            return redirect($this->redirectPath());
+        }
+
+        $request->user()->sendEmailVerificationNotification();
+        
+        $jsonResponse = [
+            'status'  => 200,
+            'title'   => 'Email Was Sent!',
+            'message' => 'A fresh verification link has been sent to your email address.'
+        ];
+
+        // if the request expecting a proper json response
+        return $request->isJson() ? $jsonResponse : back()->with('resent', true);
     }
 }

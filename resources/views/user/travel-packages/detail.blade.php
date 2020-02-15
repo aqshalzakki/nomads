@@ -35,17 +35,17 @@
                         <img
                           class="xzoom"
                           id="xzoom-default"
-                          src="{{ imageStoragePath($travelPackage->galleries->first()->image) }}"
-                          xoriginal="{{ imageStoragePath($travelPackage->galleries->first()->image) }}"
+                          src="{{ Storage::url($travelPackage->galleries->first()->image) }}"
+                          xoriginal="{{ Storage::url($travelPackage->galleries->first()->image) }}"
                         />
                         <div class="xzoom-thumbs">
                           @foreach($travelPackage->galleries as $gallery)  
-                            <a href="{{ imageStoragePath($gallery->image) }}">
+                            <a href="{{ Storage::url($gallery->image) }}">
                               <img
                                 class="xzoom-gallery"
                                 width="128"
-                                src="{{ imageStoragePath($gallery->image) }}"
-                                xpreview="{{ imageStoragePath($gallery->image) }}"
+                                src="{{ Storage::url($gallery->image) }}"
+                                xpreview="{{ Storage::url($gallery->image) }}"
                               />
                             </a>
                           @endforeach
@@ -101,7 +101,7 @@
                     @foreach($transaction->details as $detail)
                       <img
                           title="{{ $detail->user->username }}" 
-                          src="{{ imageStoragePath($detail->user->profile->image) ?? imageStoragePath('profiles/default.jpg') }}" 
+                          src="{{ Storage::url($detail->user->profile->image) ?? Storage::url('profiles/default.jpg') }}" 
                           class="rounded-circle"
                           style="width: 40px;" 
                       />
@@ -110,7 +110,7 @@
                     @else
                       <img
                           title="Who is going?" 
-                          src="{{ imageStoragePath('profiles/unknown.png') }}" 
+                          src="{{ Storage::url('profiles/unknown.png') }}" 
                           class="rounded-circle"
                           style="width: 40px;" 
                       />

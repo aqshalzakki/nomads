@@ -34,7 +34,7 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
-        $user = rememberUserCache();
+        $user = auth()->user();
         
         return $user->role_id == 1 ? route('profile.index') : route('admin.index');
     }
@@ -51,7 +51,6 @@ class LoginController extends Controller
 
     protected function loggedOut(Request $request)
     {
-        cache()->forget('user');
         return redirect()->route('login')->withMessage('Logout successful!');
     }
 }

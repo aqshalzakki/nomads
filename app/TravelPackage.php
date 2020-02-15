@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TravelPackage extends Model
@@ -58,7 +59,7 @@ class TravelPackage extends Model
     public function hasImage()
     {
         $image = $this->galleries->first()->image ?? null;
-        return $image ? imageStoragePath($image) : null;
+        return $image ? Storage::url($image) : null;
     }
 
     public function getByKeyword($keyword)

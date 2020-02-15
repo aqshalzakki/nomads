@@ -98,14 +98,14 @@ const baseUrl = "http://127.0.0.1:8000/";
 				if(passwordElementType == 'password')
 				{
 					passwordElement.setAttribute('type', 'text');
-					icon.classList.remove('fa-eye');
-					icon.classList.add('fa-eye-slash');
+					icon.classList.add('fa-eye');
+					icon.classList.remove('fa-eye-slash');
 				}
 				else
 				{
 					passwordElement.setAttribute('type', 'password');
-					icon.classList.add('fa-eye');
-					icon.classList.remove('fa-eye-slash');
+					icon.classList.remove('fa-eye');
+					icon.classList.add('fa-eye-slash');
 				}
 
 			});
@@ -369,5 +369,96 @@ const baseUrl = "http://127.0.0.1:8000/";
 		});
 	}
 
+
+})();
+
+(function updateProfile(){
+
+	const form = document.getElementById('profileForm')
+
+	if (form){
+		let messageContainer = document.getElementById('message') 
+		
+		const oldEmail 		 	= form.querySelector('#email').value
+		const emailModal	 	= document.getElementById('emailSent')
+		const modalTitle	 	= document.querySelector('h4.title')
+		const modalMessage	 	= document.querySelector('p.message') 
+		const modalConfirmation = document.getElementById('confirmation')
+
+		const oldPhoneNumber = form.querySelector('#nomor-hp').value
+
+		form.addEventListener('submit', e => {
+			e.preventDefault()
+		
+			let data = {
+				name 		  : form.querySelector('#nama').value,
+				date_of_birth : form.querySelector('#datePicker').value,
+				gender        : form.querySelector('input[checked]') ? form.querySelector('input[checked]').value : 'Lainnya',
+				email 		  : form.querySelector('#email').value,
+				phone_number  : form.querySelector('#nomor-hp').value, 
+				_method		  : 'PATCH'
+			}
+
+			fetch(form.action, {
+				
+				method: form.method,
+				headers: {
+					'Content-Type' : 'application/json',
+			        'Accept'	   : 'application/json',
+			        'X-CSRF-TOKEN' : csrf,
+			    },
+			    body: JSON.stringify(data)
+			})
+			.then(res => res.json())
+			.then(res => {
+				if (res.status == 204)
+				{
+					messageContainer.classList.add('alert', 'alert-primary')
+					messageContainer.innerHTML = res.message
+
+					// set email verification status
+					if (oldEmail != data.email)
+					{
+						document.getElementById('emailStatus').innerHTML = 'Tidak Terverifikasi'
+						emailModal.classList.add('active')
+					}
+				}else{ 
+					console.log(res.errors)
+				}
+
+			})
+			.catch(e => console.log(e))
+		})
+
+		let requestEmailForm = document.getElementById('requestEmail')
+
+		document.getElementById('verifyEmail').addEventListener('click', e => {
+			emailModal.classList.toggle('active')
+
+			modalTitle.innerHTML   		= 'Email is already sent!'
+			modalMessage.innerHTML 		= 'Please check your email for verification.'
+			modalConfirmation.innerHTML	= 'Oke'
+
+			requestEmailForm.addEventListener('submit', e => {
+				e.preventDefault()
+
+				fetch(requestEmailForm.action, {
+					method: 'post',
+					headers: {
+						'X-CSRF-TOKEN' 	: csrf,
+						'Content-Type'	: 'application/json',
+						'Accept'		: 'application/json'
+					},
+				})
+				.then(res => res.json())
+				.then(res => {
+					modalTitle.innerHTML = res.title
+					modalMessage.innerHTML = res.message
+					modalConfirmation.innerHTML = 'Done'
+				})
+				.catch(er => console.log(er))
+			})
+		})
+	}
 
 })();

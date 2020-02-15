@@ -15,7 +15,7 @@ class IsUser
      */
     public function handle($request, Closure $next)
     {
-        $user = rememberUserCache();
+        $user = auth()->user();
         
         return $user->isRole('USER') ? $next($request) : abort(401);
     }

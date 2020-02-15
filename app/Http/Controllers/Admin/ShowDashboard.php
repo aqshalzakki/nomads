@@ -18,24 +18,11 @@ class ShowDashboard extends Controller
      */
     public function __invoke(Request $request)
     {
-        // dd($request->isJson());
-        if ($request->isJson())
-        {
-            return view('admin.card', [
-                'countTravelPackages'      => TravelPackage::count(),
-                'countTransactions'        => Transaction::count(),
-                'countPendingTransactions' => Transaction::where('transaction_status_id', 2)->count(),
-                'countSuccessTransactions' => Transaction::where('transaction_status_id', 3)->count(),
-            ]);
-        }
-        else
-        {
-            return view('admin.dashboard', [
-                'countTravelPackages'      => TravelPackage::count(),
-                'countTransactions'        => Transaction::count(),
-                'countPendingTransactions' => Transaction::where('transaction_status_id', 2)->count(),
-                'countSuccessTransactions' => Transaction::where('transaction_status_id', 3)->count(),
-            ]);
-        }
+        return view('admin.dashboard', [
+            'countTravelPackages'      => TravelPackage::count(),
+            'countTransactions'        => Transaction::count(),
+            'countPendingTransactions' => Transaction::where('transaction_status_id', 2)->count(),
+            'countSuccessTransactions' => Transaction::where('transaction_status_id', 3)->count(),
+        ]);
     }
 }

@@ -3,4 +3,4 @@
 <script src="{{ url('frontend/libraries/bootstrap/js/bootstrap.js') }} "></script>
 
 {{-- script --}}
-<script src="{{ url('js/app.js') }} "></script>
+<script defer src="{{ url('js/app.js') }} "></script>

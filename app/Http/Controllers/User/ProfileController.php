@@ -38,15 +38,17 @@ class ProfileController extends Controller
 
         $profile->handleUpdatedPhoneNumber($oldPhoneNumber);
 
-        // set cache
-        putUserCache($user);
+        if ($request->isJson())
+        {
+            return ( $user->handleUpdatedEmail($oldEmail) ) ? [
+                                                                'title'         => 'Email Sent!',
+                                                                'emailMessage'  => 'Kindly check your inbox in order to verify the account.',
+                                                                'message'       => 'Profil anda berhasil diperbarui!',
+                                                                'status'        => 204 
+                                                              ]
+                                                            : ['status' => 204, 'message' => 'Profil anda telah diperbarui!'];
+        }
 
-        return ( $user->handleUpdatedEmail($oldEmail) ) ? back()
-                                                          ->with('email', [
-                                                            'title'   => 'Email Sent!',
-                                                            'message' => 'Kindly check your inbox in order to verify the account.'
-                                                          ])
-                                                        : back()->withMessage('Profil anda telah diperbarui!');
     }
 
     public function verifyToken(TokenRequest $request, User $user)
@@ -54,7 +56,7 @@ class ProfileController extends Controller
         $user->profile->update(['verified_at' => now()]);
         $user->sms_token()->where('user_id', $user->id)->delete();
 
-        putUserCache($user);
+        
         return $request->isJson() ? ['status' => 204, 'message' => 'Phone number has been verified!']
                                   : back()->withMessage('Phone number has been verified!');
     }

@@ -44,7 +44,7 @@
                                 <th>{{ $loop->iteration }}</th>
                                 <td>{{ $travelPackage->title }}</td>
                                 <td>{{ $travelPackage->location }}</td>
-                                <td>{{ dateFormat($travelPackage->departure_date, 'n F Y') }}</td>
+                                <td>{{ Carbon\Carbon::create($travelPackage->departure_date)->format('n F Y') }}</td>
                                 <td>{{ $travelPackage->type }}</td>
                                 <td>
                                     <a class="btn btn-info" href="{{ route('admin.travel-packages.edit', $travelPackage->id) }}">

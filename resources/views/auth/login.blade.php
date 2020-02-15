@@ -44,6 +44,9 @@
                   <div class="form-group">
                     <label for="password">Password</label>
                     <input required name="password" type="password" class="form-control @error('email') is-invalid @enderror" id="password">
+                    <button type="button" data-passwordtarget="#password">
+                        <i class="fas fa-fw fa-eye-slash"></i>
+                    </button>
                     @error('email') <small class="text-danger ml-2"> {{ $message }} </small> @enderror
                   </div>
                   <div class="checkbox">

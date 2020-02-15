@@ -35,7 +35,7 @@ class Profile extends Model
 
                 // then delete the old image
                 Storage::disk('public')
-                       ->delete( imageStoragePath($this->image) );
+                       ->delete( Storage::url($this->image) );
             }
             
             // store the image
@@ -75,11 +75,11 @@ class Profile extends Model
 
 
             // Send the message
-            Nexmo::message()->send([
-                'to'   => $this->phone_number,
-                'from' => env('NEXMO_FROM'),
-                'text' => 'Kode verifikasi untuk nomor telepon akun nomads anda ' . (int) $token . ' .Jangan bagikan kode ini kepada siapapun.',
-            ]);
+            // Nexmo::message()->send([
+            //     'to'   => $this->phone_number,
+            //     'from' => env('NEXMO_FROM'),
+            //     'text' => 'Kode verifikasi untuk nomor telepon akun nomads anda ' . (int) $token . ' .Jangan bagikan kode ini kepada siapapun.',
+            // ]);
 
             // Update verified at to null
             $this->update(['verified_at' => null]);

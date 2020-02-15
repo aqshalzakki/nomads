@@ -67,7 +67,7 @@
                       <tr>
                         <td>
                           <img
-                            src="{{ imageStoragePath($detail->user->profile->image) }}"
+                            src="{{ Storage::url($detail->user->profile->image) }}"
                             class="rounded-circle"
                             height="60"
                           />
