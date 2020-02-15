@@ -40,7 +40,7 @@
                             <div class="col-lg-4 col-md-11">
                                     <div class="user-profile-photo-card mb-5">
                                         <label style="user-select: none;" class="photo m-0 user-select-none" for="selectPhoto" title="Pilih gambar...">
-                                            <img id="imageField" src="{{ imageStoragePath($user->profile->image) }}">
+                                            <img id="imageField" src="{{ Storage::url($user->profile->image) }}">
                                         </label>
                                         <div class="select-photo mt-2">
                                             <label style="user-select: none;" for="selectPhoto">Pilih Foto</label>

@@ -61,7 +61,7 @@
                         <div
                             class="card-travel text-center d-flex flex-column"
                             style="border-radius: 10px; background-image: 
-                            url('{{ imageStoragePath($travelPackage->galleries->first()->image) }}');"
+                            url('{{ Storage::url($travelPackage->galleries->first()->image) }}');"
                         >
                         <div class="travel-country">{{ $travelPackage->location }}</div>
                         <div class="travel-location">{{ $travelPackage->title }}</div>

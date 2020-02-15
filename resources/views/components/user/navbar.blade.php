@@ -33,7 +33,7 @@
                     <li class="profile">
                         <div class="profile-wrapper">
                             <label class="profile-img" for="profileMenu">
-                                <img src="{{ imageStoragePath( ($user->profile->image ?? 'profiles/default.jpg') ) }}">
+                                <img src="{{ Storage::url( ($user->profile->image ?? 'profiles/default.jpg') ) }}">
                             </label>
                             <input type="checkbox" id="profileMenu">
                             <div class="profile-menu">

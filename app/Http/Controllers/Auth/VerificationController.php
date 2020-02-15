@@ -31,9 +31,6 @@ class VerificationController extends Controller
 
     public function redirectTo()
     {
-        // set cache
-        cache()->put('user', auth()->user(), now()->addMonths(1));
-        
         return route('profile.index');
     }
     /**

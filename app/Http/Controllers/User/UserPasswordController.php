@@ -22,9 +22,6 @@ class UserPasswordController extends Controller
 
         // notify the user
         $user->notify(new PasswordChangedNotification($user));
-        
-        // put cache
-        putUserCache($user);
 
         return back()->withMessage('Your password has been changed!');
     }

@@ -35,7 +35,7 @@ class Profile extends Model
 
                 // then delete the old image
                 Storage::disk('public')
-                       ->delete( imageStoragePath($this->image) );
+                       ->delete( Storage::url($this->image) );
             }
             
             // store the image

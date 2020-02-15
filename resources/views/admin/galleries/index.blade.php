@@ -42,7 +42,7 @@
                                 <th>{{ $loop->iteration }}</th>
                                 <th>{{ $gallery->travel_package->title }}</th>
                                 <th>
-                                    <img src="{{ imageStoragePath($gallery->image) }}" class="img-thumbnail" style="width: 300px; height: 200px;" />
+                                    <img src="{{ Storage::url($gallery->image) }}" class="img-thumbnail" style="width: 300px; height: 200px;" />
                                 </th>
                                 <td>
                                     <a class="btn btn-info" href="{{ route('admin.galleries.edit', $gallery->id) }}">

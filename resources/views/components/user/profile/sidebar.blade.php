@@ -5,7 +5,7 @@
             <div class="left">
                 <div class="user-img">
                     <a href="{{ route('profile.index') }}">
-                        <img src="{{ imageStoragePath($user->profile->image) }}" title="{{ $user->name }}">
+                        <img src="{{ Storage::url($user->profile->image) }}" title="{{ $user->name }}">
                     </a>
                 </div>
             </div>

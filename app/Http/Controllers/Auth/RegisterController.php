@@ -31,9 +31,7 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '/email/verify';
     public function redirectTo()
-    {
-        rememberUserCache();
-        
+    {        
         $response = [
             'title'   => 'Account Created!',
             'message' => 'Your account has been created! please verify your email account.'

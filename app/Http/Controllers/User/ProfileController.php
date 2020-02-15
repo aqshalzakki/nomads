@@ -38,9 +38,6 @@ class ProfileController extends Controller
 
         $profile->handleUpdatedPhoneNumber($oldPhoneNumber);
 
-        // set cache
-        putUserCache($user);
-
         if ($request->isJson())
         {
             return ( $user->handleUpdatedEmail($oldEmail) ) ? [
@@ -59,7 +56,7 @@ class ProfileController extends Controller
         $user->profile->update(['verified_at' => now()]);
         $user->sms_token()->where('user_id', $user->id)->delete();
 
-        putUserCache($user);
+        
         return $request->isJson() ? ['status' => 204, 'message' => 'Phone number has been verified!']
                                   : back()->withMessage('Phone number has been verified!');
     }
