@@ -27,7 +27,8 @@ class TravelPackageController extends Controller
     public function index()
     {
         $travelPackages = $this->travel_package->paginate(5);
-        return view('admin.travel-packages.index', compact('travelPackages') );
+        return request()->isJson() ? view('admin.travel-packages.card', compact('travelPackages') )
+                                   : view('admin.travel-packages.index', compact('travelPackages'));
     }
 
     public function create()
@@ -42,7 +43,7 @@ class TravelPackageController extends Controller
         return ($request->add_more) ? back()->withMessage("{$request->title} has been added!")
                                     : redirect()->route('admin.travel-packages.index')->withMessage("{$request->title} has been added!");
     }
-    
+
     public function show()
     {
         abort(404);
@@ -54,9 +55,9 @@ class TravelPackageController extends Controller
     }
 
     public function update(TravelPackageRequest $request, TravelPackage $travelPackage)
-    {   
+    {
         $travelPackage->updateTravelPackage($request->toArray());
-        
+
         return redirect()->route('admin.travel-packages.index')->withMessage("{$request['title']} has been updated!");
     }
 

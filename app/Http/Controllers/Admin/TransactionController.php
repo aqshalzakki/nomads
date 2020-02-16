@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\TransactionRequest;
 
@@ -13,7 +12,7 @@ class TransactionController extends Controller
 {
     /**
      * create empty instance of transaction model
-     * 
+     *
      * @return object
      */
     protected $transaction;
@@ -24,9 +23,10 @@ class TransactionController extends Controller
 
     public function index()
     {
-        return view('admin.transactions.index', [
-            'transactions' => $this->transaction->withRelationships()
-        ]);
+        $transactions = $this->transaction->withRelationships();
+
+        return request()->isJson() ? view('admin.transactions.card', compact('transactions'))
+                                   : view('admin.transactions.index', compact('transactions')) ;
     }
 
     public function show(Transaction $transaction)

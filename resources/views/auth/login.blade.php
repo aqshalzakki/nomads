@@ -3,9 +3,9 @@
 @section('title', 'Login Page')
 
 @section('content')
-    <section id="login">  
+    <section id="login">
       <div class="row m-0">
-        
+
         <div class="col-lg-8 explore">
           <div class="explore-content">
             <h1 class="title">We Explore The New Life Much Better</h1>
@@ -41,11 +41,11 @@
                     <label for="email">Email</label>
                     <input required value="{{ old('email') }}" name="email" type="text" class="form-control @error('email') is-invalid @enderror" id="email">
                   </div>
-                  <div class="form-group">
+                  <div style="position: relative;" class="form-group">
                     <label for="password">Password</label>
                     <input required name="password" type="password" class="form-control @error('email') is-invalid @enderror" id="password">
                     <button type="button" data-passwordtarget="#password">
-                        <i class="fas fa-fw fa-eye-slash"></i>
+                        <i style="position: absolute; top: 0; right: 0;" class="fas fa-fw fa-eye-slash"></i>
                     </button>
                     @error('email') <small class="text-danger ml-2"> {{ $message }} </small> @enderror
                   </div>
@@ -62,7 +62,7 @@
 
               <div class="text-center">
                 <a class="forgot-password" href="{{ route('register') }}" data-authtype="register">Doesn't have an account?</a>
-              </div>              
+              </div>
             </div>
           </div>
         </div>

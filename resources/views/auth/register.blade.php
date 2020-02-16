@@ -3,9 +3,9 @@
 @section('title', 'Register Page')
 
 @section('content')
-    <section id="login">  
+    <section id="login">
       <div class="row m-0">
-        
+
         <div class="col-lg-8 explore">
           <div class="explore-content">
             <h1 class="title">We Explore The New Life Much Better</h1>
@@ -46,19 +46,19 @@
                   <input value="{{ old('email') }}" required name="email" type="email" class="form-control @error('email') is-invalid @enderror" id="email">
                   @error('email') <small class="text-danger ml-2">{{ $message }}</small> @enderror
                 </div>
-                <div class="form-group">
+                <div style="position: relative;" class="form-group">
                   <label for="password">Password</label>
                   <input required name="password" type="password" class="form-control @error('password') is-invalid @enderror" id="password">
                   <button type="button" data-passwordtarget="#password">
-                      <i class="fas fa-fw fa-eye-slash"></i>
+                      <i style="position: absolute; top: 0; right: 0;" class="fas fa-fw fa-eye-slash"></i>
                   </button>
                   @error('password') <small class="text-danger ml-2">{{ $message }}</small> @enderror
                 </div>
-                <div class="form-group">
+                <div style="position: relative;" class="form-group">
                   <label for="password_confirmation">Password Confirmation</label>
                   <input required name="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation">
                   <button type="button" data-passwordtarget="#password_confirmation">
-                      <i class="fas fa-fw fa-eye-slash"></i>
+                      <i style="position: absolute; top: 0; right: 0;" class="fas fa-fw fa-eye-slash"></i>
                   </button>
                 </div>
                 <button class="nomads-btn px-5 my-3 mx-auto d-block">Register</button>

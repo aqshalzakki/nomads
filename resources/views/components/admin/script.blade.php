@@ -7,4 +7,3 @@
 
 <!-- Custom scripts for all pages-->
 <script src="{{ url('frontend/templates/js/sb-admin-2.min.js') }} "></script>
-<script src="{{ url('js/admin.js') }}"></script>

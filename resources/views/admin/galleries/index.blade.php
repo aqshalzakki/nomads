@@ -4,17 +4,17 @@
 
 @section('content')
     <!-- Begin Page Content -->
-<div class="container-fluid">
+<div class="container-fluid dynamic-content">
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Travel Packages Gallery</h1>
         <a href="{{ route('admin.galleries.create') }}" class="btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-plus fa-sm text-white-50"></i> 
+            <i class="fas fa-plus fa-sm text-white-50"></i>
             Add new Gallery
         </a>
     </div>
-    
+
     <div class="row">
         <div class="card-body">
             @if (Session::has('message'))

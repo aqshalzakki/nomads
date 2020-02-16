@@ -4,7 +4,7 @@
 
 @section('content')
     <!-- Begin Page Content -->
-<div class="container-fluid">
+<div class="container-fluid dynamic-content">
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -17,17 +17,17 @@
             <form enctype="multipart/form-data" action="{{ route('admin.galleries.update', $gallery->id) }}" method="post">
                 @csrf
                 @method('patch')
-                
+
                 <div class="form-group">
                     <label for="travel_package_id">Travel Packages of</label>
                     <select class="form-control" name="travel_package_id" id="travel_package_id">
                         @foreach($travel_packages as $travel_package)
                             @if($travel_package->id == $gallery->travel_package_id)
-                            
+
                                 <option selected value="{{ $travel_package->id }}"> {{ $travel_package->title }} </option>
 
                             @else
-                                
+
                                 <option value="{{ $travel_package->id }}"> {{ $travel_package->title }} </option>
 
                             @endif
@@ -38,14 +38,14 @@
                 <div class="form-group">
                     <label for="image">Image</label>
                     <input
-                        id="image" 
-                        placeholder="image..." 
-                        value="{{ old('image') }}" 
-                        type="file" 
-                        class="form-control @error('image') is-invalid @enderror" 
+                        id="image"
+                        placeholder="image..."
+                        value="{{ old('image') }}"
+                        type="file"
+                        class="form-control @error('image') is-invalid @enderror"
                         name="image"
                     >
-                    
+
                     @error('image')
                         <div class="ml-2 invalid-feedback">
                             {{ $message }}

@@ -3,17 +3,17 @@
 @section('title', 'Transactions')
 @section('content')
     <!-- Begin Page Content -->
-<div class="container-fluid">
+<div class="container-fluid dynamic-content">
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Transactions</h1>
         {{-- <a href="{{ route('admin.transactions.create') }}" class="btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-plus fa-sm text-white-50"></i> 
+            <i class="fas fa-plus fa-sm text-white-50"></i>
             Add new Travel Package
         </a> --}}
     </div>
-    
+
     <div class="row">
         <div class="card-body">
             @if (Session::has('message'))
@@ -74,7 +74,7 @@
             </div>
         </div>
     </div>
-    
+
 </div>
 <!-- /.container-fluid -->
 @endsection
