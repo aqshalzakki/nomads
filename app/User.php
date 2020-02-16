@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Mail\EmailVerification;
+use App\Notifications\User\VerifyEmailQueued;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -75,5 +76,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function emailChangedMessage()
     {
         return "We've been sending a link verification to <b>{$this->email}</b> please verify for further action";
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmailQueued());
     }
 }
