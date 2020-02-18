@@ -64,7 +64,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         // if user update an email
         if ($this->email != $oldEmail){
-            
+
             $this->update(['email_verified_at' => null]);
             $this->sendEmailVerification($oldEmail);
 

@@ -10,11 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/logout', function(){
-    auth()->logout();
-    return redirect('/login');
-});
 Route::get('/', 'ShowHome')->name('home');
 
 // Checkout Routes

@@ -20,10 +20,6 @@
                     <!-- ---------Card-Right--------- -->
                     <div class="profile-card right">
 
-                        <div id="errors">
-                            
-                        </div>
-
                         <div class="title mb-3">
                             <h1>My Profile</h1>
                             <p>Kelola informasi profil Anda untuk mengontrol, melindungi dan mengamankan akun</p>
@@ -31,7 +27,24 @@
 
                         <div id="message">
                             @if(session()->has('message'))
-                                {{ session('message') }}
+                                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                                  {{ session('message') }}
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                            @endif
+                        </div>
+                        
+                        <div id="errors">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             @endif
                         </div>
 
@@ -71,7 +84,7 @@
                                                     <input required
                                                       autocomplete="0"
                                                       type="date"
-                                                      class="datePicker @error('date_birth') is-invalid @enderror"
+                                                      class="datePicker @error('date_of_birth') is-invalid @enderror"
                                                       id="datePicker"
                                                       style="width: 100%;"
                                                       value="{{ old('date_of_birth') ?? $user->profile->date_of_birth }}"
@@ -154,7 +167,7 @@
                                                         value="{{ old('phone_number') ?? $user->profile->phone_number }}"
                                                     />
 
-                                                    @unless($user->profile->hasVerifiedPhoneNumber())
+                                                    @unless($user->profile->phone_number === null || $user->profile->hasVerifiedPhoneNumber())
                                                         <a class="verification" href="#" data-nmodal="#verifyPhone">
                                                             Klik disini untuk melakukan verifikasi Nomor anda.
                                                         </a>

@@ -20,7 +20,7 @@
                     <a class="link" href="/">Home</a>
                 </li>
                 <li class="{{ request()->is('travel-packages*') ? 'active' : '' }}">
-                    <a class="link" href="{{ route('travel-packages.index') }}">Travel Packages</a>
+                    <a class="link" href="{{ route('travel-packages.category', 'All') }}">Travel Packages</a>
                 </li>
                 <li>
                     <a class="link" href="#">Services</a>

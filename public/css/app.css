@@ -13524,6 +13524,25 @@ form[data-urlcheckpassword] .password-input small {
           user-select: none;
 }
 
+.login .login-card .form .group {
+  position: relative;
+}
+
+.login .login-card .form .group input.form-control {
+  padding-right: 35px !important;
+}
+
+.login .login-card .form .group .see-password {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  padding: 0 10px;
+  border: 0;
+  background-color: transparent;
+  outline: none;
+}
+
 .login .login-card .forgot-password {
   color: #5166A5;
 }

@@ -268,7 +268,7 @@ const baseUrl = "http://127.0.0.1:8000/";
     	...document.querySelectorAll('#menu')
     ]
 
-    if (menu)
+    if (menu[0])
     {
         let cardRoot  = document.querySelector('#cardRoot')
 
@@ -393,7 +393,7 @@ const baseUrl = "http://127.0.0.1:8000/";
 			let data = {
 				name 		  : form.querySelector('#nama').value,
 				date_of_birth : form.querySelector('#datePicker').value,
-				gender        : form.querySelector('input[checked]') ? form.querySelector('input[checked]').value : 'Lainnya',
+				gender        : form.querySelector('input[checked]').value || 'Lainnya',
 				email 		  : form.querySelector('#email').value,
 				phone_number  : form.querySelector('#nomor-hp').value, 
 				_method		  : 'PATCH'
@@ -431,34 +431,39 @@ const baseUrl = "http://127.0.0.1:8000/";
 		})
 
 		let requestEmailForm = document.getElementById('requestEmail')
+		let verifyEmail   	 = document.getElementById('verifyEmail')
+		
+		if (verifyEmail){
+			verifyEmail.addEventListener('click', e => {
+				emailModal.classList.toggle('active')
 
-		document.getElementById('verifyEmail').addEventListener('click', e => {
-			emailModal.classList.toggle('active')
+				modalTitle.innerHTML   		= 'Email is already sent!'
+				modalMessage.innerHTML 		= 'Please check your email for verification.'
+				modalConfirmation.innerHTML	= 'Oke'
 
-			modalTitle.innerHTML   		= 'Email is already sent!'
-			modalMessage.innerHTML 		= 'Please check your email for verification.'
-			modalConfirmation.innerHTML	= 'Oke'
+				requestEmailForm.addEventListener('submit', e => {
+					e.preventDefault()
 
-			requestEmailForm.addEventListener('submit', e => {
-				e.preventDefault()
-
-				fetch(requestEmailForm.action, {
-					method: 'post',
-					headers: {
-						'X-CSRF-TOKEN' 	: csrf,
-						'Content-Type'	: 'application/json',
-						'Accept'		: 'application/json'
-					},
+					fetch(requestEmailForm.action, {
+						method: 'post',
+						headers: {
+							'X-CSRF-TOKEN' 	: csrf,
+							'Content-Type'	: 'application/json',
+							'Accept'		: 'application/json'
+						},
+					})
+					.then(res => res.json())
+					.then(res => {
+					
+						modalTitle.innerHTML = res.title
+						modalMessage.innerHTML = res.message
+						
+						requestEmailForm.style.display = 'none'
+					})
+					.catch(er => console.log(er))
 				})
-				.then(res => res.json())
-				.then(res => {
-					modalTitle.innerHTML = res.title
-					modalMessage.innerHTML = res.message
-					modalConfirmation.innerHTML = 'Done'
-				})
-				.catch(er => console.log(er))
 			})
-		})
+		}
 	}
 
 })();

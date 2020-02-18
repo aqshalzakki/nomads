@@ -38,7 +38,7 @@ class TravelPackageController extends Controller
 
     public function category(Category $category)
     {
-        $travelPackages = ($category->title == 'All') ? $this->travel_package->with('galleries')->paginate(9)
+        $travelPackages = ($category->title == 'All') ? $this->travel_package->with('galleries')->inRandomOrder()->paginate(9)
                                                     : $category->travel_packages()->with('galleries')->paginate(9);
 
         return request()->isJson() ? view('user.travel-packages.card', compact('travelPackages'))

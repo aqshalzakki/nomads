@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class UserAndProfileRequest extends FormRequest
 {
@@ -24,13 +25,13 @@ class UserAndProfileRequest extends FormRequest
      */
     public function rules()
     {
-        $userId = auth()->id();
+        $userId = Auth::id();
 
         $inGenders = Rule::in(['Laki-laki', 'Perempuan', 'Lainnya']);
 
         return [
             // user
-            'name'          => ['required', 'between:4,15', Rule::unique('users')->ignore($userId)],
+            'name'          => ['required', 'between:4,15'],
             'email'         => ['email', Rule::unique('users')->ignore($userId)],
 
             // profile

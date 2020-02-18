@@ -1086,7 +1086,7 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
 (function profileMenu() {
   var menu = [document.querySelector('.user-edit'), document.querySelector('.user-img a'), document.querySelector('.user-name')].concat(_toConsumableArray(document.querySelectorAll('#menu')));
 
-  if (menu) {
+  if (menu[0]) {
     var cardRoot = document.querySelector('#cardRoot');
     menu.forEach(function (item) {
       item.addEventListener('click', function (e) {
@@ -1169,7 +1169,7 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
       var data = {
         name: form.querySelector('#nama').value,
         date_of_birth: form.querySelector('#datePicker').value,
-        gender: form.querySelector('input[checked]') ? form.querySelector('input[checked]').value : 'Lainnya',
+        gender: form.querySelector('input[checked]').value || 'Lainnya',
         email: form.querySelector('#email').value,
         phone_number: form.querySelector('#nomor-hp').value,
         _method: 'PATCH'
@@ -1201,31 +1201,35 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
       });
     });
     var requestEmailForm = document.getElementById('requestEmail');
-    document.getElementById('verifyEmail').addEventListener('click', function (e) {
-      emailModal.classList.toggle('active');
-      modalTitle.innerHTML = 'Email is already sent!';
-      modalMessage.innerHTML = 'Please check your email for verification.';
-      modalConfirmation.innerHTML = 'Oke';
-      requestEmailForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        fetch(requestEmailForm.action, {
-          method: 'post',
-          headers: {
-            'X-CSRF-TOKEN': csrf,
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          }
-        }).then(function (res) {
-          return res.json();
-        }).then(function (res) {
-          modalTitle.innerHTML = res.title;
-          modalMessage.innerHTML = res.message;
-          modalConfirmation.innerHTML = 'Done';
-        })["catch"](function (er) {
-          return console.log(er);
+    var verifyEmail = document.getElementById('verifyEmail');
+
+    if (verifyEmail) {
+      verifyEmail.addEventListener('click', function (e) {
+        emailModal.classList.toggle('active');
+        modalTitle.innerHTML = 'Email is already sent!';
+        modalMessage.innerHTML = 'Please check your email for verification.';
+        modalConfirmation.innerHTML = 'Oke';
+        requestEmailForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          fetch(requestEmailForm.action, {
+            method: 'post',
+            headers: {
+              'X-CSRF-TOKEN': csrf,
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            }
+          }).then(function (res) {
+            return res.json();
+          }).then(function (res) {
+            modalTitle.innerHTML = res.title;
+            modalMessage.innerHTML = res.message;
+            requestEmailForm.style.display = 'none';
+          })["catch"](function (er) {
+            return console.log(er);
+          });
         });
       });
-    });
+    }
   }
 })();
 

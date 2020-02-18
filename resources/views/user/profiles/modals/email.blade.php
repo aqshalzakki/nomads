@@ -2,7 +2,7 @@
 <div class="nomads-modal {{ session('emailSent') ? 'active' : '' }}" id="emailSent">
     <div class="overlay" data-close="true"></div>
     <div class="modal-box">
-    
+        <div class="close-modal" data-close="true">&times;</div>
         <div class="ilustration" style="width: 130px;">
             <img src="{{ url('frontend/img/email-success.png')}}">
         </div>

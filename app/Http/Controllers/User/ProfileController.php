@@ -19,15 +19,14 @@ class ProfileController extends Controller
 
     public function update(UserRequest $request, Profile $profile)
     {
-        // User Instance... so i dont have to call it over and over again
         $user = $profile->user;
 
-        // old email and phone number
+        // old email and old phone number
         $oldEmail       = $user->email;
         $oldPhoneNumber = $profile->phone_number;
 
         // Prepare for data
-        $dataProfile = $request->except(['name', 'email']);
+        $dataProfile = $request->only(['date_of_birth', 'gender', 'phone_number']);
         $dataProfile['image'] = $profile->handleUploadedImage();
 
         // update user and profile 
@@ -37,17 +36,20 @@ class ProfileController extends Controller
         ]));
 
         $profile->handleUpdatedPhoneNumber($oldPhoneNumber);
-
+        $isUpdatedEmail = $user->handleUpdatedEmail($oldEmail);
+        
         if ($request->isJson())
         {
-            return ( $user->handleUpdatedEmail($oldEmail) ) ? [
-                                                                'title'         => 'Email Sent!',
-                                                                'emailMessage'  => 'Kindly check your inbox in order to verify the account.',
-                                                                'message'       => 'Profil anda berhasil diperbarui!',
-                                                                'status'        => 204 
-                                                              ]
-                                                            : ['status' => 204, 'message' => 'Profil anda telah diperbarui!'];
+            return $isUpdatedEmail ? [
+                            'title'         => 'Email Sent!',
+                            'emailMessage'  => 'Kindly check your inbox in order to verify the account.',
+                            'message'       => 'Profil anda berhasil diperbarui!',
+                            'status'        => 204 
+                          ]
+                        : ['status' => 204, 'message' => 'Profil anda telah diperbarui!'];
         }
+        
+        return back()->withMessage('Profil anda berhasil diperbarui!'); 
 
     }
 

@@ -12,10 +12,12 @@
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item" aria-current="page">
-                  Travel Package
+                  <a style="color: #071C4D;" aria-current="page" href="{{ route('travel-packages.category', 'All') }}">
+                    Travel Package
+                  </a>
                 </li>
                 <li class="breadcrumb-item" aria-current="page">
-                  <a href="{{ route('travel-packages.show', $transaction->travel_package->slug) }}">
+                  <a style="color: #071C4D;" aria-current="page" href="{{ route('travel-packages.show', $transaction->travel_package->slug) }}">
                     Details
                   </a>
                 </li>
@@ -72,19 +74,19 @@
                             height="60"
                           />
                         </td>
-                        <td class="align-middle">{{ $detail->user->username }}</td>
+                        <td class="align-middle">{{ $detail->user->name }}</td>
                         <td class="align-middle">{{ $detail->nationality }}</td>
                         <td class="align-middle">{{ $detail->is_visa ? '30 Days' : 'N/A' }}</td>
                         <td class="align-middle">
                           {{ \Carbon\Carbon::createFromDate($detail->doe_passport) > now() ? 'Active' : 'Inactive' }}
                         </td>
                         <td class="align-middle">
-                          @if($detail->user->username != $user->username)
+                          @if($detail->user->name != $user->name)
                             <form action="{{ route('checkout.remove', $detail->id) }}" method="post">
                              @csrf
                              @method('delete')
                                 <button 
-                                  onclick="return confirm('Are you sure you want to remove {{ $detail->username }} from this member list?')" 
+                                  onclick="return confirm('Are you sure you want to remove {{ $detail->name }} from this member list?')" 
                                   class="btn btn-link" 
                                   type="submit"
                                 />
@@ -110,18 +112,20 @@
                 <h2>Add Member</h2>
                 <form method="post" action="{{ route('checkout.create', $transaction->id) }}" class="form-inline">
                   @csrf
-                  <label class="sr-only" for="username">Username</label>
+                  <label class="sr-only" for="name">Name</label>
                   <input
+                    autocomplete="off"
                     type="text"
-                    class="form-control mb-2 mr-sm-2 @error('username') is-invalid @enderror"
+                    class="form-control mb-2 mr-sm-2 @error('name') is-invalid @enderror"
                     style="width: 158px;"
-                    id="username"
-                    name="username"
-                    placeholder="Username"
-                    value="{{ old('username') }}"
+                    id="name"
+                    name="name"
+                    placeholder="name"
+                    value="{{ old('name') }}"
                   />
                   <label class="sr-only" for="nationality">Nationality</label>
                   <input
+                    autocomplete="off"
                     title="Nationality"
                     type="text"
                     class="form-control mb-2 mr-sm-2 @error('nationality') is-invalid @enderror"
