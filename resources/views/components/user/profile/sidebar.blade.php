@@ -1,11 +1,11 @@
-<div class="col-lg-3 col-md-4 mb-4 nomads-container">
+<div class="col-lg-3 col-md-4 mb-4">
     <!-- ---------Card-left--------- -->
     <div class="profile-card left">
         <div class="user">
             <div class="left">
                 <div class="user-img">
                     <a href="{{ route('profile.index') }}">
-                        <img src="{{ Storage::url($user->profile->image) }}" title="{{ $user->name }}">
+                        <img src="{{ $user->profile->image ? Storage::url($user->profile->image) : asset('frontend/images/profiles/default.jpg') }}" title="{{ $user->name }}">
                     </a>
                 </div>
             </div>

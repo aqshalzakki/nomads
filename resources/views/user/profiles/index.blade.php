@@ -4,7 +4,7 @@
 @section('content')
     <!-- ----------------PROFILE-SECTION---------------- -->
     <section class="custom-bg dynamic-content" id="profile">
-        <div class="nomads-container">
+        <div class="container">
             <div class="nomads-breadcrumb my-4">
                 <a href="{{ route('profile.index') }}">My Profile</a>
                 <span>/</span>
@@ -53,7 +53,7 @@
                             <div class="col-lg-4 col-md-11">
                                     <div class="user-profile-photo-card mb-5">
                                         <label style="user-select: none;" class="photo m-0 user-select-none" for="selectPhoto" title="Pilih gambar...">
-                                            <img id="imageField" src="{{ Storage::url($user->profile->image) }}">
+                                            <img id="imageField" src="{{ $user->profile->image ? Storage::url($user->profile->image) : asset('frontend/images/profiles/default.jpg') }}">
                                         </label>
                                         <div class="select-photo mt-2">
                                             <label style="user-select: none;" for="selectPhoto">Pilih Foto</label>

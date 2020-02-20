@@ -69,7 +69,7 @@
                       <tr>
                         <td>
                           <img
-                            src="{{ Storage::url($detail->user->profile->image) }}"
+                            src="{{ $detail->user->profile->image ? Storage::url($detail->user->profile->image) : asset('frontend/images/profiles/default.jpg') }}"
                             class="rounded-circle"
                             height="60"
                           />
@@ -112,16 +112,16 @@
                 <h2>Add Member</h2>
                 <form method="post" action="{{ route('checkout.create', $transaction->id) }}" class="form-inline">
                   @csrf
-                  <label class="sr-only" for="name">Name</label>
+                  <label class="sr-only" for="email">Email</label>
                   <input
                     autocomplete="off"
-                    type="text"
-                    class="form-control mb-2 mr-sm-2 @error('name') is-invalid @enderror"
+                    type="email"
+                    class="form-control mb-2 mr-sm-2 @error('email') is-invalid @enderror"
                     style="width: 158px;"
-                    id="name"
-                    name="name"
-                    placeholder="name"
-                    value="{{ old('name') }}"
+                    id="email"
+                    name="email"
+                    placeholder="email"
+                    value="{{ old('email') }}"
                   />
                   <label class="sr-only" for="nationality">Nationality</label>
                   <input

@@ -6,7 +6,7 @@
   <!-- ---------------Hero-Section---------------- -->
     <section id="packagesHero" style="background-image: url({{ url('frontend/images/pic9.jpg')  }});">
      <h1 class="hero-title">Temukan paket travel seperti yang anda inginkan</h1>
-     <form class="search-package" action="{{ route('travel-packages.search') }}">
+     <form class="search-package container" action="{{ route('travel-packages.search') }}">
        <input id="keyword" autocomplete="off" autofocus required type="text" name="keyword" placeholder="Search travel package...">
        <button type="submit">
          <i class="fas fa-fw fa-search"></i>

@@ -13,7 +13,7 @@
     <br />
     moment you never see before
     </p>
-    <a href="{{ route('travel-packages.index') }}" class="btn btn-get-started px-4 mt-4">
+    <a href="{{ route('travel-packages.category', 'All') }}" class="btn btn-get-started px-4 mt-4">
     Get Started
     </a>
 </header>
@@ -173,7 +173,7 @@
             <a href="#" class="btn btn-need-help px-4 mt-4 mx-1">
             I Need Help
             </a>
-            <a href="{{ route('travel-packages.index') }}" class="btn btn-get-started px-4 mt-4 mx-1">
+            <a href="{{ route('travel-packages.category', 'All') }}" class="btn btn-get-started px-4 mt-4 mx-1">
             Get Started
             </a>
         </div>

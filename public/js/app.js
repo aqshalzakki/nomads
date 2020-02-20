@@ -1253,8 +1253,8 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\user\Desktop\projects\nomads\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\user\Desktop\projects\nomads\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\nomads\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\nomads\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

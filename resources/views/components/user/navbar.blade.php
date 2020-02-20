@@ -1,5 +1,5 @@
 <!-- ---------------NAVBAR--------------- -->
-<nav class="nomads-navbar">
+<nav class="nomads-navbar container">
     <div class="items-container">
         <div class="logo">
             <a href="/">
@@ -33,7 +33,7 @@
                     <li class="profile">
                         <div class="profile-wrapper">
                             <label class="profile-img" for="profileMenu">
-                                <img src="{{ Storage::url( ($user->profile->image ?? 'profiles/default.jpg') ) }}">
+                                <img src="{{ $user->profile->image  ? Storage::url($user->profile->image) : asset('frontend/images/profiles/default.jpg') }}">
                             </label>
                             <input type="checkbox" id="profileMenu">
                             <div class="profile-menu">

@@ -14215,7 +14215,7 @@ form[data-urlcheckpassword] .password-input small {
 }
 
 #packagesHero .hero-title {
-  max-width: 65%;
+  max-width: 600px;
   text-align: center;
   color: #fff;
   text-transform: uppercase;
@@ -14228,7 +14228,8 @@ form[data-urlcheckpassword] .password-input small {
           transform: translateY(50%);
   display: -webkit-box;
   display: flex;
-  width: 65%;
+  width: 90%;
+  max-width: 800px;
   padding: 0 20px;
   background-color: #fff;
   border-radius: 5px;
