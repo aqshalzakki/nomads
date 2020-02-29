@@ -1,4 +1,4 @@
-<div class="col-lg-3 col-md-4 mb-4 nomads-container">
+<div class="col-lg-3 col-md-4 mb-4">
     <!-- ---------Card-left--------- -->
     <div class="profile-card left">
         <div class="user">
@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="right"> 
-                <a href="{{ route('profile.index') }}" class="user-name">
+                <a href="{{ route('profile.index') }}" class="user-name" id="userName">
                     {{ $user->name }}
                 </a>
                 <a class="user-edit" href="{{ route('profile.index') }}">
