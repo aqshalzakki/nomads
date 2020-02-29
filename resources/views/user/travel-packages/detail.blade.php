@@ -12,7 +12,9 @@
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item" aria-current="page">
-                  Travel Package
+                  <a style="color: #071C4D;" aria-current="page" href="{{ route('travel-packages.category', 'All') }}">
+                    Travel Package
+                  </a>
                 </li>
                 
                 <li class="breadcrumb-item active" aria-current="page">

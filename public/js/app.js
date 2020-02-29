@@ -1166,6 +1166,7 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
     var oldPhoneNumber = form.querySelector('#nomor-hp').value;
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      messageContainer.style.display = 'none';
       var data = {
         // image         : form.querySelector('input[name=image]').files[0],
         name: form.querySelector('#nama').value,
@@ -1187,6 +1188,8 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
         return res.json();
       }).then(function (res) {
         if (res.status == 204) {
+          document.getElementById('userName').innerHTML = data.name;
+          messageContainer.style.display = 'block';
           messageContainer.classList.add('alert', 'alert-primary');
           messageContainer.innerHTML = res.message; // set email verification status
 
@@ -1195,7 +1198,19 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
             emailModal.classList.add('active');
           }
         } else {
-          console.log(res.errors);
+          var errorsContainer = document.querySelector('#errors');
+          var errorAlert = document.createElement('div');
+          errorAlert.className = "alert alert-danger";
+          var list = document.createElement('ul');
+          res.errors.name ? list.innerHTML += "<li>".concat(res.errors.name[0], "</li>") : '';
+          res.errors.date_of_birth ? list.innerHTML += "<li>".concat(res.errors.date_of_birth[0], "</li>") : '';
+          res.errors.gender ? list.innerHTML += "<li>".concat(res.errors.gender[0], "</li>") : '';
+          res.errors.email ? list.innerHTML += "<li>".concat(res.errors.email[0], "</li>") : '';
+          res.errors.phone_number ? list.innerHTML += "<li>".concat(res.errors.phone_number[0], "</li>") : '';
+          res.errors.image ? list.innerHTML += "<li>".concat(res.errors.image[0], "</li>") : '';
+          errorAlert.append(list); // append
+
+          errorsContainer.append(errorAlert);
         }
       })["catch"](function (e) {
         return console.log(e);
@@ -1210,24 +1225,24 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
         modalTitle.innerHTML = 'Email is already sent!';
         modalMessage.innerHTML = 'Please check your email for verification.';
         modalConfirmation.innerHTML = 'Oke';
-        requestEmailForm.addEventListener('submit', function (e) {
-          e.preventDefault();
-          fetch(requestEmailForm.action, {
-            method: 'post',
-            headers: {
-              'X-CSRF-TOKEN': csrf,
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            }
-          }).then(function (res) {
-            return res.json();
-          }).then(function (res) {
-            modalTitle.innerHTML = res.title;
-            modalMessage.innerHTML = res.message;
-            requestEmailForm.style.display = 'none';
-          })["catch"](function (er) {
-            return console.log(er);
-          });
+      });
+      requestEmailForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        fetch(requestEmailForm.action, {
+          method: 'post',
+          headers: {
+            'X-CSRF-TOKEN': csrf,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }
+        }).then(function (res) {
+          return res.json();
+        }).then(function (res) {
+          modalTitle.innerHTML = res.title;
+          modalMessage.innerHTML = res.message;
+          requestEmailForm.style.display = 'none';
+        })["catch"](function (er) {
+          return console.log(er);
         });
       });
     }

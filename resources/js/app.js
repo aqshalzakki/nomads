@@ -388,7 +388,9 @@ const baseUrl = "http://127.0.0.1:8000/";
 		const oldPhoneNumber = form.querySelector('#nomor-hp').value
 
 		form.addEventListener('submit', e => {
-            e.preventDefault()
+			e.preventDefault()
+
+			messageContainer.style.display = 'none'
 
 			let data = {
                 // image         : form.querySelector('input[name=image]').files[0],
@@ -413,6 +415,8 @@ const baseUrl = "http://127.0.0.1:8000/";
 			.then(res => {
 				if (res.status == 204)
 				{
+					document.getElementById('userName').innerHTML = data.name
+					messageContainer.style.display = 'block'
 					messageContainer.classList.add('alert', 'alert-primary')
 					messageContainer.innerHTML = res.message
 
@@ -423,7 +427,25 @@ const baseUrl = "http://127.0.0.1:8000/";
 						emailModal.classList.add('active')
 					}
 				}else{
-					console.log(res.errors)
+					let errorsContainer = document.querySelector('#errors')
+					let errorAlert 		= document.createElement('div')
+					errorAlert.className = "alert alert-danger"
+					let list     		= document.createElement('ul')
+
+					res.errors.name ? list.innerHTML += `<li>${res.errors.name[0]}</li>` : ''
+					res.errors.date_of_birth ? list.innerHTML += `<li>${res.errors.date_of_birth[0]}</li>` : ''
+					res.errors.gender ? list.innerHTML += `<li>${res.errors.gender[0]}</li>` : ''
+					res.errors.email ? list.innerHTML += `<li>${res.errors.email[0]}</li>` : ''
+					res.errors.phone_number ? list.innerHTML += `<li>${res.errors.phone_number[0]}</li>` : ''
+					res.errors.image ? list.innerHTML += `<li>${res.errors.image[0]}</li>` : ''
+
+					errorAlert.append(list);
+
+
+					// append
+					errorsContainer.append(errorAlert);
+
+
 				}
 
 			})
@@ -441,27 +463,27 @@ const baseUrl = "http://127.0.0.1:8000/";
 				modalMessage.innerHTML 		= 'Please check your email for verification.'
 				modalConfirmation.innerHTML	= 'Oke'
 
-				requestEmailForm.addEventListener('submit', e => {
-					e.preventDefault()
+			})
+			requestEmailForm.addEventListener('submit', e => {
+				e.preventDefault()
 
-					fetch(requestEmailForm.action, {
-						method: 'post',
-						headers: {
-							'X-CSRF-TOKEN' 	: csrf,
-							'Content-Type'	: 'application/json',
-							'Accept'		: 'application/json'
-						},
-					})
-					.then(res => res.json())
-					.then(res => {
-
-						modalTitle.innerHTML = res.title
-						modalMessage.innerHTML = res.message
-
-						requestEmailForm.style.display = 'none'
-					})
-					.catch(er => console.log(er))
+				fetch(requestEmailForm.action, {
+					method: 'post',
+					headers: {
+						'X-CSRF-TOKEN' 	: csrf,
+						'Content-Type'	: 'application/json',
+						'Accept'		: 'application/json'
+					},
 				})
+				.then(res => res.json())
+				.then(res => {
+
+					modalTitle.innerHTML = res.title
+					modalMessage.innerHTML = res.message
+
+					requestEmailForm.style.display = 'none'
+				})
+				.catch(er => console.log(er))
 			})
 		}
 	}
