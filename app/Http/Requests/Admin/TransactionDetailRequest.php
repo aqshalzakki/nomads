@@ -2,35 +2,21 @@
 
 namespace App\Http\Requests\Admin;
 
-use App\Rules\TransactionDetails\IsUsernameUnique as Unique;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
 class TransactionDetailRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
     public function authorize()
     {
-        return true;
+        // return auth()->user()->role_id == 1;
+        return 1;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
-        $exists = Rule::exists('users')->where(function($query){
-            return $query->where('role_id', 1)
-                         ->whereNotNull('email_verified_at');
-        });
         return [
-            'username'      => ['required', 'string', $exists, new Unique],
+            'email'         => ['required', 'exists:users', 'unique:users'],
             'nationality'   => ['required', 'string', 'size:2'],
             'is_visa'       => ['required', 'boolean'],
             'doe_passport'  => ['required', 'date']
@@ -40,8 +26,9 @@ class TransactionDetailRequest extends FormRequest
     public function messages()
     {
         return [
-            'username.required'       => 'Username is required!',
-            'username.exists'         => 'This member is not verified to our application!',
+            'email.required'          => 'email is required!',
+            'email.exists'            => 'This member is not verified to our application!',
+            'email.unique'            => 'This member already joined!',
             'nationality.required'    => 'Nationality?',
             'is_visa.required'        => 'You forgot your visa?',
             'is_visa.boolean'         => 'Your visa is invalid!',

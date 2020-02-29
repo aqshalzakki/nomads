@@ -103,7 +103,7 @@
                     @foreach($transaction->details as $detail)
                       <img
                           title="{{ $detail->user->username }}" 
-                          src="{{ Storage::url($detail->user->profile->image) ?? Storage::url('profiles/default.jpg') }}" 
+                          src="{{ $detail->user->profile->image ? Storage::url($detail->user->profile->image) : asset('frontend/images/profiles/default.jpg') }}"  
                           class="rounded-circle"
                           style="width: 40px;" 
                       />
@@ -112,7 +112,7 @@
                     @else
                       <img
                           title="Who is going?" 
-                          src="{{ Storage::url('profiles/unknown.png') }}" 
+                          src="{{ asset('frontend/images/profiles/unknown.jpg') }}" 
                           class="rounded-circle"
                           style="width: 40px;" 
                       />

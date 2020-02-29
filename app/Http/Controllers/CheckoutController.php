@@ -70,7 +70,7 @@ class CheckoutController extends Controller
     public function create(TransactionDetailRequest $request, Transaction $transaction)
     {
         // create details of transaction from user relationship
-        $user = User::whereUsername($request->username)->first();
+        $user = User::whereEmail($request->email)->first();
         $data = [
             'transaction_id' => $transaction->id,
             'nationality'    => $request->nationality,
