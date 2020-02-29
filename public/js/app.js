@@ -1167,6 +1167,7 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var data = {
+        // image         : form.querySelector('input[name=image]').files[0],
         name: form.querySelector('#nama').value,
         date_of_birth: form.querySelector('#datePicker').value,
         gender: form.querySelector('input[checked]').value || 'Lainnya',
@@ -1175,7 +1176,7 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
         _method: 'PATCH'
       };
       fetch(form.action, {
-        method: form.method,
+        method: data._method,
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -1253,8 +1254,8 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\nomads\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\nomads\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\Programming\PROJECTS\nomads\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\Programming\PROJECTS\nomads\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

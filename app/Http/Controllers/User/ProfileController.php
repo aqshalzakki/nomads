@@ -29,7 +29,7 @@ class ProfileController extends Controller
         $dataProfile = $request->only(['date_of_birth', 'gender', 'phone_number']);
         $dataProfile['image'] = $profile->handleUploadedImage();
 
-        // update user and profile 
+        // update user and profile
         $profile->update($dataProfile);
         $user->update($request->only([
             'name', 'email'
@@ -37,19 +37,19 @@ class ProfileController extends Controller
 
         $profile->handleUpdatedPhoneNumber($oldPhoneNumber);
         $isUpdatedEmail = $user->handleUpdatedEmail($oldEmail);
-        
+
         if ($request->isJson())
         {
             return $isUpdatedEmail ? [
                             'title'         => 'Email Sent!',
                             'emailMessage'  => 'Kindly check your inbox in order to verify the account.',
                             'message'       => 'Profil anda berhasil diperbarui!',
-                            'status'        => 204 
+                            'status'        => 204
                           ]
                         : ['status' => 204, 'message' => 'Profil anda telah diperbarui!'];
         }
-        
-        return back()->withMessage('Profil anda berhasil diperbarui!'); 
+
+        return back()->withMessage('Profil anda berhasil diperbarui!');
 
     }
 
@@ -58,7 +58,7 @@ class ProfileController extends Controller
         $user->profile->update(['verified_at' => now()]);
         $user->sms_token()->where('user_id', $user->id)->delete();
 
-        
+
         return $request->isJson() ? ['status' => 204, 'message' => 'Phone number has been verified!']
                                   : back()->withMessage('Phone number has been verified!');
     }

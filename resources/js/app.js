@@ -262,9 +262,9 @@ const baseUrl = "http://127.0.0.1:8000/";
 (function profileMenu(){
 
     let menu   = [
-    	document.querySelector('.user-edit'), 
-    	document.querySelector('.user-img a'), 
-    	document.querySelector('.user-name'), 
+    	document.querySelector('.user-edit'),
+    	document.querySelector('.user-img a'),
+    	document.querySelector('.user-name'),
     	...document.querySelectorAll('#menu')
     ]
 
@@ -278,7 +278,7 @@ const baseUrl = "http://127.0.0.1:8000/";
                 event.preventDefault()
 
                 let urlRequest = item.getAttribute('href')
-				
+
 				// sintaks hoki
                 if (window.location.href == urlRequest) return
 
@@ -342,7 +342,7 @@ const baseUrl = "http://127.0.0.1:8000/";
 					modal.classList.remove('active');
 
 				}
-				
+
 			})
 
 		})
@@ -377,31 +377,31 @@ const baseUrl = "http://127.0.0.1:8000/";
 	const form = document.getElementById('profileForm')
 
 	if (form){
-		let messageContainer = document.getElementById('message') 
-		
+		let messageContainer = document.getElementById('message')
+
 		const oldEmail 		 	= form.querySelector('#email').value
 		const emailModal	 	= document.getElementById('emailSent')
 		const modalTitle	 	= document.querySelector('h4.title')
-		const modalMessage	 	= document.querySelector('p.message') 
+		const modalMessage	 	= document.querySelector('p.message')
 		const modalConfirmation = document.getElementById('confirmation')
 
 		const oldPhoneNumber = form.querySelector('#nomor-hp').value
 
 		form.addEventListener('submit', e => {
-			e.preventDefault()
-		
+            e.preventDefault()
+
 			let data = {
+                // image         : form.querySelector('input[name=image]').files[0],
 				name 		  : form.querySelector('#nama').value,
 				date_of_birth : form.querySelector('#datePicker').value,
 				gender        : form.querySelector('input[checked]').value || 'Lainnya',
 				email 		  : form.querySelector('#email').value,
-				phone_number  : form.querySelector('#nomor-hp').value, 
+				phone_number  : form.querySelector('#nomor-hp').value,
 				_method		  : 'PATCH'
-			}
+            }
 
 			fetch(form.action, {
-				
-				method: form.method,
+				method: data._method,
 				headers: {
 					'Content-Type' : 'application/json',
 			        'Accept'	   : 'application/json',
@@ -422,7 +422,7 @@ const baseUrl = "http://127.0.0.1:8000/";
 						document.getElementById('emailStatus').innerHTML = 'Tidak Terverifikasi'
 						emailModal.classList.add('active')
 					}
-				}else{ 
+				}else{
 					console.log(res.errors)
 				}
 
@@ -432,7 +432,7 @@ const baseUrl = "http://127.0.0.1:8000/";
 
 		let requestEmailForm = document.getElementById('requestEmail')
 		let verifyEmail   	 = document.getElementById('verifyEmail')
-		
+
 		if (verifyEmail){
 			verifyEmail.addEventListener('click', e => {
 				emailModal.classList.toggle('active')
@@ -454,10 +454,10 @@ const baseUrl = "http://127.0.0.1:8000/";
 					})
 					.then(res => res.json())
 					.then(res => {
-					
+
 						modalTitle.innerHTML = res.title
 						modalMessage.innerHTML = res.message
-						
+
 						requestEmailForm.style.display = 'none'
 					})
 					.catch(er => console.log(er))

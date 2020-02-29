@@ -35,7 +35,7 @@ class UserAndProfileRequest extends FormRequest
             'email'         => ['email', Rule::unique('users')->ignore($userId)],
 
             // profile
-            'image'         => ['image', 'max:10000'], // in kiloBytes 
+            'image'         => ['image', 'mimes:jpeg,jpg,png', 'max:10000'], // in kiloBytes
             'date_of_birth' => ['required', 'date'],
             'gender'        => ['required', $inGenders],
             'phone_number'  => ['numeric', 'min:7', Rule::unique('profiles')->ignore($userId, 'user_id')]
