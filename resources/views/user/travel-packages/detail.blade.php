@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Detail Travel')
+@section('title', $travelPackage->title)
 
 @section('content')
 <main>
@@ -16,7 +16,7 @@
                     Travel Package
                   </a>
                 </li>
-                
+
                 <li class="breadcrumb-item active" aria-current="page">
                    {{ $travelPackage->title }}
                 </li>
@@ -41,7 +41,7 @@
                           xoriginal="{{ Storage::url($travelPackage->galleries->first()->image) }}"
                         />
                         <div class="xzoom-thumbs">
-                          @foreach($travelPackage->galleries as $gallery)  
+                          @foreach($travelPackage->galleries as $gallery)
                             <a href="{{ Storage::url($gallery->image) }}">
                               <img
                                 class="xzoom-gallery"
@@ -102,19 +102,19 @@
                   @if($transaction)
                     @foreach($transaction->details as $detail)
                       <img
-                          title="{{ $detail->user->username }}" 
-                          src="{{ $detail->user->profile->image ? Storage::url($detail->user->profile->image) : asset('frontend/images/profiles/default.jpg') }}"  
+                          title="{{ $detail->user->username }}"
+                          src="{{ $detail->user->profile->image ? Storage::url($detail->user->profile->image) : asset('frontend/images/profiles/default.jpg') }}"
                           class="rounded-circle"
-                          style="width: 40px;" 
+                          style="width: 40px;"
                       />
                     @endforeach
 
                     @else
                       <img
-                          title="Who is going?" 
-                          src="{{ asset('frontend/images/profiles/unknown.jpg') }}" 
+                          title="Who is going?"
+                          src="{{ asset('frontend/images/profiles/unknown.jpg') }}"
                           class="rounded-circle"
-                          style="width: 40px;" 
+                          style="width: 40px;"
                       />
                   @endif
                 </div>
@@ -146,12 +146,12 @@
                       <a href="{{ route('checkout.index', $transaction->id) }}" class="btn btn-block btn-join-now mt-3 py-2 active">
                           You've already join this travel. <br>click to checkout!
                       </a>
-                    
+
                       @else
-  
+
                       <form action="{{ route('checkout.process', $travelPackage->id) }}" method="post">
                         @csrf
-                        
+
                         <button type="submit" class="btn btn-block btn-join-now mt-3 py-2">
                           Join Now
                         </button>
