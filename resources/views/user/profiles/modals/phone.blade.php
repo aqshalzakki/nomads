@@ -1,5 +1,5 @@
 <!-- ---------------------VERIFY-PHONE-MODAL--------------------- -->
-<div class="nomads-modal {{ session()->has('tokenSent') ? 'active' : '' }}" id="verifyPhone">
+<div class="nomads-modal" id="verifyPhone">
     <div class="overlay" data-close="true"></div>
     <div class="modal-box">
         <div class="close-modal" data-close="true">&times;</div>

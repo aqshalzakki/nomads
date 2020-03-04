@@ -1,5 +1,4 @@
-const csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
+const csrf    = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 const baseUrl = "http://127.0.0.1:8000/";
 
 // ishan.js
@@ -373,19 +372,20 @@ const baseUrl = "http://127.0.0.1:8000/";
 })();
 
 (function updateProfile(){
-
 	const form = document.getElementById('profileForm')
 
 	if (form){
-		let messageContainer = document.getElementById('message')
+		let messageContainer = document.getElementById('message') 
 
 		const oldEmail 		 	= form.querySelector('#email').value
-		const emailModal	 	= document.getElementById('emailSent')
+		const oldPhoneNumber    = form.querySelector('#nomor-hp').value
+
+		const phoneNumberModal  = document.querySelector('#verifyPhone')
+		const emailModal		= document.getElementById('emailSent')
+		
 		const modalTitle	 	= document.querySelector('h4.title')
 		const modalMessage	 	= document.querySelector('p.message')
 		const modalConfirmation = document.getElementById('confirmation')
-
-		const oldPhoneNumber = form.querySelector('#nomor-hp').value
 
 		form.addEventListener('submit', e => {
 			e.preventDefault()
@@ -396,7 +396,7 @@ const baseUrl = "http://127.0.0.1:8000/";
                 // image         : form.querySelector('input[name=image]').files[0],
 				name 		  : form.querySelector('#nama').value,
 				date_of_birth : form.querySelector('#datePicker').value,
-				gender        : form.querySelector('input[checked]').value || 'Lainnya',
+				gender        : form.querySelector('input[type=radio]:checked').value || 'Lainnya',
 				email 		  : form.querySelector('#email').value,
 				phone_number  : form.querySelector('#nomor-hp').value,
 				_method		  : 'PATCH'
@@ -415,37 +415,76 @@ const baseUrl = "http://127.0.0.1:8000/";
 			.then(res => {
 				if (res.status == 204)
 				{
+					// change input name
 					document.getElementById('userName').innerHTML = data.name
 					messageContainer.style.display = 'block'
 					messageContainer.classList.add('alert', 'alert-primary')
 					messageContainer.innerHTML = res.message
 
 					// set email verification status
-					if (oldEmail != data.email)
+					if (oldEmail != data.email && oldPhoneNumber != data.phone_number)
 					{
 						document.getElementById('emailStatus').innerHTML = 'Tidak Terverifikasi'
 						emailModal.classList.add('active')
+
+						const modalCloses = emailModal.querySelectorAll('[data-close]');
+
+						modalCloses.forEach(close => {
+
+							close.addEventListener('click', e => {
+
+								setTimeout(() => {
+
+									phoneNumberModal.classList.add('active')
+
+								}, 500)
+
+							})
+
+						})
+					} else if(oldEmail != data.email) {
+
+						document.getElementById('emailStatus').innerHTML = 'Tidak Terverifikasi'
+						emailModal.classList.add('active')						
+
+						setInterval(async () =>{
+							console.log('interval dijalankan!')
+							if (await hasVerifiedEmail()){
+								const status = (await hasVerifiedEmail()).status
+
+								if (status !== null){
+									document.location.href = baseUrl + '/profile'
+									return
+								}
+							}
+						}, 2000)
+
+					}else if(oldPhoneNumber != data.phone_number){
+						// check if user was updated a phone number
+						// show modal
+						phoneNumberModal.classList.add('active')
 					}
+
 				}else{
-					let errorsContainer = document.querySelector('#errors')
-					let errorAlert 		= document.createElement('div')
-					errorAlert.className = "alert alert-danger"
-					let list     		= document.createElement('ul')
+					if (res.errors){
+						let errorsContainer = document.querySelector('#errors')
+						let errorAlert 		= document.createElement('div')
+						errorAlert.className = "alert alert-danger"
+						let list     		= document.createElement('ul')
 
-					res.errors.name ? list.innerHTML += `<li>${res.errors.name[0]}</li>` : ''
-					res.errors.date_of_birth ? list.innerHTML += `<li>${res.errors.date_of_birth[0]}</li>` : ''
-					res.errors.gender ? list.innerHTML += `<li>${res.errors.gender[0]}</li>` : ''
-					res.errors.email ? list.innerHTML += `<li>${res.errors.email[0]}</li>` : ''
-					res.errors.phone_number ? list.innerHTML += `<li>${res.errors.phone_number[0]}</li>` : ''
-					res.errors.image ? list.innerHTML += `<li>${res.errors.image[0]}</li>` : ''
+						res.errors.name ? list.innerHTML += `<li>${res.errors.name[0]}</li>` : ''
+						res.errors.date_of_birth ? list.innerHTML += `<li>${res.errors.date_of_birth[0]}</li>` : ''
+						res.errors.gender ? list.innerHTML += `<li>${res.errors.gender[0]}</li>` : ''
+						res.errors.email ? list.innerHTML += `<li>${res.errors.email[0]}</li>` : ''
+						res.errors.phone_number ? list.innerHTML += `<li>${res.errors.phone_number[0]}</li>` : ''
+						res.errors.image ? list.innerHTML += `<li>${res.errors.image[0]}</li>` : ''
 
-					errorAlert.append(list);
-
-
-					// append
-					errorsContainer.append(errorAlert);
+						errorAlert.append(list);
 
 
+						// append
+						errorsContainer.append(errorAlert);	
+					}
 				}
 
 			})
@@ -482,10 +521,36 @@ const baseUrl = "http://127.0.0.1:8000/";
 					modalMessage.innerHTML = res.message
 
 					requestEmailForm.style.display = 'none'
+					setInterval(async () =>{
+					if (await hasVerifiedEmail()){
+							const status = (await hasVerifiedEmail()).status
+
+							if (status !== null){
+								document.location.href = baseUrl + '/profile'
+								return
+							}
+						}
+					}, 2000)
 				})
 				.catch(er => console.log(er))
 			})
 		}
 	}
 
+	async function hasVerifiedEmail()
+	{
+		const wait = await fetch(baseUrl + 'profile/hasVerifiedEmail', {
+			method: 'post',
+			headers: {
+				'X-CSRF-TOKEN' : csrf,
+				'Content-Type' : 'application/json'
+			}
+		})
+
+		const data = await wait.json()
+	
+		return data
+	}
+
 })();
+

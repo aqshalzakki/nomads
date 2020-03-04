@@ -1159,11 +1159,12 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
   if (form) {
     var messageContainer = document.getElementById('message');
     var oldEmail = form.querySelector('#email').value;
+    var oldPhoneNumber = form.querySelector('#nomor-hp').value;
+    var phoneNumberModal = document.querySelector('#verifyPhone');
     var emailModal = document.getElementById('emailSent');
     var modalTitle = document.querySelector('h4.title');
     var modalMessage = document.querySelector('p.message');
     var modalConfirmation = document.getElementById('confirmation');
-    var oldPhoneNumber = form.querySelector('#nomor-hp').value;
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       messageContainer.style.display = 'none';
@@ -1171,7 +1172,7 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
         // image         : form.querySelector('input[name=image]').files[0],
         name: form.querySelector('#nama').value,
         date_of_birth: form.querySelector('#datePicker').value,
-        gender: form.querySelector('input[checked]').value || 'Lainnya',
+        gender: form.querySelector('input[type=radio]:checked').value || 'Lainnya',
         email: form.querySelector('#email').value,
         phone_number: form.querySelector('#nomor-hp').value,
         _method: 'PATCH'
@@ -1188,29 +1189,84 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
         return res.json();
       }).then(function (res) {
         if (res.status == 204) {
+          // change input name
           document.getElementById('userName').innerHTML = data.name;
           messageContainer.style.display = 'block';
           messageContainer.classList.add('alert', 'alert-primary');
           messageContainer.innerHTML = res.message; // set email verification status
 
-          if (oldEmail != data.email) {
+          if (oldEmail != data.email && oldPhoneNumber != data.phone_number) {
             document.getElementById('emailStatus').innerHTML = 'Tidak Terverifikasi';
             emailModal.classList.add('active');
+            var modalCloses = emailModal.querySelectorAll('[data-close]');
+            modalCloses.forEach(function (close) {
+              close.addEventListener('click', function (e) {
+                setTimeout(function () {
+                  phoneNumberModal.classList.add('active');
+                }, 500);
+              });
+            });
+          } else if (oldEmail != data.email) {
+            document.getElementById('emailStatus').innerHTML = 'Tidak Terverifikasi';
+            emailModal.classList.add('active');
+            setInterval(function _callee3() {
+              var status;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee3$(_context3) {
+                while (1) {
+                  switch (_context3.prev = _context3.next) {
+                    case 0:
+                      console.log('interval dijalankan!');
+                      _context3.next = 3;
+                      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(hasVerifiedEmail());
+
+                    case 3:
+                      if (!_context3.sent) {
+                        _context3.next = 10;
+                        break;
+                      }
+
+                      _context3.next = 6;
+                      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(hasVerifiedEmail());
+
+                    case 6:
+                      status = _context3.sent.status;
+
+                      if (!(status !== null)) {
+                        _context3.next = 10;
+                        break;
+                      }
+
+                      document.location.href = baseUrl + '/profile';
+                      return _context3.abrupt("return");
+
+                    case 10:
+                    case "end":
+                      return _context3.stop();
+                  }
+                }
+              });
+            }, 2000);
+          } else if (oldPhoneNumber != data.phone_number) {
+            // check if user was updated a phone number
+            // show modal
+            phoneNumberModal.classList.add('active');
           }
         } else {
-          var errorsContainer = document.querySelector('#errors');
-          var errorAlert = document.createElement('div');
-          errorAlert.className = "alert alert-danger";
-          var list = document.createElement('ul');
-          res.errors.name ? list.innerHTML += "<li>".concat(res.errors.name[0], "</li>") : '';
-          res.errors.date_of_birth ? list.innerHTML += "<li>".concat(res.errors.date_of_birth[0], "</li>") : '';
-          res.errors.gender ? list.innerHTML += "<li>".concat(res.errors.gender[0], "</li>") : '';
-          res.errors.email ? list.innerHTML += "<li>".concat(res.errors.email[0], "</li>") : '';
-          res.errors.phone_number ? list.innerHTML += "<li>".concat(res.errors.phone_number[0], "</li>") : '';
-          res.errors.image ? list.innerHTML += "<li>".concat(res.errors.image[0], "</li>") : '';
-          errorAlert.append(list); // append
+          if (res.errors) {
+            var errorsContainer = document.querySelector('#errors');
+            var errorAlert = document.createElement('div');
+            errorAlert.className = "alert alert-danger";
+            var list = document.createElement('ul');
+            res.errors.name ? list.innerHTML += "<li>".concat(res.errors.name[0], "</li>") : '';
+            res.errors.date_of_birth ? list.innerHTML += "<li>".concat(res.errors.date_of_birth[0], "</li>") : '';
+            res.errors.gender ? list.innerHTML += "<li>".concat(res.errors.gender[0], "</li>") : '';
+            res.errors.email ? list.innerHTML += "<li>".concat(res.errors.email[0], "</li>") : '';
+            res.errors.phone_number ? list.innerHTML += "<li>".concat(res.errors.phone_number[0], "</li>") : '';
+            res.errors.image ? list.innerHTML += "<li>".concat(res.errors.image[0], "</li>") : '';
+            errorAlert.append(list); // append
 
-          errorsContainer.append(errorAlert);
+            errorsContainer.append(errorAlert);
+          }
         }
       })["catch"](function (e) {
         return console.log(e);
@@ -1241,11 +1297,79 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
           modalTitle.innerHTML = res.title;
           modalMessage.innerHTML = res.message;
           requestEmailForm.style.display = 'none';
+          setInterval(function _callee4() {
+            var status;
+            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee4$(_context4) {
+              while (1) {
+                switch (_context4.prev = _context4.next) {
+                  case 0:
+                    _context4.next = 2;
+                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(hasVerifiedEmail());
+
+                  case 2:
+                    if (!_context4.sent) {
+                      _context4.next = 9;
+                      break;
+                    }
+
+                    _context4.next = 5;
+                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(hasVerifiedEmail());
+
+                  case 5:
+                    status = _context4.sent.status;
+
+                    if (!(status !== null)) {
+                      _context4.next = 9;
+                      break;
+                    }
+
+                    document.location.href = baseUrl + '/profile';
+                    return _context4.abrupt("return");
+
+                  case 9:
+                  case "end":
+                    return _context4.stop();
+                }
+              }
+            });
+          }, 2000);
         })["catch"](function (er) {
           return console.log(er);
         });
       });
     }
+  }
+
+  function hasVerifiedEmail() {
+    var wait, data;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function hasVerifiedEmail$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            _context5.next = 2;
+            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(fetch(baseUrl + 'profile/hasVerifiedEmail', {
+              method: 'post',
+              headers: {
+                'X-CSRF-TOKEN': csrf,
+                'Content-Type': 'application/json'
+              }
+            }));
+
+          case 2:
+            wait = _context5.sent;
+            _context5.next = 5;
+            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(wait.json());
+
+          case 5:
+            data = _context5.sent;
+            return _context5.abrupt("return", data);
+
+          case 7:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    });
   }
 })();
 
@@ -1269,8 +1393,8 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\Programming\PROJECTS\nomads\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\Programming\PROJECTS\nomads\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\user\Desktop\projects\nomads\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\user\Desktop\projects\nomads\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
