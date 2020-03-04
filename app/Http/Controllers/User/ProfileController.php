@@ -62,4 +62,9 @@ class ProfileController extends Controller
         return $request->isJson() ? ['status' => 204, 'message' => 'Phone number has been verified!']
                                   : back()->withMessage('Phone number has been verified!');
     }
+
+    public function hasVerifiedEmail()
+    {
+        return ['status' => auth()->user()->email_verified_at];
+    }
 }

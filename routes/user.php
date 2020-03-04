@@ -16,6 +16,8 @@ Route::namespace('User')
     ->middleware(['auth', 'user'])
     ->group(function () {
 
+
+        Route::post('/hasVerifiedEmail', 'ProfileController@hasVerifiedEmail');
         Route::get('/', 'ProfileController@index')->name('index');
         Route::patch('/{profile}', 'ProfileController@update')->name('update');
         Route::put('/{user}/verify-token', 'ProfileController@verifyToken')->name('token');

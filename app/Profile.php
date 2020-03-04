@@ -84,8 +84,6 @@ class Profile extends Model
             // Update verified at to null
             $this->update(['verified_at' => null]);
 
-            // set flashdata
-            session()->flash('tokenSent', '');
             return $this->phone_number;
         }
 

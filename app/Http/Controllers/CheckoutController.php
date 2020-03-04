@@ -10,8 +10,6 @@ use App\TransactionDetail;
 use App\TravelPackage;
 use App\User;
 
-// use Carbon\Carbon;
-
 class CheckoutController extends Controller
 {
     public function index($id)
