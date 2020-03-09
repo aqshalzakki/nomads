@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\TravelPackage; 
+use App\TravelPackage;
 use App\Category;
 
 class TravelPackageController extends Controller
 {
-  	protected object $travel_package,
-                     $category;
+  	protected $travel_package,
+              $category;
 
   	public function __construct(TravelPackage $tp)
   	{
@@ -42,7 +42,7 @@ class TravelPackageController extends Controller
                                                     : $category->travel_packages()->with('galleries')->paginate(9);
 
         return request()->isJson() ? view('user.travel-packages.card', compact('travelPackages'))
-                                   : view('user.travel-packages.index', compact('travelPackages'));           
+                                   : view('user.travel-packages.index', compact('travelPackages'));
     }
 
     public function show($slug)
