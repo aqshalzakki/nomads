@@ -110,7 +110,7 @@ class CheckoutController extends Controller
         if ($transactionDetail->is_visa)
         {
             $transaction->total -= 190;
-            $transaction->additional_visa -= 190;
+            $transaction-> additional_visa -= 190;
         }
 
         // update the transaction total
