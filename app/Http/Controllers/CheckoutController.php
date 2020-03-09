@@ -26,7 +26,7 @@ class CheckoutController extends Controller
 
     public function process(TravelPackage $travelPackage)
     {
-        // create transaction (that uses travel package relations) 
+        // create transaction (that uses travel package relations)
     	$transaction = $travelPackage->transactions()->create([
     		'user_id' 				=> auth()->id(),
     		'additional_visa'		=> 0,
@@ -34,7 +34,7 @@ class CheckoutController extends Controller
     		'transaction_status_id'	=> 1,
     	]);
 
-        /**  
+        /**
          *
          *  after transaction is created,
          *  "created" method on transaction observer will be fire...
@@ -63,7 +63,7 @@ class CheckoutController extends Controller
      * create a new transaction detail
      *
      * @return redirect
-     * @author aqshalzakki 
+     * @author aqshalzakki
      **/
     public function create(TransactionDetailRequest $request, Transaction $transaction)
     {
@@ -85,12 +85,12 @@ class CheckoutController extends Controller
             $transaction->additional_visa += 190;
         }
 
-        // update a transaction total 
-        $transaction->total += 
+        // update a transaction total
+        $transaction->total +=
             $transaction->travel_package->price;
 
         $transaction->save();
-        
+
         return redirect()->route('checkout.index', $transaction->id)->withSuccess('A new member has been added successfuly!');
     }
 
@@ -98,7 +98,7 @@ class CheckoutController extends Controller
      * remove a transaction detail
      *
      * @return redirect
-     * @author aqshalzakki 
+     * @author aqshalzakki
      **/
     public function remove(TransactionDetail $transactionDetail)
     {
@@ -106,18 +106,18 @@ class CheckoutController extends Controller
         $transaction = $transactionDetail->transaction()
                                          ->with(['travel_package', 'details'])
                                          ->firstOrFail();
-        
+
         if ($transactionDetail->is_visa)
         {
             $transaction->total -= 190;
-            $transaction->additional_visa -= 190;
+            $transaction-> additional_visa -= 190;
         }
 
-        // update the transaction total 
+        // update the transaction total
         $transaction->total -= $transaction->travel_package->price;
         $transaction->save();
 
-        // and then delete the detail transaction 
+        // and then delete the detail transaction
         $transactionDetail->delete();
 
         return redirect()->route('checkout.index', $transaction->id);
@@ -129,11 +129,12 @@ class CheckoutController extends Controller
             'id'      => $id,
             'user_id' => auth()->id(),
         ])->firstOrFail();
-        
+
         // update transaction status to pending
         $transaction->transaction_status_id = 2;
         $transaction->save();
 
-        return view('user.checkout.success');
+        $transaction->handlePaymentGateway();
+        // return view('user.checkout.success');
     }
 }
