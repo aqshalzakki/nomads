@@ -1,5 +1,5 @@
 const csrf    = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-const baseUrl = "http://127.0.0.1:8000/";
+const baseUrl = "http://localhost:3000/";
 
 // ishan.js
 (function collapseMenu()
@@ -256,51 +256,6 @@ const baseUrl = "http://127.0.0.1:8000/";
 			})
 		})
 	}
-})();
-
-(function profileMenu(){
-
-    let menu   = [
-    	document.querySelector('.user-edit'),
-    	document.querySelector('.user-img a'),
-    	document.querySelector('.user-name'),
-    	...document.querySelectorAll('#menu')
-    ]
-
-    if (menu[0])
-    {
-        let cardRoot  = document.querySelector('#cardRoot')
-
-        menu.forEach(item => {
-
-            item.addEventListener('click', e => {
-                event.preventDefault()
-
-                let urlRequest = item.getAttribute('href')
-
-				// sintaks hoki
-                if (window.location.href == urlRequest) return
-
-                // change section id
-                document.querySelector('.dynamic-content').id = 'profile'
-
-                document.querySelector('title').innerHTML = 'Profile'
-
-                window.history.pushState("", "", urlRequest)
-                fetch(urlRequest, {
-                    headers: {
-                        'X-CSRF-TOKEN': csrf,
-                        'Content-Type': 'application/json'
-                    },
-                })
-                .then(res => res.text())
-                .then(data => cardRoot.innerHTML = data)
-            })
-
-        })
-
-    }
-
 })();
 
 (function nomadsModal(){

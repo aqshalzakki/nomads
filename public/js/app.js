@@ -847,17 +847,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
 var csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
+var baseUrl = "http://localhost:3000/"; // ishan.js
 
 (function collapseMenu() {
   var openMenus = document.querySelectorAll('.open-collapse-menu');
@@ -1077,36 +1068,6 @@ var baseUrl = "http://127.0.0.1:8000/"; // ishan.js
           return cardRoot.innerHTML = data;
         })["catch"](function (exception) {
           return console.log(exception);
-        });
-      });
-    });
-  }
-})();
-
-(function profileMenu() {
-  var menu = [document.querySelector('.user-edit'), document.querySelector('.user-img a'), document.querySelector('.user-name')].concat(_toConsumableArray(document.querySelectorAll('#menu')));
-
-  if (menu[0]) {
-    var cardRoot = document.querySelector('#cardRoot');
-    menu.forEach(function (item) {
-      item.addEventListener('click', function (e) {
-        event.preventDefault();
-        var urlRequest = item.getAttribute('href'); // sintaks hoki
-
-        if (window.location.href == urlRequest) return; // change section id
-
-        document.querySelector('.dynamic-content').id = 'profile';
-        document.querySelector('title').innerHTML = 'Profile';
-        window.history.pushState("", "", urlRequest);
-        fetch(urlRequest, {
-          headers: {
-            'X-CSRF-TOKEN': csrf,
-            'Content-Type': 'application/json'
-          }
-        }).then(function (res) {
-          return res.text();
-        }).then(function (data) {
-          return cardRoot.innerHTML = data;
         });
       });
     });
