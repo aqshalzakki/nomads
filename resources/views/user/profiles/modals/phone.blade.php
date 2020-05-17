@@ -12,10 +12,9 @@
             @csrf
             @method('put')
             <div class="magic-number-inputs" id="magicNumberInputs">
-                <input type="number" required name="digits[]">
-                <input type="number" required name="digits[]">
-                <input type="number" required name="digits[]">
-                <input type="number" required name="digits[]">
+                @for($i = 1; $i <= 4; $i++)
+                    <input type="number" required name="digits[]">
+                @endfor
             </div>
             @error('token') <small class="verify-error mt-2">{{ $message }}</small> @enderror
             

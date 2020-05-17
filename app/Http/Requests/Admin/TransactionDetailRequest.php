@@ -16,7 +16,7 @@ class TransactionDetailRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'         => ['required', 'exists:users', 'unique:users'],
+            'email'         => ['required', 'exists:users'],
             'nationality'   => ['required', 'string', 'size:2'],
             'is_visa'       => ['required', 'boolean'],
             'doe_passport'  => ['required', 'date']

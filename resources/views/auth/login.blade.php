@@ -39,7 +39,7 @@
                   @csrf
                   <div class="form-group">
                     <label for="email">Email</label>
-                    <input required value="{{ old('email') }}" name="email" type="text" class="form-control @error('email') is-invalid @enderror" id="email">
+                    <input autofocus required value="{{ old('email') }}" name="email" type="text" class="form-control @error('email') is-invalid @enderror" id="email">
                   </div>
                   <div class="form-group">
                     <label for="password">Password</label>

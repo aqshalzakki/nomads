@@ -12,7 +12,7 @@
                 <br>
                 please read it as well
             </p>
-            <a href="{{ route('home') }}" class="btn btn-home-page mt-3 px-5">Home Page</a>
+            <a href="{{ route('home') }}" class="btn btn-home-page mt-3 px-5">Yes Sir!</a>
         </div>
     </div>
 @endsection

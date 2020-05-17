@@ -38,7 +38,7 @@
                 @csrf
                 <div class="form-group">
                   <label for="name">Name</label>
-                  <input value="{{ old('name') }}" required name="name" type="text" class="form-control @error('name') is-invalid @enderror" id="name">
+                  <input autofocus value="{{ old('name') }}" required name="name" type="text" class="form-control @error('name') is-invalid @enderror" id="name">
                   @error('name') <small class="text-danger ml-2">{{ $message }}</small> @enderror
                 </div>
                 <div class="form-group">
