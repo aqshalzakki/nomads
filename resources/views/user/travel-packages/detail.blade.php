@@ -13,7 +13,7 @@
               <ol class="breadcrumb">
                 <li class="breadcrumb-item" aria-current="page">
                   <a style="color: #071C4D;" aria-current="page" href="{{ route('travel-packages.category', 'All') }}">
-                    Travel Package
+                    Travel Packages
                   </a>
                 </li>
                 
