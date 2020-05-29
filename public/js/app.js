@@ -1354,8 +1354,8 @@ var baseUrl = "http://localhost:3000/"; // ishan.js
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\user\Desktop\projects\nomads\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\user\Desktop\projects\nomads\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Programming\Development\nomads\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Programming\Development\nomads\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

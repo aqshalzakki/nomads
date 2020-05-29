@@ -11,9 +11,10 @@ use Faker\Generator as Faker;
 $factory->define(TravelPackage::class, function (Faker $faker) { 
     return [
         'title'      	 => $faker->city,
+        'category_id'    => $faker->numberBetween(1, 4),
         'slug'			 => Str::slug($faker->city),
         'location'   	 =>"{$faker->city}, $faker->countryCode",
-        'about'	     	 => $faker->realText(110, 2),
+        'about'	     	 => $faker->realText(500, 2),
         'featured_event' => "Travels",
         'language'		 => $faker->country,
         'foods'			 => 'Nasi Goreng',

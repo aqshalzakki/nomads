@@ -11,9 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // factory(App\TravelPackage::class, 25)->create();
-        // $this->call(TransactionStatusesTableSeeder::class);
-        // $this->call(RoleTableSeeder::class);
+        factory(\App\TravelPackage::class, 25)->create();
+        $this->call(TransactionStatusesTableSeeder::class);
+        $this->call(RoleTableSeeder::class);
         $this->call(CategoriesTableSeeder::class);
     }
 }

@@ -41,7 +41,9 @@
                     <tbody>
                         @forelse ($travelPackages as $travelPackage)
                             <tr>
-                                <th>{{ $loop->iteration }}</th>
+                                <th>
+                                    {{ ($travelPackages->currentpage()-1) * $travelPackages->perpage() + $loop->index + 1 }}
+                                </th>
                                 <td>{{ $travelPackage->title }}</td>
                                 <td>{{ $travelPackage->location }}</td>
                                 <td>{{ Carbon\Carbon::create($travelPackage->departure_date)->format('n F Y') }}</td>

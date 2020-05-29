@@ -28,9 +28,9 @@ class GalleryRepository{
 
         // store the image
     	$data['image'] = $data['image']->store('travel-package', 'public');
-    	
+
         // resize the image
-        Image::make(public_path("storage/{$data['image']}"))->fit(752, 508)->save();
+        Image::make(public_path("storage/" . $data['image']))->fit(752, 508)->save();
 
         $this->gallery->create($data);
     }
