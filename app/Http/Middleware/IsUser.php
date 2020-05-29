@@ -14,9 +14,7 @@ class IsUser
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
-        $user = auth()->user();
-        
-        return $user->isRole('USER') ? $next($request) : abort(401);
+    {   
+        return $request->user()->isRole('USER') ? $next($request) : abort(401);
     }
 }

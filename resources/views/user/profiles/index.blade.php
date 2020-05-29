@@ -160,6 +160,7 @@
                                                 <label style="user-select: none;" for="nomor-hp">Nomor HP</label>
                                                 <div class="relative">
                                                     <input
+                                                        placeholder="Nomor telepon anda..."
                                                         required
                                                         type="text"
                                                         name="phone_number"
