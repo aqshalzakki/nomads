@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css2?family=Oswald&display=swap);@charset "UTF-8";
 
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
@@ -14218,6 +14218,7 @@ form[data-urlcheckpassword] .password-input small {
   max-width: 600px;
   text-align: center;
   color: #fff;
+  font-family: "Oswald", sans-serif;
   text-transform: uppercase;
 }
 
