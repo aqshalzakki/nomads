@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Traits\TransactionStatusTrait as TransactionStatusId;
 
 class Transaction extends Model
 {
+    use TransactionStatusId;
     use SoftDeletes;
-
-    
 
     protected $guarded = [
     	'id', 'travel_package_id', 'created_at', 'updated_at', 'deleted_at'
@@ -64,5 +64,17 @@ class Transaction extends Model
         return $this->with([
             'details', 'travel_package', 'user', 'status'
         ])->get();
+    }
+
+    public function setStatusToPending()
+    {
+        $this->transaction_status_id = TransactionStatusId::$PENDING;
+        $this->save();
+    }
+
+    public function setStatusToCancel()
+    {
+        $this->transaction_status_id = TransactionStatusId::$CANCEL;
+        $this->save();
     }
 }

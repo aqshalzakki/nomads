@@ -52,9 +52,7 @@ class CheckoutController extends Controller
      **/
     public function cancel(Transaction $transaction)
     {
-        // set to 4(cancel)
-        $transaction->transaction_status_id = 4;
-        $transaction->save();
+        $transaction->setStatusToCancel();
 
         return redirect()->route('travel-packages.show', $transaction->travel_package->slug);
     }
@@ -129,10 +127,8 @@ class CheckoutController extends Controller
             'id'      => $id,
             'user_id' => auth()->id(),
         ])->firstOrFail();
-        
-        // update transaction status to pending
-        $transaction->transaction_status_id = 2;
-        $transaction->save();
+
+        $transaction->setStatusToPending();
 
         return view('user.checkout.success');
     }

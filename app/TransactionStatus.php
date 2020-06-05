@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\TransactionStatusTrait;
 
 class TransactionStatus extends Model
 {
+    use TransactionStatusTrait;
+    
     // for testing
     protected $fillable = ['name'];
 
