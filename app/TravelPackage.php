@@ -58,8 +58,12 @@ class TravelPackage extends Model
 
     public function hasImage()
     {
-        $image = $this->galleries->first()->image ?? null;
-        return $image ? Storage::url($image) : null;
+        return $this->galleries->count() >= 1;
+    }
+
+    public function firstImageUrl()
+    {
+        return Storage::url($this->galleries->first()->image);
     }
 
     public function getByKeyword($keyword)

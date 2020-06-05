@@ -15,6 +15,9 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, SoftDeletes;
 
+    const ROLE_USER = 1;
+    const ROLE_ADMIN = 2;
+
     protected $guarded = [];
 
     protected $hidden = [
@@ -43,6 +46,16 @@ class User extends Authenticatable implements MustVerifyEmail
     public function isRole($role)
     {
         return $this->role->title == $role;
+    }
+
+    public function isAdmin()
+    {
+        return $this->role_id === self::ROLE_ADMIN;
+    }
+
+    public function isUser()
+    {
+        return $this->role_id === self::ROLE_USER;
     }
 
     public function profile()

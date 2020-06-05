@@ -15,6 +15,6 @@ class IsUser
      */
     public function handle($request, Closure $next)
     {   
-        return $request->user()->isRole('USER') ? $next($request) : abort(401);
+        return $request->user()->isUser() ? $next($request) : abort(401);
     }
 }

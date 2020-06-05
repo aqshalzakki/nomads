@@ -39,7 +39,7 @@
                             <div class="profile-menu">
                                 <ul>
                                     
-                                    @if($user->isRole('USER'))
+                                    @if($user->isUser())
                                         
                                         <li class="{{ request()->is('profile*') }}">
                                             <a class="profile-menu-link" href="{{ route('profile.index') }}">My Account</a>
@@ -66,7 +66,7 @@
                             </div>
                         </div>
                     </li>
-                @endif
+                @endauth
 
                 @guest
                     <a href="{{ route('login') }}" class="auth">

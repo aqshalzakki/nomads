@@ -2,9 +2,9 @@
   <div class="col-lg-4 col-md-4 col-sm-6 col-6">
     <div class="package-card mb-5">
       <a href="{{ route('travel-packages.show', $travel_package->slug) }}">
-        @if($travel_package->hasImage())
+        @if ($travel_package->hasImage())
           <div class="travel-img">
-            <img src="{{ $travel_package->hasImage() }}">
+            <img src="{{ $travel_package->firstImageUrl() }}">
           </div>
         @endif
       </a>
